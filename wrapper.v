@@ -30,12 +30,15 @@ module wrapped_project(
     // only provide first 32 bits to reduce wiring congestion
     input  wire [31:0] la_data_in,
     output wire [31:0] la_data_out,
-    input  wire [31:0] la_oen,
+    input  wire [31:0] la_oenb,
 
     // IOs
     input  wire [`MPRJ_IO_PADS-1:0] io_in,
     output wire [`MPRJ_IO_PADS-1:0] io_out,
     output wire [`MPRJ_IO_PADS-1:0] io_oeb,
+
+    // IRQ
+    output wire [2:0] irq,
     
     // active input, only connect tristated outputs if this is high
     input wire active
@@ -47,6 +50,7 @@ module wrapped_project(
     wire [31:0] buf_la_data_out;
     wire [`MPRJ_IO_PADS-1:0] buf_io_out;
     wire [`MPRJ_IO_PADS-1:0] buf_io_oeb;
+    wire [2:0] buf_irq;
 
     `ifdef FORMAL
     // formal can't deal with z, so set all outputs to 0 if not active
@@ -55,6 +59,7 @@ module wrapped_project(
     assign la_data_out  = active ? buf_la_data_out  : 32'b0;
     assign io_out       = active ? buf_io_out       : {`MPRJ_IO_PADS{1'b0}};
     assign io_oeb       = active ? buf_io_oeb       : {`MPRJ_IO_PADS{1'b0}};
+    assign irq          = active ? buf_irq          : 3'b0;
     `include "properties.v"
     `else
     // tristate buffers
@@ -63,6 +68,7 @@ module wrapped_project(
     assign la_data_out  = active ? buf_la_data_out  : 32'bz;
     assign io_out       = active ? buf_io_out       : {`MPRJ_IO_PADS{1'bz}};
     assign io_oeb       = active ? buf_io_oeb       : {`MPRJ_IO_PADS{1'bz}};
+    assign irq          = active ? buf_irq          : 3'bz;
     `endif
 
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
