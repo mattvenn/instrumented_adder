@@ -14,31 +14,31 @@ module wrapped_project(
     inout vssd1,	// User area 1 digital ground
     inout vssd2,	// User area 2 digital ground
 `endif
-    // interface as user_proj_example.v
-    input wire wb_clk_i,
-    input wire wb_rst_i,
-    input wire wbs_stb_i,
-    input wire wbs_cyc_i,
-    input wire wbs_we_i,
-    input wire [3:0] wbs_sel_i,
-    input wire [31:0] wbs_dat_i,
-    input wire [31:0] wbs_adr_i,
-    output wire wbs_ack_o,
-    output wire [31:0] wbs_dat_o,
+    // wishbone interface
+    input wire wb_clk_i,            // clock, runs at system clock
+    input wire wb_rst_i,            // main system reset
+    input wire wbs_stb_i,           // wishbone write strobe
+    input wire wbs_cyc_i,           // wishbone cycle
+    input wire wbs_we_i,            // wishbone write enable
+    input wire [3:0] wbs_sel_i,     // wishbone write word select
+    input wire [31:0] wbs_dat_i,    // wishbone data in
+    input wire [31:0] wbs_adr_i,    // wishbone address
+    output wire wbs_ack_o,          // wishbone ack
+    output wire [31:0] wbs_dat_o,   // wishbone data out
 
     // Logic Analyzer Signals
     // only provide first 32 bits to reduce wiring congestion
-    input  wire [31:0] la_data_in,
-    output wire [31:0] la_data_out,
-    input  wire [31:0] la_oenb,
+    input  wire [31:0] la_data_in,  // from PicoRV32 to your project
+    output wire [31:0] la_data_out, // from your project to PicoRV32
+    input  wire [31:0] la_oenb,     // output enable bar (low for active)
 
     // IOs
-    input  wire [`MPRJ_IO_PADS-1:0] io_in,
-    output wire [`MPRJ_IO_PADS-1:0] io_out,
-    output wire [`MPRJ_IO_PADS-1:0] io_oeb,
+    input  wire [`MPRJ_IO_PADS-1:0] io_in,  // in to your project
+    output wire [`MPRJ_IO_PADS-1:0] io_out, // out fro your project
+    output wire [`MPRJ_IO_PADS-1:0] io_oeb, // out enable bar (low active)
 
     // IRQ
-    output wire [2:0] irq,
+    output wire [2:0] irq,          // interrupt from project to PicoRV32
     
     // active input, only connect tristated outputs if this is high
     input wire active
@@ -74,7 +74,9 @@ module wrapped_project(
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
     assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}};
 
-    // instantiate your module here, connecting what you need of the above signals
+    // Instantiate your module here, 
+    // connecting what you need of the above signals. 
+    // Use the buffered outputs for your module's outputs.
 
 endmodule 
 `default_nettype wire
