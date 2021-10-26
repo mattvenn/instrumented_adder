@@ -31,9 +31,9 @@ module wrapped_project(
     // Logic Analyzer Signals
     // only provide first 32 bits to reduce wiring congestion
 `ifdef USE_LA
-    input  wire [31:0] la_data_in,  // from PicoRV32 to your project
-    output wire [31:0] la_data_out, // from your project to PicoRV32
-    input  wire [31:0] la_oenb,     // output enable bar (low for active)
+    input  wire [31:0] la1_data_in,  // from PicoRV32 to your project
+    output wire [31:0] la1_data_out, // from your project to PicoRV32
+    input  wire [31:0] la1_oenb,     // output enable bar (low for active)
 `endif
 
     // IOs
