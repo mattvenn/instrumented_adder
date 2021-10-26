@@ -12,7 +12,7 @@ always @(*) begin
         _io_oeb_buf_  : assert(io_oeb       == buf_io_oeb);
     `endif
     `ifdef USE_IRQ
-        _irq_buf_     : assert(irq          == buf_irq);
+        _user_irq_buf_     : assert(user_irq          == buf_user_irq);
     `endif
     end
     if(!active) begin
@@ -28,7 +28,7 @@ always @(*) begin
         _io_oeb_z_    : assert(io_oeb       == `MPRJ_IO_PADS'b0);
     `endif
     `ifdef USE_IRQ
-        _irq_z_       : assert(irq          == 3'b0);
+        _user_irq_z_       : assert(user_irq          == 3'b0);
     `endif
     end
 end

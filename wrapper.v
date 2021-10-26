@@ -45,7 +45,7 @@ module wrapped_project(
 
     // IRQ
 `ifdef USE_IRQ
-    output wire [2:0] irq,          // interrupt from project to PicoRV32
+    output wire [2:0] user_irq,          // interrupt from project to PicoRV32
 `endif
 
 `ifdef USE_CLK2
@@ -63,7 +63,7 @@ module wrapped_project(
     wire [31:0] buf_la1_data_out;
     wire [`MPRJ_IO_PADS-1:0] buf_io_out;
     wire [`MPRJ_IO_PADS-1:0] buf_io_oeb;
-    wire [2:0] buf_irq;
+    wire [2:0] buf_user_irq;
 
     `ifdef FORMAL
     // formal can't deal with z, so set all outputs to 0 if not active
@@ -79,7 +79,7 @@ module wrapped_project(
     assign io_oeb       = active ? buf_io_oeb       : {`MPRJ_IO_PADS{1'b0}};
     `endif
     `ifdef USE_IRQ
-    assign irq          = active ? buf_irq          : 3'b0;
+    assign user_irq     = active ? buf_user_irq          : 3'b0;
     `endif
     `include "properties.v"
     `else
@@ -97,7 +97,7 @@ module wrapped_project(
     assign io_oeb       = active ? buf_io_oeb       : {`MPRJ_IO_PADS{1'bz}};
     `endif
     `ifdef USE_IRQ
-    assign irq          = active ? buf_irq          : 3'bz;
+    assign user_irq     = active ? buf_user_irq          : 3'bz;
     `endif
     `endif
 
