@@ -5,7 +5,6 @@ project:
   description: "description"
   picture: docs/empty.png
   author: "Author"
-  github: https://github.com/link
   license: LICENSE
 
 # optional interfaces you want to use: gpio, la1, la2, la3, irq, clk2 & wishbone
