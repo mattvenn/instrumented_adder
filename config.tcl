@@ -33,8 +33,5 @@ set ::env(GLB_RT_MAXLAYER) 5
 set ::env(VDD_NETS) [list {vccd1}]
 set ::env(GND_NETS) [list {vssd1}]
 
-# regular pin order seems to help with aggregating all the macros for the group project
-set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
-
 # turn off CVC as we have multiple power domains
 set ::env(RUN_CVC) 0

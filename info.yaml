@@ -8,6 +8,9 @@ project:
   github: https://github.com/link
   license: LICENSE
 
+# optional interfaces you want to use: gpio, la1, la2, la3, irq, clk2 & wishbone
+interfaces: ['la1', 'gpio']
+
 # test within caravel
 caravel_test:
   recipe: "coco_test"
@@ -36,7 +39,7 @@ source:
     - wrapper.v
     - other source files here
 
-# gds - check size = 300x300, nothing on metal 5, do a DRC, check 141 tristate buffers, check LVS
+# gds - check nothing on metal 5, DRC & LVS
 gds:
   directory: "gds"
   gds_filename: "project.gds"

@@ -36,7 +36,9 @@ PDK_PATH?=/ef/tech/SW/sky130A
 SIM?=RTL
 
 # include the modules that cocotb needs for test
+export COCOTB_REDUCED_LOG_FMT=1
 export PYTHONPATH := $(UPRJ_RTL_PATH)/wrapped_project/project/test
+export LIBPYTHON_LOC=$(shell cocotb-config --libpython)
 
 .SUFFIXES:
 
@@ -55,6 +57,7 @@ coco_test: ${PATTERN}.hex
 	-I $(UPRJ_BEHAVIOURAL_MODELS)    -I $(UPRJ_RTL_PATH)
 	
 	MODULE=test_project vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
+	! grep failure results.xml
 
 %.vvp: %_tb.v %.hex
 ifeq ($(SIM),RTL)
