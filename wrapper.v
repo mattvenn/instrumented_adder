@@ -3,11 +3,12 @@
     `define MPRJ_IO_PADS 38    
 `endif
 
-//`define USE_WB  0
+//`define USE_WB  1
 `define USE_LA  1
 `define USE_IO  1
-//`define USE_MEM 0
-//`define USE_IRQ 0
+//`define USE_SHARED_OPENRAM 1
+//`define USE_MEM 1
+//`define USE_IRQ 1
 
 // update this to the name of your module
 module wrapped_project(
@@ -15,19 +16,34 @@ module wrapped_project(
     inout vccd1,	// User area 1 1.8V supply
     inout vssd1,	// User area 1 digital ground
 `endif
-    input wire wb_clk_i,            // clock, runs at system clock
- // wishbone interface
+    input wire wb_clk_i,                            // clock, runs at system clock
+ // caravel wishbone peripheral
 `ifdef USE_WB
-    input wire wb_rst_i,            // main system reset
-    input wire wbs_stb_i,           // wishbone write strobe
-    input wire wbs_cyc_i,           // wishbone cycle
-    input wire wbs_we_i,            // wishbone write enable
-    input wire [3:0] wbs_sel_i,     // wishbone write word select
-    input wire [31:0] wbs_dat_i,    // wishbone data in
-    input wire [31:0] wbs_adr_i,    // wishbone address
-    output wire wbs_ack_o,          // wishbone ack
-    output wire [31:0] wbs_dat_o,   // wishbone data out
+    input wire          wb_rst_i,                   // main system reset
+    input wire          wbs_stb_i,                  // wishbone write strobe
+    input wire          wbs_cyc_i,                  // wishbone cycle
+    input wire          wbs_we_i,                   // wishbone write enable
+    input wire  [3:0]   wbs_sel_i,                  // wishbone write word select
+    input wire  [31:0]  wbs_dat_i,                  // wishbone data in
+    input wire  [31:0]  wbs_adr_i,                  // wishbone address
+    output wire         wbs_ack_o,                  // wishbone ack
+    output wire [31:0]  wbs_dat_o,                  // wishbone data out
 `endif
+
+// shared RAM wishbone controller
+`ifdef USE_SHARED_OPENRAM
+    output wire         rambus_wb_clk_o,            // clock
+    output wire         rambus_wb_rst_o,            // reset
+    output wire         rambus_wb_stb_o,            // write strobe
+    output wire         rambus_wb_cyc_o,            // cycle
+    output wire         rambus_wb_we_o,             // write enable
+    output wire [3:0]   rambus_wb_sel_o,            // write word select
+    output wire [31:0]  rambus_wb_dat_o,            // ram data out
+    output wire [9:0]   rambus_wb_adr_o,            // 10bit address
+    input  wire         rambus_wb_ack_i,            // ack
+    input  wire [31:0]  rambus_wb_dat_i,            // ram data in
+`endif
+
     // Logic Analyzer Signals
     // only provide first 32 bits to reduce wiring congestion
 `ifdef USE_LA
@@ -58,18 +74,36 @@ module wrapped_project(
 );
 
     // all outputs must be tristated before being passed onto the project
-    wire buf_wbs_ack_o;
-    wire [31:0] buf_wbs_dat_o;
-    wire [31:0] buf_la1_data_out;
-    wire [`MPRJ_IO_PADS-1:0] buf_io_out;
-    wire [`MPRJ_IO_PADS-1:0] buf_io_oeb;
-    wire [2:0] buf_user_irq;
+    wire                        buf_wbs_ack_o;
+    wire [31:0]                 buf_wbs_dat_o;
+    wire [31:0]                 buf_la1_data_out;
+    wire [`MPRJ_IO_PADS-1:0]    buf_io_out;
+    wire [`MPRJ_IO_PADS-1:0]    buf_io_oeb;
+    wire [2:0]                  buf_user_irq;
+    wire                        buf_rambus_wb_clk_o;
+    wire                        buf_rambus_wb_rst_o;
+    wire                        buf_rambus_wb_stb_o;
+    wire                        buf_rambus_wb_cyc_o;
+    wire                        buf_rambus_wb_we_o;
+    wire [3:0]                  buf_rambus_wb_sel_o;
+    wire [31:0]                 buf_rambus_wb_dat_o;
+    wire [9:0]                  buf_rambus_wb_adr_o;
 
     `ifdef FORMAL
     // formal can't deal with z, so set all outputs to 0 if not active
     `ifdef USE_WB
     assign wbs_ack_o    = active ? buf_wbs_ack_o    : 1'b0;
     assign wbs_dat_o    = active ? buf_wbs_dat_o    : 32'b0;
+    `endif
+    `ifdef USE_SHARED_OPENRAM
+    assign rambus_wb_clk_o = active ? buf_rambus_wb_clk_o : 1'b0;
+    assign rambus_wb_rst_o = active ? buf_rambus_wb_rst_o : 1'b0;
+    assign rambus_wb_stb_o = active ? buf_rambus_wb_stb_o : 1'b0;
+    assign rambus_wb_cyc_o = active ? buf_rambus_wb_cyc_o : 1'b0;
+    assign rambus_wb_we_o  = active ? buf_rambus_wb_we_o  : 4'b0;
+    assign rambus_wb_sel_o = active ? buf_rambus_wb_sel_o : 1'b0;
+    assign rambus_wb_dat_o = active ? buf_rambus_wb_dat_o : 32'b0;
+    assign rambus_wb_adr_o = active ? buf_rambus_wb_adr_o : 10'b0;
     `endif
     `ifdef USE_LA
     assign la1_data_out = active ? buf_la1_data_out  : 32'b0;
@@ -88,6 +122,16 @@ module wrapped_project(
     `ifdef USE_WB
     assign wbs_ack_o    = active ? buf_wbs_ack_o    : 1'bz;
     assign wbs_dat_o    = active ? buf_wbs_dat_o    : 32'bz;
+    `endif
+    `ifdef USE_SHARED_OPENRAM
+    assign rambus_wb_clk_o = active ? buf_rambus_wb_clk_o : 1'bz;
+    assign rambus_wb_rst_o = active ? buf_rambus_wb_rst_o : 1'bz;
+    assign rambus_wb_stb_o = active ? buf_rambus_wb_stb_o : 1'bz;
+    assign rambus_wb_cyc_o = active ? buf_rambus_wb_cyc_o : 1'bz;
+    assign rambus_wb_we_o  = active ? buf_rambus_wb_we_o  : 4'bz;
+    assign rambus_wb_sel_o = active ? buf_rambus_wb_sel_o : 1'bz;
+    assign rambus_wb_dat_o = active ? buf_rambus_wb_dat_o : 32'bz;
+    assign rambus_wb_adr_o = active ? buf_rambus_wb_adr_o : 10'bz;
     `endif
     `ifdef USE_LA
     assign la1_data_out  = active ? buf_la1_data_out  : 32'bz;

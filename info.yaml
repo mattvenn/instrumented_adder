@@ -7,7 +7,7 @@ project:
   author: "Author"
   license: LICENSE
 
-# optional interfaces you want to use: gpio, la1, la2, la3, irq, clk2 & wishbone
+# optional interfaces you want to use: gpio, la1, la2, la3, irq, clk2, wishbone & openram
 interfaces: ['la1', 'gpio']
 
 # test within caravel
