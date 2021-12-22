@@ -16,7 +16,6 @@ caravel_test:
   directory: "caravel_test"
   id: 1
   module_name: "wrapped_project"
-  instance_name: "wrapped_project"
 
 # module test
 module_test:
