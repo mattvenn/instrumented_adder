@@ -27,7 +27,7 @@ set ::env(CLOCK_PORT) "wb_clk_i"
 
 # macro needs to work inside Caravel, so can't be core and can't use metal 5
 set ::env(DESIGN_IS_CORE) 0
-set ::env(GLB_RT_MAXLAYER) 5
+set ::env(RT_MAX_LAYER) {met4}
 
 # define power straps so the macro works inside Caravel's PDN
 set ::env(VDD_NETS) [list {vccd1}]

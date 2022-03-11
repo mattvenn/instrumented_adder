@@ -17,77 +17,82 @@
 
 `timescale 1 ns / 1 ps
 
-`include "uprj_netlists.v" // this file gets created automatically by multi_project_tools from the source section of info.yaml
-`include "caravel_netlists.v"
-`include "spiflash.v"
-
+// change module name to something that suits your project
 module project_tb;
     initial begin
+        // change to suit your project
         $dumpfile ("project.vcd");
         $dumpvars (0, project_tb);
         #1;
     end
 
-	reg clk;
+    reg clk;
     reg RSTB;
-	reg power1, power2;
-	reg power3, power4;
+    reg power1, power2;
+    reg power3, power4;
 
     wire gpio;
     wire [37:0] mprj_io;
 
     ///// convenience signals that match what the cocotb test modules are looking for
+    // change to suit your project. Here's how we can make some nicer named signals for inputs & outputs
+    wire output14 = mprj_io[14];
+    wire output15 = mprj_io[15];
 
+    wire input8, input9;
 
+    assign mprj_io[ 8] = input8;
+    assign mprj_io[ 9] = input9;
     /////
+    
 
+    wire flash_csb;
+    wire flash_clk;
+    wire flash_io0;
+    wire flash_io1;
 
-	wire flash_csb;
-	wire flash_clk;
-	wire flash_io0;
-	wire flash_io1;
+    wire VDD3V3 = power1;
+    wire VDD1V8 = power2;
+    wire USER_VDD3V3 = power3;
+    wire USER_VDD1V8 = power4;
+    wire VSS = 1'b0;
 
-	wire VDD3V3 = power1;
-	wire VDD1V8 = power2;
-	wire USER_VDD3V3 = power3;
-	wire USER_VDD1V8 = power4;
-	wire VSS = 1'b0;
+    caravel uut (
+        .vddio    (VDD3V3),
+        .vssio    (VSS),
+        .vdda     (VDD3V3),
+        .vssa     (VSS),
+        .vccd     (VDD1V8),
+        .vssd     (VSS),
+        .vdda1    (USER_VDD3V3),
+        .vdda2    (USER_VDD3V3),
+        .vssa1    (VSS),
+        .vssa2    (VSS),
+        .vccd1    (USER_VDD1V8),
+        .vccd2    (USER_VDD1V8),
+        .vssd1    (VSS),
+        .vssd2    (VSS),
+        .clock    (clk),
+        .gpio     (gpio),
+        .mprj_io  (mprj_io),
+        .flash_csb(flash_csb),
+        .flash_clk(flash_clk),
+        .flash_io0(flash_io0),
+        .flash_io1(flash_io1),
+        .resetb   (RSTB)
+    );
 
-	caravel uut (
-		.vddio	  (VDD3V3),
-		.vssio	  (VSS),
-		.vdda	  (VDD3V3),
-		.vssa	  (VSS),
-		.vccd	  (VDD1V8),
-		.vssd	  (VSS),
-		.vdda1    (USER_VDD3V3),
-		.vdda2    (USER_VDD3V3),
-		.vssa1	  (VSS),
-		.vssa2	  (VSS),
-		.vccd1	  (USER_VDD1V8),
-		.vccd2	  (USER_VDD1V8),
-		.vssd1	  (VSS),
-		.vssd2	  (VSS),
-		.clock	  (clk),
-		.gpio     (gpio),
-        	.mprj_io  (mprj_io),
-		.flash_csb(flash_csb),
-		.flash_clk(flash_clk),
-		.flash_io0(flash_io0),
-		.flash_io1(flash_io1),
-		.resetb	  (RSTB)
-	);
-
-	spiflash #(
-		.FILENAME("project.hex")
-	) spiflash (
-		.csb(flash_csb),
-		.clk(flash_clk),
-		.io0(flash_io0),
-		.io1(flash_io1),
-		.io2(),			// not used
-		.io3()			// not used
-	);
+    spiflash #(
+        // change the hex file to match your project
+        .FILENAME("project.hex")
+    ) spiflash (
+        .csb(flash_csb),
+        .clk(flash_clk),
+        .io0(flash_io0),
+        .io1(flash_io1),
+        .io2(),         // not used
+        .io3()          // not used
+    );
 
 endmodule
 `default_nettype wire
