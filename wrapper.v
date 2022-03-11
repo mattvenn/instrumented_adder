@@ -47,8 +47,8 @@ module wrapped_project(
     // Logic Analyzer Signals
     // only provide first 32 bits to reduce wiring congestion
 `ifdef USE_LA
-    input  wire [31:0] la1_data_in,  // from PicoRV32 to your project
-    output wire [31:0] la1_data_out, // from your project to PicoRV32
+    input  wire [31:0] la1_data_in,  // from CPU to your project
+    output wire [31:0] la1_data_out, // from your project to CPU
     input  wire [31:0] la1_oenb,     // output enable bar (low for active)
 `endif
 
@@ -61,7 +61,7 @@ module wrapped_project(
 
     // IRQ
 `ifdef USE_IRQ
-    output wire [2:0] user_irq,          // interrupt from project to PicoRV32
+    output wire [2:0] user_irq,          // interrupt from project to CPU
 `endif
 
 `ifdef USE_CLK2
