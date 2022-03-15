@@ -38,8 +38,8 @@ source:
     - other source files here
 
 # gds - check nothing on metal 5, DRC & LVS
-gds:
-  directory: "gds"
-  gds_filename: "project.gds"
-  lvs_filename: "project.lvs.powered.v"
-  lef_filename: "project.lef"
+final:
+  directory: "final"
+  gds_filename: "gds/project.gds"
+  lvs_filename: "verilog/gl/project.v"
+  lef_filename: "lef/project.lef"
