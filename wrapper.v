@@ -23,45 +23,45 @@ module wrapped_project(
     input wire          wbs_stb_i,                  // wishbone write strobe
     input wire          wbs_cyc_i,                  // wishbone cycle
     input wire          wbs_we_i,                   // wishbone write enable
-    input wire  [3:0]   wbs_sel_i,                  // wishbone write word select
-    input wire  [31:0]  wbs_dat_i,                  // wishbone data in
-    input wire  [31:0]  wbs_adr_i,                  // wishbone address
-    output wire         wbs_ack_o,                  // wishbone ack
-    output wire [31:0]  wbs_dat_o,                  // wishbone data out
+    input wire [3:0]    wbs_sel_i,                  // wishbone write word select
+    input wire [31:0]   wbs_dat_i,                  // wishbone data in
+    input wire [31:0]   wbs_adr_i,                  // wishbone address
+    inout wire          wbs_ack_o,                  // wishbone ack
+    inout wire [31:0]   wbs_dat_o,                  // wishbone data out
 `endif
 
 // shared RAM wishbone controller
 `ifdef USE_SHARED_OPENRAM
-    output wire         rambus_wb_clk_o,            // clock
-    output wire         rambus_wb_rst_o,            // reset
-    output wire         rambus_wb_stb_o,            // write strobe
-    output wire         rambus_wb_cyc_o,            // cycle
-    output wire         rambus_wb_we_o,             // write enable
-    output wire [3:0]   rambus_wb_sel_o,            // write word select
-    output wire [31:0]  rambus_wb_dat_o,            // ram data out
-    output wire [9:0]   rambus_wb_adr_o,            // 10bit address
-    input  wire         rambus_wb_ack_i,            // ack
-    input  wire [31:0]  rambus_wb_dat_i,            // ram data in
+    inout wire          rambus_wb_clk_o,            // clock
+    inout wire          rambus_wb_rst_o,            // reset
+    inout wire          rambus_wb_stb_o,            // write strobe
+    inout wire          rambus_wb_cyc_o,            // cycle
+    inout wire          rambus_wb_we_o,             // write enable
+    inout wire [3:0]    rambus_wb_sel_o,            // write word select
+    inout wire [31:0]   rambus_wb_dat_o,            // ram data out
+    inout wire [9:0]    rambus_wb_adr_o,            // 10bit address
+    input wire          rambus_wb_ack_i,            // ack
+    input wire [31:0]   rambus_wb_dat_i,            // ram data in
 `endif
 
     // Logic Analyzer Signals
     // only provide first 32 bits to reduce wiring congestion
 `ifdef USE_LA
-    input  wire [31:0] la1_data_in,  // from CPU to your project
-    output wire [31:0] la1_data_out, // from your project to CPU
-    input  wire [31:0] la1_oenb,     // output enable bar (low for active)
+    input wire [31:0]   la1_data_in,                // from CPU to your project
+    inout wire [31:0]   la1_data_out,               // from your project to CPU
+    input wire [31:0]   la1_oenb,                   // output enable bar (low for active)
 `endif
 
     // IOs
 `ifdef USE_IO
-    input  wire [`MPRJ_IO_PADS-1:0] io_in,  // in to your project
-    output wire [`MPRJ_IO_PADS-1:0] io_out, // out fro your project
-    output wire [`MPRJ_IO_PADS-1:0] io_oeb, // out enable bar (low active)
+    input wire [`MPRJ_IO_PADS-1:0] io_in,           // in to your project
+    inout wire [`MPRJ_IO_PADS-1:0] io_out,          // out from your project
+    inout wire [`MPRJ_IO_PADS-1:0] io_oeb,          // out enable bar (low active)
 `endif
 
     // IRQ
 `ifdef USE_IRQ
-    output wire [2:0] user_irq,          // interrupt from project to CPU
+    inout wire [2:0] user_irq,                      // interrupt from project to CPU
 `endif
 
 `ifdef USE_CLK2
