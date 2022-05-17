@@ -5,10 +5,12 @@ mode prove
 smtbmc
 
 [script]
-read -formal wrapper.v rest of your source files.v
-prep -top wrapped_project
+read -formal wrapper.v behavioral_map.v instrumented_adder.v sklansky.v
+prep -top wrapped_instrumented_adder
 
 [files]
 wrapper.v
 properties.v
-rest of your source files.v
+src/behavioral_map.v
+src/instrumented_adder.v
+src/sklansky.v

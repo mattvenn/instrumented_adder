@@ -7,4 +7,4 @@ module adder(cout, sum, a, b, cin);
 
     assign sum = a + b;
 
-endmodule;
+endmodule
