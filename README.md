@@ -12,6 +12,8 @@
 * Have a way of measuring the performance
 * Tapeout on MPW6
 
+![adders](docs/adder.png)
+
 # TODO! (prs welcome!)
 
 * Check the instrumentation
