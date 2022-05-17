@@ -1,15 +1,10 @@
-# Information about your project
+# Optimising hardware adders
 
-This is a template project you can clone and use to take part in the multi project submission to the
-Google/Efabless/Skywater shuttle.
-
-The tools that will test and create the aggregated design are here: https://github.com/mattvenn/multi_project_tools
-
-# Project info.yaml
-
-You need to fill in the fields of [info.yaml](info.yaml)
-
-See [here for more information](https://github.com/mattvenn/multi_project_tools/blob/main/docs/project_spec.md)
+* Livestream https://www.youtube.com/watch?v=P7wjB2DKAIA
+* The presentation slides - https://bit.ly/3MYTlCf
+* Teo's Twitter - https://twitter.com/td_ene
+* Teo's main repository - https://github.com/tdene/synth_opt_adders
+* Colab notebook - https://colab.research.google.com/drive/1bqAWs2To8suxx5acmCYp10iWlKI-Qsn4
 
 # Zero to ASIC Course
 
