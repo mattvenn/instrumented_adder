@@ -1,0 +1,215 @@
+matt-desktop:2048 [sim-inverter-loop]: ngspice simulation.spice
+******
+** ngspice-34 : Circuit level simulation program
+** The U. C. Berkeley CAD Group
+** Copyright 1985-1994, Regents of the University of California.
+** Copyright 2001-2020, The ngspice team.
+** Please get your ngspice manual from http://ngspice.sourceforge.net/docs.html
+** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+** Creation Date: Mon Mar  8 15:00:11 UTC 2021
+******
+
+No compatibility mode selected!
+
+
+Circuit: standard cell simulation
+
+Scale set to 1e-06
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Warning: include: has no value, DC 0 assumed
+Warning: vreset: no DC value, transient time 0 value used
+Warning: vclk: no DC value, transient time 0 value used
+Warning: singular matrix:  check nodes reset and reset
+
+Note: Starting true gmin stepping
+Trying gmin =   1.0000E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   5.6234E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   8.6596E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   9.6466E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   9.9105E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   9.9775E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   9.9944E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   9.9986E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Further gmin increment
+Trying gmin =   9.9996E-03 Warning: singular matrix:  check nodes reset and reset
+
+Warning: Last gmin step failed
+Warning: singular matrix:  check nodes reset and reset
+
+Warning: True gmin stepping failed
+Note: Starting dynamic gmin stepping
+Trying gmin =   1.0000E-03 Note: One successful gmin step
+Trying gmin =   1.0000E-04 Note: One successful gmin step
+Trying gmin =   1.0000E-05 Warning: Further gmin increment
+Trying gmin =   5.6234E-05 Note: One successful gmin step
+Trying gmin =   2.3714E-05 Warning: Further gmin increment
+Trying gmin =   4.5316E-05 Note: One successful gmin step
+Trying gmin =   3.2781E-05 Warning: Further gmin increment
+Trying gmin =   4.1792E-05 Warning: Further gmin increment
+Trying gmin =   4.4408E-05 Warning: Further gmin increment
+Trying gmin =   4.5087E-05 Note: One successful gmin step
+Trying gmin =   4.4746E-05 Warning: Further gmin increment
+Trying gmin =   4.5002E-05 Warning: Further gmin increment
+Trying gmin =   4.5066E-05 Note: One successful gmin step
+Trying gmin =   4.5034E-05 Note: One successful gmin step
+Trying gmin =   4.4986E-05 Warning: Further gmin increment
+Trying gmin =   4.5022E-05 Warning: Further gmin increment
+Trying gmin =   4.5031E-05 Note: One successful gmin step
+Trying gmin =   4.5026E-05 Warning: Further gmin increment
+Trying gmin =   4.5030E-05 Note: One successful gmin step
+Trying gmin =   4.5028E-05 Note: One successful gmin step
+Trying gmin =   4.5025E-05 Note: One successful gmin step
+Trying gmin =   4.5022E-05 Note: One successful gmin step
+Trying gmin =   4.5016E-05 Note: One successful gmin step
+Trying gmin =   4.5007E-05 Note: One successful gmin step
+Trying gmin =   4.4994E-05 Note: One successful gmin step
+Trying gmin =   4.4975E-05 Note: One successful gmin step
+Trying gmin =   4.4946E-05 Note: One successful gmin step
+Trying gmin =   4.4903E-05 Note: One successful gmin step
+Trying gmin =   4.4839E-05 Note: One successful gmin step
+Trying gmin =   4.4742E-05 Note: One successful gmin step
+Trying gmin =   4.4597E-05 Note: One successful gmin step
+Trying gmin =   4.4380E-05 Note: One successful gmin step
+Trying gmin =   4.4057E-05 Note: One successful gmin step
+Trying gmin =   4.3577E-05 Note: One successful gmin step
+Trying gmin =   4.2867E-05 Note: One successful gmin step
+Trying gmin =   4.1824E-05 Note: One successful gmin step
+Trying gmin =   4.0306E-05 Note: One successful gmin step
+Trying gmin =   3.8132E-05 Note: One successful gmin step
+Trying gmin =   3.5088E-05 Note: One successful gmin step
+Trying gmin =   3.0973E-05 Note: One successful gmin step
+Trying gmin =   2.5687E-05 Note: One successful gmin step
+Trying gmin =   1.9400E-05 Note: One successful gmin step
+Trying gmin =   1.2733E-05 Note: One successful gmin step
+Trying gmin =   6.7706E-06 Note: One successful gmin step
+Trying gmin =   2.6253E-06 Note: One successful gmin step
+Trying gmin =   6.3386E-07 Note: One successful gmin step
+Trying gmin =   7.5201E-08 Note: One successful gmin step
+Trying gmin =   7.5201E-09 Note: One successful gmin step
+Trying gmin =   7.5201E-10 Warning: Further gmin increment
+Trying gmin =   4.2288E-09 Note: One successful gmin step
+Trying gmin =   1.7833E-09 Note: One successful gmin step
+Trying gmin =   4.8834E-10 Warning: Further gmin increment
+Trying gmin =   1.2900E-09 Note: One successful gmin step
+Trying gmin =   7.9371E-10 Note: One successful gmin step
+Trying gmin =   6.2257E-10 Warning: Further gmin increment
+Trying gmin =   7.4695E-10 Warning: Further gmin increment
+Trying gmin =   7.8175E-10 Note: One successful gmin step
+Trying gmin =   7.6415E-10 Note: One successful gmin step
+Trying gmin =   7.4695E-10 Note: One successful gmin step
+Trying gmin =   7.3850E-10 Warning: Further gmin increment
+Trying gmin =   7.4483E-10 Note: One successful gmin step
+Trying gmin =   7.4377E-10 Note: One successful gmin step
+Trying gmin =   7.4324E-10 Note: One successful gmin step
+Trying gmin =   7.4271E-10 Warning: Further gmin increment
+Trying gmin =   7.4311E-10 Note: One successful gmin step
+Trying gmin =   7.4298E-10 Note: One successful gmin step
+Trying gmin =   7.4278E-10 Note: One successful gmin step
+Trying gmin =   7.4268E-10 Note: One successful gmin step
+Trying gmin =   7.4263E-10 Warning: Further gmin increment
+Trying gmin =   7.4267E-10 Note: One successful gmin step
+Trying gmin =   7.4263E-10 Note: One successful gmin step
+Trying gmin =   7.4259E-10 Note: One successful gmin step
+Trying gmin =   7.4255E-10 Note: One successful gmin step
+Trying gmin =   7.4252E-10 Note: One successful gmin step
+Trying gmin =   7.4248E-10 Warning: Further gmin increment
+Trying gmin =   7.4251E-10 Warning: Last gmin step failed
+Warning: singular matrix:  check nodes reset and reset
+
+Warning: Dynamic gmin stepping failed
+Note: Starting source stepping
+Supplies reduced to   0.0000% Warning: singular matrix:  check nodes reset and reset
+
+
+Trying gmin =   1.0000E-02 Note: One successful gmin step
+Trying gmin =   1.0000E-03 Note: One successful gmin step
+Trying gmin =   1.0000E-04 Note: One successful gmin step
+Trying gmin =   1.0000E-05 Note: One successful gmin step
+Trying gmin =   1.0000E-06 Note: One successful gmin step
+Trying gmin =   1.0000E-07 Note: One successful gmin step
+Trying gmin =   1.0000E-08 Note: One successful gmin step
+Trying gmin =   1.0000E-09 Note: One successful gmin step
+Trying gmin =   1.0000E-10 Note: One successful gmin step
+Trying gmin =   1.0000E-11 Note: One successful gmin step
+Trying gmin =   1.0000E-12 Note: One successful gmin step
+Note: One successful source step
+Supplies reduced to   0.1000% Warning: singular matrix:  check nodes reset and reset
+
+Supplies reduced to   0.0000% Warning: singular matrix:  check nodes reset and reset
+
+Warning: source stepping failed
+
+Transient solution failed -
+
+Last Node Voltages
+------------------
+
+Node                                   Last Voltage        Previous Iter
+----                                   ------------        -------------
+sky130_fd_pr__esd_nfet_05v0_nvt.pm3                    0                    0
+                                                  0                    0
+xpoc.buffers\[3\]/a                     1.66757e-83          2.38898e-95
+xpoc.buffers\[2\]/a                     1.66757e-83          2.38898e-95
+vpwr                                              0         -1.29104e-85
+vgnd                                              0          2.11441e-86
+xpoc.buffers\[1\]/a                     1.35304e-82          1.93839e-94
+xpoc._12_/y                            -1.33618e-79         -1.39867e-91
+outputs[3]                             -2.06532e-82         -2.95881e-94
+xpoc._28_/clk                           5.79871e-86          4.89399e-98
+xpoc._28_/d                            -1.46669e-83         -8.41786e-96
+outputs[2]                              2.71842e-79          9.50782e-91
+xpoc._27_/clk                           5.79871e-86          4.89399e-98
+xpoc._27_/d                             7.28905e-80          7.63039e-92
+outputs[1]                             -2.06531e-82         -2.95879e-94
+xpoc._26_/d                            -5.15341e-86         -2.25856e-98
+chain                                   1.66757e-83          2.38898e-95
+xpoc.buffers\[9\]/a                     1.66757e-83          2.38898e-95
+outputs[0]                              2.71842e-79          9.50782e-91
+xpoc._25_/d                            -1.95389e-79         -2.04523e-91
+clk                                               0                    0
+xpoc.clkbuf_0_clk/x                     7.02459e-74          7.84283e-85
+xpoc._24_/a                            -1.30101e-83         -5.69278e-96
+xpoc._23_/b                            -1.04394e-83         -4.57298e-96
+xpoc._21_/x                             1.07695e-83          4.71236e-96
+xpoc.buffers\[8\]/a                     1.66757e-83          2.38898e-95
+xpoc.buffers\[7\]/a                     1.66757e-83          2.38898e-95
+xpoc._15_/x                             -1.5797e-83         -6.91221e-96
+xpoc._14_/a                              5.7952e-86          4.89103e-98
+reset                                             0                    0
+xpoc._20_/a                            -2.22668e-78         -2.94532e-90
+xpoc._20_/b                            -1.04401e-83          -4.5733e-96
+xpoc.buffers\[6\]/a                     1.66757e-83          2.38898e-95
+xpoc.buffers\[5\]/a                     1.66757e-83          2.38898e-95
+xpoc.buffers\[4\]/a                     1.66757e-83          2.38898e-95
+xpoc._14_/b                             -1.5797e-83         -6.91221e-96
+xpoc._16_/y                            -2.22668e-78         -2.94532e-90
+rst                                               0                    0
+vreset#branch                                     0                    0
+vclk#branch                                       0                    0
+vdd#branch                              -3.5518e-85                    0
+vgnd#branch                            -7.04793e-86                    0
+
+
+
+No. of Data Rows : 0
+doAnalyses: Too many iterations without convergence
+
+run simulation(s) aborted
+Error: no such vector rst
+ngspice 184 ->

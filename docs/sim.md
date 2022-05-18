@@ -29,7 +29,7 @@ Then you will have the full spice file. I've copied this to ./spice
 ## Try to simulate with spice
 
 Check the commented spice/simulation.spice file. It provides power, clock and an initial reset.
-The simulation fails to converge and I never get to see the inverter loop oscillating.
+The [simulation fails to converge](../spice/spice.log) and I never get to see the inverter loop oscillating.
 
     cd spice
     ngspice simulation.spice
