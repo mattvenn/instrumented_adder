@@ -16,7 +16,7 @@ Vclk clk VGND pulse(0 1.8 1n 10p 10p 2n 4n)
 
 * create reset
 * start high, for 2ns, rest of the time off
-Vreset rst VGND pulse(0 1.8 0n 10p 10p 2n 20n)
+Vreset reset VGND pulse(0 1.8 0n 10p 10p 2n 20n)
 
 * setup the transient analysis
 .tran 50p 10n 0
@@ -25,7 +25,7 @@ Vreset rst VGND pulse(0 1.8 0n 10p 10p 2n 20n)
 run
 set color0 = white
 set color1 = black
-plot rst, clk, chain
+plot reset, clk, chain
 .endc
 
 .end
