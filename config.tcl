@@ -2,13 +2,15 @@
 set script_dir [file dirname [file normalize [info script]]]
 
 # name of your project, should also match the name of the top module
-set ::env(DESIGN_NAME) wrapped_instrumented_adder
+set ::env(DESIGN_NAME) instrumented_adder
+
+set ::env(RUN_KLAYOUT_XOR) 0
+set ::env(RUN_KLAYOUT_DRC) 0
 
 # add your source files here
-set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/wrapper.v \
-    $::env(DESIGN_DIR)/src/behavioral_map.v \
-    $::env(DESIGN_DIR)/src/instrumented_adder.v \
-    $::env(DESIGN_DIR)/src/sklansky.v"
+set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/src/instrumented_adder.v"
+
+set ::env(SYNTH_READ_BLACKBOX_LIB) 1
 
 # target density, change this if you can't get your design to fit
 set ::env(PL_TARGET_DENSITY) 0.4
@@ -17,7 +19,7 @@ set ::env(PL_TARGET_DENSITY) 0.4
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
 # set absolute size of the die to 300 x 300 um
-set ::env(DIE_AREA) "0 0 300 300"
+set ::env(DIE_AREA) "0 0 70 70"
 set ::env(FP_SIZING) absolute
 
 # define number of IO pads
@@ -25,7 +27,7 @@ set ::env(SYNTH_DEFINES) "MPRJ_IO_PADS=38"
 
 # clock period is ns
 set ::env(CLOCK_PERIOD) "10"
-set ::env(CLOCK_PORT) "wb_clk_i"
+set ::env(CLOCK_PORT) "clk"
 
 # macro needs to work inside Caravel, so can't be core and can't use metal 5
 set ::env(DESIGN_IS_CORE) 0

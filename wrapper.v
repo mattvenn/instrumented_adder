@@ -17,9 +17,9 @@ module wrapped_instrumented_adder(
     inout vssd1,	// User area 1 digital ground
 `endif
     input wire wb_clk_i,                            // clock, runs at system clock
+    input wire          wb_rst_i,                   // main system reset
  // caravel wishbone peripheral
 `ifdef USE_WB
-    input wire          wb_rst_i,                   // main system reset
     input wire          wbs_stb_i,                  // wishbone write strobe
     input wire          wbs_cyc_i,                  // wishbone cycle
     input wire          wbs_we_i,                   // wishbone write enable
@@ -153,6 +153,8 @@ module wrapped_instrumented_adder(
     // Use the buffered outputs for your module's outputs.
 
     instrumented_adder instrumented_adder (
+        .clk(wb_clk_i),
+        .reset(wb_rst_i),
         .input_a(la1_data_in[23:16]),
         .xor_enable(la1_data_in[15:8]),
         .add_enable(la1_data_in[7:0]),
