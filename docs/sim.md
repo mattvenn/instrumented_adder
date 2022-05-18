@@ -51,7 +51,7 @@ Then in the magic command window type:
     ext2spice
     quit
 
-Then you will have the full spice file. I've copied this to ./spice
+Then you will have the full spice file. I've copied this to [./spice/instrumented_adder.spice](../spice/instrumented_adder.spice)
 
 ## Try to simulate with spice
 
