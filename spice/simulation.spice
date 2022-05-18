@@ -4,7 +4,7 @@ Standard cell Simulation
 .include "instrumented_adder.spice"
 
 * instantiate the spice model
-Xpoc  chain clk outputs[0] outputs[1] outputs[2] outputs[3] reset VPWR VGNG instrumented_adder
+Xpoc  chain clk outputs[0] outputs[1] outputs[2] outputs[3] reset VPWR VGND instrumented_adder
 
 * set gnd and power
 Vgnd VGND 0 0
