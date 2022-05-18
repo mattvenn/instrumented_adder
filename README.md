@@ -23,6 +23,7 @@
 * Work out why everything is being optimised out
 * Put the other types of adders
 * Have some kind of test / simulation - doesn't seem possible with iverilog
+* [Notes on simulation work](docs/sim.md)
 
 # Zero to ASIC Course
 

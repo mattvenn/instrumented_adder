@@ -1,0 +1,73 @@
+
+===========================================================================
+report_checks -unconstrained
+============================================================================
+Startpoint: reset (input port clocked by clk)
+Endpoint: chain (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (propagated)
+                          2.00    2.00 v input external delay
+                  0.02    0.01    2.01 v reset (in)
+     1    0.01                           reset (net)
+                  0.02    0.00    2.01 v input1/A (sky130_fd_sc_hd__clkbuf_2)
+                  0.09    0.15    2.17 v input1/X (sky130_fd_sc_hd__clkbuf_2)
+     5    0.02                           net1 (net)
+                  0.09    0.00    2.17 v _12_/A (sky130_fd_sc_hd__nor2_1)
+                  0.13    0.16    2.33 ^ _12_/Y (sky130_fd_sc_hd__nor2_1)
+     1    0.01                           buffers_in[0] (net)
+                  0.13    0.00    2.33 ^ buffers[0]/A (sky130_fd_sc_hd__inv_2)
+                  0.04    0.05    2.38 v buffers[0]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[1] (net)
+                  0.04    0.00    2.38 v buffers[1]/A (sky130_fd_sc_hd__inv_2)
+                  0.04    0.05    2.43 ^ buffers[1]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[2] (net)
+                  0.04    0.00    2.43 ^ buffers[2]/A (sky130_fd_sc_hd__inv_2)
+                  0.02    0.03    2.46 v buffers[2]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.00                           buffers_in[3] (net)
+                  0.02    0.00    2.46 v buffers[3]/A (sky130_fd_sc_hd__inv_2)
+                  0.03    0.04    2.50 ^ buffers[3]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[4] (net)
+                  0.03    0.00    2.50 ^ buffers[4]/A (sky130_fd_sc_hd__inv_2)
+                  0.02    0.03    2.53 v buffers[4]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[5] (net)
+                  0.02    0.00    2.53 v buffers[5]/A (sky130_fd_sc_hd__inv_2)
+                  0.04    0.04    2.58 ^ buffers[5]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[6] (net)
+                  0.04    0.00    2.58 ^ buffers[6]/A (sky130_fd_sc_hd__inv_2)
+                  0.02    0.03    2.61 v buffers[6]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[7] (net)
+                  0.02    0.00    2.61 v buffers[7]/A (sky130_fd_sc_hd__inv_2)
+                  0.03    0.04    2.65 ^ buffers[7]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[8] (net)
+                  0.03    0.00    2.65 ^ buffers[8]/A (sky130_fd_sc_hd__inv_2)
+                  0.02    0.03    2.68 v buffers[8]/Y (sky130_fd_sc_hd__inv_2)
+     1    0.01                           buffers_in[9] (net)
+                  0.02    0.00    2.68 v buffers[9]/A (sky130_fd_sc_hd__inv_2)
+                  0.19    0.16    2.84 ^ buffers[9]/Y (sky130_fd_sc_hd__inv_2)
+     2    0.04                           chain (net)
+                  0.19    0.00    2.84 ^ chain (out)
+                                  2.84   data arrival time
+
+                         10.00   10.00   clock clk (rise edge)
+                          0.00   10.00   clock network delay (propagated)
+                         -0.25    9.75   clock uncertainty
+                          0.00    9.75   clock reconvergence pessimism
+                         -2.00    7.75   output external delay
+                                  7.75   data required time
+-----------------------------------------------------------------------------
+                                  7.75   data required time
+                                 -2.84   data arrival time
+-----------------------------------------------------------------------------
+                                  4.91   slack (MET)
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+No paths found.

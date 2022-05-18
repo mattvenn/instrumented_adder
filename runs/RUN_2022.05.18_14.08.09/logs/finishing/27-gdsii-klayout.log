@@ -1,0 +1,17 @@
+
+Input: /openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/results/routing/instrumented_adder.def
+Output: /openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/results/finishing/instrumented_adder.klayout.gds
+Design: instrumented_adder
+Technology File: /home/matt/work/asic-workshop/shuttle5/pdk/sky130A/libs.tech/klayout/sky130A.lyt
+GDS File List: ['/home/matt/work/asic-workshop/shuttle5/pdk/sky130A/libs.ref/sky130_fd_sc_hd/gds/sky130_fd_sc_hd.gds']
+LEF File: /openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/tmp/merged.lef
+
+[INFO] Clearing cells...
+[INFO] Merging GDS files...
+	/home/matt/work/asic-workshop/shuttle5/pdk/sky130A/libs.ref/sky130_fd_sc_hd/gds/sky130_fd_sc_hd.gds
+[INFO] Copying toplevel cell 'instrumented_adder'
+WARNING: no fill config file specified
+[INFO] Checking for missing GDS...
+[INFO] All LEF cells have matching GDS cells
+[INFO] Writing out GDS '/openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/results/finishing/instrumented_adder.klayout.gds'
+[INFO] Done.

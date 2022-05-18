@@ -1,0 +1,119 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO instrumented_adder
+  CLASS BLOCK ;
+  FOREIGN instrumented_adder ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 50.000 BY 50.000 ;
+  PIN chain
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 46.000 33.740 50.000 34.940 ;
+    END
+  END chain
+  PIN clk
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 25.710 0.000 26.270 4.000 ;
+    END
+  END clk
+  PIN outputs[0]
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 26.940 4.000 28.140 ;
+    END
+  END outputs[0]
+  PIN outputs[1]
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT -0.050 0.000 0.510 4.000 ;
+    END
+  END outputs[1]
+  PIN outputs[2]
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 6.390 46.000 6.950 50.000 ;
+    END
+  END outputs[2]
+  PIN outputs[3]
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 35.370 46.000 35.930 50.000 ;
+    END
+  END outputs[3]
+  PIN reset
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 46.000 3.140 50.000 4.340 ;
+    END
+  END reset
+  PIN vccd1
+    DIRECTION INPUT ;
+    USE POWER ;
+    PORT
+      LAYER met4 ;
+        RECT 11.210 10.640 12.810 38.320 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 24.200 10.640 25.800 38.320 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 37.185 10.640 38.785 38.320 ;
+    END
+  END vccd1
+  PIN vssd1
+    DIRECTION INPUT ;
+    USE GROUND ;
+    PORT
+      LAYER met4 ;
+        RECT 17.710 10.640 19.310 38.320 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 30.695 10.640 32.295 38.320 ;
+    END
+  END vssd1
+  OBS
+      LAYER li1 ;
+        RECT 5.520 10.795 44.160 38.165 ;
+      LAYER met1 ;
+        RECT 0.070 10.640 44.160 38.320 ;
+      LAYER met2 ;
+        RECT 0.100 45.720 6.110 46.000 ;
+        RECT 7.230 45.720 35.090 46.000 ;
+        RECT 36.210 45.720 40.390 46.000 ;
+        RECT 0.100 4.280 40.390 45.720 ;
+        RECT 0.790 3.555 25.430 4.280 ;
+        RECT 26.550 3.555 40.390 4.280 ;
+      LAYER met3 ;
+        RECT 4.000 35.340 46.000 38.245 ;
+        RECT 4.000 33.340 45.600 35.340 ;
+        RECT 4.000 28.540 46.000 33.340 ;
+        RECT 4.400 26.540 46.000 28.540 ;
+        RECT 4.000 4.740 46.000 26.540 ;
+        RECT 4.000 3.575 45.600 4.740 ;
+      LAYER met4 ;
+        RECT 19.710 10.640 23.800 38.320 ;
+        RECT 26.200 10.640 30.295 38.320 ;
+  END
+END instrumented_adder
+END LIBRARY
+

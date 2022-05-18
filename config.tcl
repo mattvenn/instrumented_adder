@@ -4,6 +4,7 @@ set script_dir [file dirname [file normalize [info script]]]
 # name of your project, should also match the name of the top module
 set ::env(DESIGN_NAME) instrumented_adder
 
+# save some time
 set ::env(RUN_KLAYOUT_XOR) 0
 set ::env(RUN_KLAYOUT_DRC) 0
 
@@ -19,7 +20,7 @@ set ::env(PL_TARGET_DENSITY) 0.4
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
 # set absolute size of the die to 300 x 300 um
-set ::env(DIE_AREA) "0 0 70 70"
+set ::env(DIE_AREA) "0 0 50 50"
 set ::env(FP_SIZING) absolute
 
 # define number of IO pads

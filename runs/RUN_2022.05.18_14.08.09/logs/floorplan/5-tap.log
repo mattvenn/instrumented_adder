@@ -1,0 +1,20 @@
+OpenROAD 8d53e9b018dec98fa63e907ddeb6c5406f035361 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ODB-0222] Reading LEF file: /openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/tmp/merged_unpadded.lef
+[INFO ODB-0223]     Created 13 technology layers
+[INFO ODB-0224]     Created 25 technology vias
+[INFO ODB-0225]     Created 441 library cells
+[INFO ODB-0226] Finished LEF file:  /openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/tmp/merged_unpadded.lef
+[INFO ODB-0127] Reading DEF file: /openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/tmp/floorplan/4-io.def
+[INFO ODB-0128] Design: instrumented_adder
+[INFO ODB-0130]     Created 7 pins.
+[INFO ODB-0131]     Created 27 components and 186 component-terminals.
+[INFO ODB-0133]     Created 29 nets and 78 connections.
+[INFO ODB-0134] Finished DEF file: /openlane/designs/wrapped_instrumented_adder/runs/RUN_2022.05.18_14.08.09/tmp/floorplan/4-io.def
+[WARNING TAP-0014] endcap_cpp option is deprecated.
+[INFO TAP-0001] Found 0 macro blocks.
+[INFO TAP-0002] Original rows: 10
+[INFO TAP-0003] Created 0 rows for a total of 10 rows.
+[INFO TAP-0004] Inserted 20 endcaps.
+[INFO TAP-0005] Inserted 12 tapcells.
