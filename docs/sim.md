@@ -8,7 +8,9 @@ trying to use a spice file extracted from the GDS of the hardened verilog.
     make mount
     ./flow -design wrapped_instrumented_inverter
 
-I added the complete run directory: runs/RUN_2022.05.18_14.08.09
+I added the complete run directory: [runs/RUN_2022.05.18_14.08.09](../runs/RUN_2022.05.18_14.08.09).
+
+Configuration [config.tcl](../config.tcl) needed 'set ::env(SYNTH_READ_BLACKBOX_LIB) 1' setting.
 
 ## Check synth log
 
