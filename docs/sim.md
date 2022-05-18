@@ -1,5 +1,8 @@
 # Wed 18 May 16:08:55 CEST 2022
 
+Trying to simulate a [ring of inverters](../src/instrumented_adder.v). I don't think this can be done with the digital sim tools, so I am 
+trying to use a spice file extracted from the GDS of the hardened verilog.
+
 ## Use OpenLane to build GDS
 
     make mount
