@@ -16,6 +16,28 @@ Configuration [config.tcl](../config.tcl) needed 'set ::env(SYNTH_READ_BLACKBOX_
 
     cat runs/RUN_2022.05.18_14.08.09/reports/synthesis/1-synthesis.stat.rpt.strategy4
 
+    === instrumented_adder ===
+
+       Number of wires:                 26
+       Number of wire bits:             29
+       Number of public wires:          14
+       Number of public wire bits:      17
+       Number of memories:               0
+       Number of memory bits:            0
+       Number of processes:              0
+       Number of cells:                 27
+         sky130_fd_sc_hd__a21oi_2        2
+         sky130_fd_sc_hd__a31o_2         2
+         sky130_fd_sc_hd__a41o_2         1
+         sky130_fd_sc_hd__and2b_2        1
+         sky130_fd_sc_hd__buf_1          3
+         sky130_fd_sc_hd__dfxtp_2        4
+         sky130_fd_sc_hd__inv_2         10
+         sky130_fd_sc_hd__nor2_2         3
+         sky130_fd_sc_hd__o21a_2         1
+
+       Chip area for module '\instrumented_adder': 216.457600
+
 ## Get non-blackboxed spice file
 
     cd runs/RUN_2022.05.18_14.08.09/results/final/gds
@@ -40,3 +62,4 @@ The [simulation fails to converge](../spice/spice.log) and I never get to see th
     ngspice simulation.spice
 
 If you want to run the simulation, change the PDK include line at the top of simulation.spice to match your local library install.
+
