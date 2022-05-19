@@ -16,6 +16,15 @@
 
 ![adders](docs/adder.png)
 
+![trace](docs/trace.png)
+
+Trace shows 2 runs, with and without the adder in the ring oscillator path.
+
+# Simulation
+
+* Digital sim, run `make test_adder`
+* Analog sim, run `make analog_sim`
+
 # TODO! (prs welcome!)
 
 * Check the instrumentation
