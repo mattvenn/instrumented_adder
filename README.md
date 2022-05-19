@@ -27,14 +27,15 @@ Trace shows 2 runs, with and without the adder in the ring oscillator path.
 
 # TODO! (prs welcome!)
 
+[Log of work in progress](docs/log.md)
+
 * Check the instrumentation
     * how to keep the inverter loop - done
-    * check timing
+    * check timing - looks good
     * what about tribufs
 * Run the analog simulation with a real adder
 * Put the other types of adders
 * Have some kind of test / simulation - doesn't seem possible with iverilog
-* [Log on work in progress](docs/log.md)
 
 # Zero to ASIC Course
 

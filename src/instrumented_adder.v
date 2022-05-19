@@ -89,3 +89,19 @@ module inv_with_delay(input A, output Y);
     sky130_fd_sc_hd__inv_2 _0_ ( .A(A), .X(Y));
     `endif
 endmodule
+
+// take a long time to add some numbers
+module fake_adder(cout, sum, a, b, cin);
+
+	input [7:0] a, b;
+	input cin;
+	output [7:0] sum;
+	output cout;
+
+    assign sum = a + b;
+    `ifdef COCOTB_SIM
+    assign #5 sum = a + b;
+    `else
+    assign sum = a + b;
+    `endif
+endmodule
