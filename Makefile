@@ -21,11 +21,12 @@ test_adder:
 	! grep failure results.xml
 
 install_adder:
-	pip3 install git+https://github.com/tdene/synth_opt_adders.git --user
+	pip3 install --upgrade --no-deps --force-reinstall git+https://github.com/tdene/synth_opt_adders.git@forest --user
 
+#	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, start_point = "sklansky"); f.optimize_nodes(); f.hdl("sklansky.v")'
 src/sklansky.v src/behavioral_map.v:
-	python3 -c 'from pptrees.adder_tree import adder_tree as tree; g = tree(8, network = "sklansky"); g.hdl("sklansky.v")'
-	mv behavioral_map.v sklansky.v src
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, start_point = "sklansky"); f.calculate_fanout(); f.calculate_tracks(); f.optimize_nodes(); f.add_best_blocks(); f.hdl("sklansky.v")'
+	mv sklansky.v src
 
 show_synth_%: src/%.v
 	yosys -p "read_verilog $<; proc; opt; show -colors 2 -width -signed"
