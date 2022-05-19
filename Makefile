@@ -10,6 +10,7 @@ COMPILE_ARGS=-I $(PDK_ROOT)/sky130A/
 all: test_adder
 
 analog_sim:
+	cd spice
 	ngspice spice/simulation.spice
 
 # if you run rules with NOASSERT=1 it will set PYTHONOPTIMIZE, which turns off assertions in the tests

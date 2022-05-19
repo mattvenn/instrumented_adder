@@ -5,7 +5,7 @@ Standard cell Simulation
 * include this one, so that don't need to extract models with magic
 .include "/home/matt/work/asic-workshop/shuttle5/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
 * now we can just use the spice file generated in the openlane run
-.include "../runs/RUN_2022.05.19_12.49.24/results/finishing/instrumented_adder.spice"
+.include "instrumented_adder.spice"
 
 * instantiate the spice model
 * Xpoc  chain clk outputs[0] outputs[1] outputs[2] outputs[3] reset VPWR VGND instrumented_adder

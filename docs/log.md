@@ -6,7 +6,8 @@
 * use the spice file from the openlane run and remove magic steps by including the primitives spice file
 * add the if/else to use inverters or delays
 * added [a fake adder](../src/fake_adder.v)
-* changed to a down counter
+* analog simulation takes too long > 1 hour.
+* trying with only 10 inverters, updated the tests and changed to a down counter
 
 # Wed 18 May 16:08:55 CEST 2022
 
