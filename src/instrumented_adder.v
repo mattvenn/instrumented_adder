@@ -22,7 +22,8 @@ module instrumented_adder(
     end
     `endif
 
-    localparam NUM_INVERTERS = 201; // keep to an even number
+    localparam COUNT_DEFAULT = 100; // make this an input
+    localparam NUM_INVERTERS = 21; // keep to an odd number
     localparam TIME_COUNTER_BITS = 8;
     localparam RING_OSC_COUNTER_BITS = 8;
 
@@ -35,9 +36,9 @@ module instrumented_adder(
     // counter, does nothing atm
     always @(posedge clk) begin
         if(reset)
-            counter <= 0;
-        else
-            counter <= counter + 1'b1;
+            counter <= COUNT_DEFAULT;
+        else if (counter > 0)
+            counter <= counter - 1'b1;
     end
 
     // ring osc counter
