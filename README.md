@@ -9,21 +9,23 @@
 # Aim
 
 * Put one of each type of adder, along with the standard yosys adder
-* Have a way of measuring the performance
+* Have a way of measuring the performance close to the adder (don't attempt to do it off the chip)
 * Tapeout on MPW6
 
-![instrumented adder](docs/instrumented_adder.jpg)
+![instrumented adder](docs/eric.png)
 
 ![adders](docs/adder.png)
 
 # TODO! (prs welcome!)
 
 * Check the instrumentation
-    * how to keep the inverter loop
-* Work out why everything is being optimised out
+    * how to keep the inverter loop - done
+    * check timing
+    * what about tribufs
+* Run the analog simulation with a real adder
 * Put the other types of adders
 * Have some kind of test / simulation - doesn't seem possible with iverilog
-* [Notes on simulation work](docs/sim.md)
+* [Log on work in progress](docs/log.md)
 
 # Zero to ASIC Course
 
