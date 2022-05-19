@@ -14,7 +14,7 @@
 
 ![instrumented adder](docs/eric.png)
 
-![adders](docs/adder.png)
+![adder gds](docs/gds.png)
 
 ![trace](docs/trace.png)
 
