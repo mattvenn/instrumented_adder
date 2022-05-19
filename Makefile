@@ -3,10 +3,6 @@ export COCOTB_REDUCED_LOG_FMT=1
 export PYTHONPATH := test:$(PYTHONPATH)
 export LIBPYTHON_LOC=$(shell cocotb-config --libpython)
 
-MODULE = test_adder
-TOPLEVEL = wrapped_instrumented_adder
-#VERILOG_SOURCES = src/instrumented_adder.v
-VERILOG_SOURCES = runs/RUN_2022.05.18_09.39.00/results/final/verilog/gl/wrapped_instrumented_adder.v
 COMPILE_ARGS=-I $(PDK_ROOT)/sky130A/
 
 #include $(shell cocotb-config --makefiles)/Makefile.sim
@@ -20,7 +16,7 @@ analog_sim:
 test_adder:
 	rm -rf sim_build/
 	mkdir sim_build/
-	iverilog -DCOCOTB_SIM -o sim_build/sim.vvp -s instrumented_adder -g2012 src/instrumented_adder.v src/sklansky.v src/behavioral_map.v
+	iverilog -DCOCOTB_SIM -o sim_build/sim.vvp -s instrumented_adder -g2012 src/instrumented_adder.v src/fake_adder.v src/behavioral_map.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_adder vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 	! grep failure results.xml
 

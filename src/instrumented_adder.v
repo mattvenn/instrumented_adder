@@ -5,8 +5,13 @@ module instrumented_adder(
 
     input wire clk,
     input wire reset,
+    input wire run,
+    input wire bypass,
+    input wire extra_inverter,
+    input wire [7:0] b,
     output wire chain,
-    output wire [3:0] outputs
+    output wire time_count_overflow,
+    output wire [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter_out
 
 );
     `ifdef COCOTB_SIM
@@ -17,11 +22,15 @@ module instrumented_adder(
     end
     `endif
 
-    localparam NUM_INVERTERS = 200;
+    localparam NUM_INVERTERS = 201; // keep to an even number
+    localparam TIME_COUNTER_BITS = 8;
+    localparam RING_OSC_COUNTER_BITS = 8;
 
-    reg [3:0] counter;
+    reg [TIME_COUNTER_BITS-1:0] counter;
+    reg [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter;
     assign chain = chain_out;
-    assign outputs = counter;
+    assign time_count_overflow = counter == 0;
+    assign ring_osc_counter_out = ring_osc_counter;
 
     // counter, does nothing atm
     always @(posedge clk) begin
@@ -31,19 +40,42 @@ module instrumented_adder(
             counter <= counter + 1'b1;
     end
 
+    // ring osc counter
+    always @(posedge chain_out, reset) begin
+        if(reset)
+            ring_osc_counter <= 0;
+        else
+            ring_osc_counter <= ring_osc_counter + 1'b1;
+    end
+
     // setup loop of inverters
     // http://svn.clairexen.net/handicraft/2015/ringosc/ringosc.v
-    wire chain_in, chain_out;
+    wire chain_in, chain_out, chain_in_pre_xor;
     wire [NUM_INVERTERS-1:0] buffers_in, buffers_out;
     assign buffers_in = {buffers_out[NUM_INVERTERS-2:0], chain_in};
-    assign chain_out = buffers_out[NUM_INVERTERS-1];
-    assign chain_in = reset ? 0: !chain_out;
+    assign chain_out = run ~& buffers_out[NUM_INVERTERS-1];
+    wire chain_out_bypass;
 
+    // connect either output of the inverter chain or output of the adder back to input
+    // need to reverse what bypass does or change its name but reversing stops oscillation...
+    assign chain_out_bypass =  bypass ? sum[0] : chain_out; 
+    assign a                =  bypass ? chain_out : 1'bz;
+
+    assign chain_in_pre_xor = reset ? 0: chain_out_bypass;
+    assign chain_in         = extra_inverter ^ chain_in_pre_xor;
+
+    
     // instantiate the inverters
     inv_with_delay buffers [NUM_INVERTERS-1:0] (
         .A(buffers_in),
         .Y(buffers_out)
     );
+
+    // instantiate adder
+    wire [7:0] a;
+    wire [7:0] sum;
+
+    adder sklansky (.a(a), .b(b), .sum(sum));
 
 endmodule
 

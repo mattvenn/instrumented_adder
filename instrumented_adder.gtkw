@@ -1,0 +1,49 @@
+[*]
+[*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
+[*] Thu May 19 10:47:35 2022
+[*]
+[dumpfile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder.vcd"
+[dumpfile_mtime] "Thu May 19 10:47:08 2022"
+[dumpfile_size] 5166536
+[savefile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder.gtkw"
+[timestart] 0
+[size] 1866 1127
+[pos] -1 -1
+*-12.000001 5763 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] instrumented_adder.
+[sst_width] 343
+[signals_width] 612
+[sst_expanded] 1
+[sst_vpaned_height] 226
+@28
+instrumented_adder.reset
+instrumented_adder.clk
+instrumented_adder.reset
+instrumented_adder.run
+instrumented_adder.bypass
+instrumented_adder.extra_inverter
+@8022
+instrumented_adder.ring_osc_counter[7:0]
+@8023
+instrumented_adder.counter[3:0]
+@800022
+instrumented_adder.a[7:0]
+@28
+(0)instrumented_adder.a[7:0]
+(1)instrumented_adder.a[7:0]
+(2)instrumented_adder.a[7:0]
+(3)instrumented_adder.a[7:0]
+(4)instrumented_adder.a[7:0]
+(5)instrumented_adder.a[7:0]
+(6)instrumented_adder.a[7:0]
+(7)instrumented_adder.a[7:0]
+@1001200
+-group_end
+@22
+instrumented_adder.b[7:0]
+instrumented_adder.sum[7:0]
+@28
+instrumented_adder.chain_out
+instrumented_adder.chain_in
+[pattern_trace] 1
+[pattern_trace] 0
