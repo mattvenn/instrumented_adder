@@ -1,7 +1,11 @@
 Standard cell Simulation
+* takes 3:47 to run
 
 .include "/home/matt/work/asic-workshop/shuttle5/pdk/skywater-pdk/libraries/sky130_fd_pr/latest/models/corners/tt.spice"
-.include "instrumented_adder.spice"
+* include this one, so that don't need to extract models with magic
+.include "/home/matt/work/asic-workshop/shuttle5/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
+* now we can just use the spice file generated in the openlane run
+.include "../runs/RUN_2022.05.18_14.08.09/results/finishing/instrumented_adder.spice"
 
 * instantiate the spice model
 Xpoc  chain clk outputs[0] outputs[1] outputs[2] outputs[3] reset VPWR VGND instrumented_adder
@@ -19,7 +23,7 @@ Vclk clk VGND pulse(0 1.8 1n 10p 10p 2n 4n)
 Vreset reset VGND pulse(0 1.8 0n 10p 10p 2n 20n)
 
 * setup the transient analysis
-.tran 50p 10n 0
+.tran 10p 10n 0
 
 .control
 run

@@ -63,3 +63,10 @@ The [simulation fails to converge](../spice/spice.log) and I never get to see th
 
 If you want to run the simulation, change the PDK include line at the top of simulation.spice to match your local library install.
 
+# Thu 19 May 11:01:18 CEST 2022
+
+* fixed the issue with the mismatched reset names.
+* 10 inverters, chain oscillates at 0.69ns = 1.6GHz.
+* takes about 3:30 to run
+* use the spice file from the openlane run and remove magic steps by including the primitives spice file
+* add the if/else to use inverters or delays

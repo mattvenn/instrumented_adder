@@ -9,6 +9,13 @@ module instrumented_adder(
     output wire [3:0] outputs
 
 );
+    `ifdef COCOTB_SIM
+    initial begin
+        $dumpfile ("instrumented_adder.vcd");
+        $dumpvars (0, instrumented_adder);
+        #1;
+    end
+    `endif
     localparam NUM_INVERTERS = 10;
 
     reg [3:0] counter;
@@ -32,9 +39,19 @@ module instrumented_adder(
     assign chain_in = reset ? 0: !chain_out;
 
     // instantiate the inverters
-    sky130_fd_sc_hd__inv_2 buffers [NUM_INVERTERS-1:0] (
+    inv_with_delay buffers [NUM_INVERTERS-1:0] (
         .A(buffers_in),
         .Y(buffers_out)
     );
 
+endmodule
+
+// do this so can use iverilog to check digital
+module inv_with_delay(input A, output Y);
+    wire Y;
+    `ifdef COCOTB_SIM
+    assign #1 Y = ~A;
+    `else
+    sky130_fd_sc_hd__inv_2 _0_ ( .A(A), .X(Y));
+    `endif
 endmodule
