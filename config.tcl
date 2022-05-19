@@ -14,14 +14,16 @@ set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/src/instrumented_adder.v"
 set ::env(SYNTH_READ_BLACKBOX_LIB) 1
 
 # target density, change this if you can't get your design to fit
-set ::env(PL_TARGET_DENSITY) 0.4
+#set ::env(PL_TARGET_DENSITY) 0.4
+set ::env(FP_CORE_UTIL) 35
+set ::env(PL_TARGET_DENSITY) [ expr ($::env(FP_CORE_UTIL)+5) / 100.0 ]
 
 # don't put clock buffers on the outputs, need tristates to be the final cells
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
 # set absolute size of the die to 300 x 300 um
-set ::env(DIE_AREA) "0 0 50 50"
-set ::env(FP_SIZING) absolute
+#set ::env(DIE_AREA) "0 0 50 50"
+#set ::env(FP_SIZING) absolute
 
 # define number of IO pads
 set ::env(SYNTH_DEFINES) "MPRJ_IO_PADS=38"

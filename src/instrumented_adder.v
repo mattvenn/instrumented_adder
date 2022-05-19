@@ -41,7 +41,7 @@ module instrumented_adder(
     end
 
     // ring osc counter
-    always @(posedge chain_out, reset) begin
+    always @(posedge chain_out or posedge reset) begin
         if(reset)
             ring_osc_counter <= 0;
         else
@@ -86,7 +86,7 @@ module inv_with_delay(input A, output Y);
     `ifdef COCOTB_SIM
     assign #1 Y = ~A;
     `else
-    sky130_fd_sc_hd__inv_2 _0_ ( .A(A), .X(Y));
+    sky130_fd_sc_hd__inv_2 _0_ ( .A(A), .Y(Y));
     `endif
 endmodule
 
@@ -98,9 +98,8 @@ module fake_adder(cout, sum, a, b, cin);
 	output [7:0] sum;
 	output cout;
 
-    assign sum = a + b;
     `ifdef COCOTB_SIM
-    assign #5 sum = a + b;
+    assign #50 sum = a + b;
     `else
     assign sum = a + b;
     `endif
