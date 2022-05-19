@@ -11,6 +11,6 @@ async def test_all(dut):
     
     dut.reset = 1
 
-    await ClockCycles(dut.clk, 10)
+    await ClockCycles(dut.clk, 5)
     dut.reset = 0
-    await ClockCycles(dut.clk, 500)
+    await ClockCycles(dut.clk, 50)

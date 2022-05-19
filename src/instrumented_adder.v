@@ -16,7 +16,8 @@ module instrumented_adder(
         #1;
     end
     `endif
-    localparam NUM_INVERTERS = 10;
+
+    localparam NUM_INVERTERS = 200;
 
     reg [3:0] counter;
     assign chain = chain_out;
