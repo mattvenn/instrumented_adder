@@ -1,4 +1,15 @@
+# Thu 19 May 11:01:18 CEST 2022
+
+* fixed the issue with the mismatched reset names.
+* 10 inverters, chain oscillates at 0.69ns = 1.6GHz.
+* takes about 3:30 to run
+* use the spice file from the openlane run and remove magic steps by including the primitives spice file
+* add the if/else to use inverters or delays
+* added [a fake adder](../src/fake_adder.v)
+
 # Wed 18 May 16:08:55 CEST 2022
+
+Be on commit 6eb633ea6bb33440104e7584073c98a0a11cab58 to reproduce this issue. Fixed with a working reset. 
 
 Trying to simulate a [ring of inverters](../src/instrumented_adder.v). I don't think this can be done with the digital sim tools, so I am 
 trying to use a spice file extracted from the GDS of the hardened verilog.
@@ -63,10 +74,3 @@ The [simulation fails to converge](../spice/spice.log) and I never get to see th
 
 If you want to run the simulation, change the PDK include line at the top of simulation.spice to match your local library install.
 
-# Thu 19 May 11:01:18 CEST 2022
-
-* fixed the issue with the mismatched reset names.
-* 10 inverters, chain oscillates at 0.69ns = 1.6GHz.
-* takes about 3:30 to run
-* use the spice file from the openlane run and remove magic steps by including the primitives spice file
-* add the if/else to use inverters or delays

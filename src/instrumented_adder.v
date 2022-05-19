@@ -59,7 +59,7 @@ module instrumented_adder(
     // connect either output of the inverter chain or output of the adder back to input
     // need to reverse what bypass does or change its name but reversing stops oscillation...
     assign chain_out_bypass =  bypass ? sum[0] : chain_out; 
-    assign a                =  bypass ? chain_out : 1'bz;
+    assign a                =  chain_out ; // bypass ? chain_out : 1'bz;
 
     assign chain_in_pre_xor = reset ? 0: chain_out_bypass;
     assign chain_in         = extra_inverter ^ chain_in_pre_xor;
@@ -75,7 +75,8 @@ module instrumented_adder(
     wire [7:0] a;
     wire [7:0] sum;
 
-    adder sklansky (.a(a), .b(b), .sum(sum));
+    fake_adder fake_adder (.a(a), .b(b), .sum(sum));
+//    adder      sklansky   (.a(a), .b(b), .sum(sum));
 
 endmodule
 
