@@ -17,9 +17,19 @@ Xpoc b[0] b[1] b[2] b[3] b[4] b[5] b[6] b[7] bypass chain clk
 * set gnd and power
 Vgnd VGND 0 0
 Vdd VPWR VGND 1.8
-Vbypass bypass VGND 1.8
+Vbypass bypass VGND 0
 Vextra_inverter extra_inverter VGND 1.8
 Vrun run VGND 1.8
+
+* b input
+Vb0 b[0] VGND 1.8
+Vb1 b[1] VGND 0
+Vb2 b[2] VGND 0
+Vb3 b[3] VGND 0
+Vb4 b[4] VGND 0
+Vb5 b[5] VGND 0
+Vb6 b[6] VGND 0
+Vb7 b[7] VGND 0
 
 * create a clock, 4ns period
 * initial v, pulse v, delay, rise, fall, pulse w, period
