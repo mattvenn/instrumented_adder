@@ -1,5 +1,4 @@
 Standard cell Simulation
-* takes 3:47 to run
 
 .include "/home/matt/work/asic-workshop/shuttle5/pdk/skywater-pdk/libraries/sky130_fd_pr/latest/models/corners/tt.spice"
 * include this one, so that don't need to extract models with magic

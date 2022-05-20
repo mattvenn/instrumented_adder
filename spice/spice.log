@@ -1,18 +1,4 @@
-matt-desktop:2000 [main]: pwd
-/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder
-matt-desktop:2001 [main]: cd spice/
-matt-desktop:2002 [main]: ls
-total 16
-drwxrwxr-x  2 matt matt 4096 May 19 16:44 .
-drwxrwxr-x 10 matt matt 4096 May 19 16:59 ..
-lrwxrwxrwx  1 matt matt   53 May 19 16:44 instrumented_adder.spice -> latest_run/results/finishing/instrumented_adder.spice
-lrwxrwxrwx  1 matt matt   32 May 19 16:44 latest_run -> ../runs/RUN_2022.05.19_14.41.52/
--rw-rw-r--  1 matt matt 1160 May 19 10:47 loop.spice
--rw-rw-r--  1 matt matt 1446 May 19 16:43 simulation.spice
-matt-desktop:2003 [main]: vi simulation.spice
-matt-desktop:2004 [main]: cp simulation.spice  timeit.spice
-matt-desktop:2005 [main]: vim timeit.spice
-matt-desktop:2006 [main]: time ngspice  timeit.spice
+matt-desktop:2124 [main]: ngspice simulation.spice
 ******
 ** ngspice-34 : Circuit level simulation program
 ** The U. C. Berkeley CAD Group
@@ -68,46 +54,32 @@ Warning: redefinition of .subckt sky130_fd_sc_hd__a31o_1, ignored
 Circuit: standard cell simulation
 
 Scale set to 1e-06
-Warning - approaching max data size: current size = 9633.023 MB, limit = 10065.383 MB
-Warning - approaching max data size: current size = 9633.023 MB, limit = 10065.383 MB
-Warning - approaching max data size: current size = 9633.023 MB, limit = 10065.383 MB
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
 Warning: include: has no value, DC 0 assumed
 Warning: vreset: no DC value, transient time 0 value used
 Warning: vclk: no DC value, transient time 0 value used
-Warning: singular matrix:  check nodes b[0] and b[0]
-
 Note: Starting true gmin stepping
-Trying gmin =   1.0000E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   5.6234E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   8.6596E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   9.6466E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   9.9105E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   9.9775E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   9.9944E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   9.9986E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Further gmin increment
-Trying gmin =   9.9996E-03 Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: Last gmin step failed
-Warning: singular matrix:  check nodes b[0] and b[0]
-
+Trying gmin =   1.0000E-03 Note: One successful gmin step
+Trying gmin =   1.0000E-04 Note: One successful gmin step
+Trying gmin =   1.0000E-05 Warning: Further gmin increment
+Trying gmin =   5.6234E-05 Note: One successful gmin step
+Trying gmin =   3.1623E-05 Note: One successful gmin step
+Trying gmin =   1.3335E-05 Warning: Further gmin increment
+Trying gmin =   2.5483E-05 Warning: Further gmin increment
+Trying gmin =   2.9961E-05 Warning: Further gmin increment
+Trying gmin =   3.1199E-05 Warning: Further gmin increment
+Trying gmin =   3.1516E-05 Note: One successful gmin step
+Trying gmin =   3.1357E-05 Warning: Further gmin increment
+Trying gmin =   3.1476E-05 Note: One successful gmin step
+Trying gmin =   3.1417E-05 Warning: Further gmin increment
+Trying gmin =   3.1462E-05 Warning: Further gmin increment
+Trying gmin =   3.1473E-05 Note: One successful gmin step
+Trying gmin =   3.1467E-05 Warning: Further gmin increment
+Trying gmin =   3.1471E-05 Note: One successful gmin step
+Trying gmin =   3.1469E-05 Warning: Further gmin increment
+Trying gmin =   3.1471E-05 Note: One successful gmin step
+Trying gmin =   3.1470E-05 Warning: Last gmin step failed
 Warning: True gmin stepping failed
 Note: Starting dynamic gmin stepping
 Trying gmin =   1.0000E-03 Note: One successful gmin step
@@ -131,17 +103,12 @@ Trying gmin =   1.8784E-05 Note: One successful gmin step
 Trying gmin =   1.8767E-05 Warning: Further gmin increment
 Trying gmin =   1.8780E-05 Warning: Further gmin increment
 Trying gmin =   1.8783E-05 Note: One successful gmin step
-Trying gmin =   1.8782E-05 Warning: Further gmin increment
-Trying gmin =   1.8783E-05 Note: One successful gmin step
 Trying gmin =   1.8782E-05 Note: One successful gmin step
+Trying gmin =   1.8779E-05 Warning: Further gmin increment
 Trying gmin =   1.8781E-05 Warning: Last gmin step failed
-Warning: singular matrix:  check nodes b[0] and b[0]
-
 Warning: Dynamic gmin stepping failed
 Note: Starting source stepping
-Supplies reduced to   0.0000% Warning: singular matrix:  check nodes b[0] and b[0]
-
-
+Supplies reduced to   0.0000%
 Trying gmin =   1.0000E-02 Note: One successful gmin step
 Trying gmin =   1.0000E-03 Note: One successful gmin step
 Trying gmin =   1.0000E-04 Note: One successful gmin step
@@ -154,11 +121,68 @@ Trying gmin =   1.0000E-10 Note: One successful gmin step
 Trying gmin =   1.0000E-11 Note: One successful gmin step
 Trying gmin =   1.0000E-12 Note: One successful gmin step
 Note: One successful source step
-Supplies reduced to   0.1000% Warning: singular matrix:  check nodes b[0] and b[0]
-
-Supplies reduced to   0.0000% Warning: singular matrix:  check nodes b[0] and b[0]
-
-Warning: source stepping failed
+Supplies reduced to   0.1000% Note: One successful source step
+Supplies reduced to   0.2000% Note: One successful source step
+Supplies reduced to   0.3500% Note: One successful source step
+Supplies reduced to   0.5750% Note: One successful source step
+Supplies reduced to   0.9125% Note: One successful source step
+Supplies reduced to   1.4188% Note: One successful source step
+Supplies reduced to   2.1781% Note: One successful source step
+Supplies reduced to   3.3172% Note: One successful source step
+Supplies reduced to   5.0258% Note: One successful source step
+Supplies reduced to   7.5887% Note: One successful source step
+Supplies reduced to  11.4330% Supplies reduced to   7.5887% Note: One successful source step
+Supplies reduced to   8.1653% Note: One successful source step
+Supplies reduced to   9.0303% Note: One successful source step
+Supplies reduced to  10.3278% Supplies reduced to   9.0303% Note: One successful source step
+Supplies reduced to   9.2249% Note: One successful source step
+Supplies reduced to   9.5168% Note: One successful source step
+Supplies reduced to   9.9547% Note: One successful source step
+Supplies reduced to  10.6116% Supplies reduced to   9.9547% Note: One successful source step
+Supplies reduced to  10.0533% Supplies reduced to   9.9547% Note: One successful source step
+Supplies reduced to   9.9695% Note: One successful source step
+Supplies reduced to   9.9917% Note: One successful source step
+Supplies reduced to  10.0249% Supplies reduced to   9.9917% Note: One successful source step
+Supplies reduced to   9.9967% Note: One successful source step
+Supplies reduced to  10.0042% Note: One successful source step
+Supplies reduced to  10.0154% Note: One successful source step
+Supplies reduced to  10.0322% Supplies reduced to  10.0154% Note: One successful source step
+Supplies reduced to  10.0179% Note: One successful source step
+Supplies reduced to  10.0217% Note: One successful source step
+Supplies reduced to  10.0274% Supplies reduced to  10.0217% Note: One successful source step
+Supplies reduced to  10.0225% Note: One successful source step
+Supplies reduced to  10.0238% Note: One successful source step
+Supplies reduced to  10.0257% Note: One successful source step
+Supplies reduced to  10.0286% Note: One successful source step
+Supplies reduced to  10.0329% Note: One successful source step
+Supplies reduced to  10.0394% Note: One successful source step
+Supplies reduced to  10.0491% Note: One successful source step
+Supplies reduced to  10.0637% Note: One successful source step
+Supplies reduced to  10.0855% Note: One successful source step
+Supplies reduced to  10.1183% Note: One successful source step
+Supplies reduced to  10.1674% Note: One successful source step
+Supplies reduced to  10.2411% Note: One successful source step
+Supplies reduced to  10.3517% Note: One successful source step
+Supplies reduced to  10.5176% Note: One successful source step
+Supplies reduced to  10.7664% Note: One successful source step
+Supplies reduced to  11.1395% Note: One successful source step
+Supplies reduced to  11.6993% Note: One successful source step
+Supplies reduced to  12.5390% Note: One successful source step
+Supplies reduced to  13.7985% Note: One successful source step
+Supplies reduced to  15.0580% Supplies reduced to  13.7985% Note: One successful source step
+Supplies reduced to  13.9244% Supplies reduced to  13.7985% Note: One successful source step
+Supplies reduced to  13.8111% Note: One successful source step
+Supplies reduced to  13.8300% Note: One successful source step
+Supplies reduced to  13.8489% Note: One successful source step
+Supplies reduced to  13.8678% Note: One successful source step
+Supplies reduced to  13.8772% Note: One successful source step
+Supplies reduced to  13.8914% Note: One successful source step
+Supplies reduced to  13.9055% Note: One successful source step
+Supplies reduced to  13.9268% Note: One successful source step
+Supplies reduced to  13.9374% Note: One successful source step
+Supplies reduced to  13.9481% Note: One successful source step
+Supplies reduced to  13.9587% Note: One successful source step
+Supplies reduced to  13.9746% Supplies reduced to  13.9587% Warning: source stepping failed
 
 Transient solution failed -
 
@@ -169,133 +193,148 @@ Node                                   Last Voltage        Previous Iter
 ----                                   ------------        -------------
 sky130_fd_pr__esd_nfet_05v0_nvt.pm3                    0                    0
                                                   0                    0
-vpwr                                              0         -1.41445e-85
-vgnd                                              0          2.27165e-86
-xpoc.buffers\[7\]._0_/a                 2.08676e-81          4.14881e-93
-xpoc.buffers\[6\]._0_/a                 2.08676e-81          4.14881e-93
-xpoc._131_/d                            2.69463e-77          4.92739e-89
-ring_osc_counter_out[0]                -9.54059e-78         -3.79365e-89
-xpoc._077_/y                            2.08676e-81          4.14881e-93
-xpoc._102_/y                           -1.77817e-81         -2.92248e-93
-xpoc._119_/b                           -6.54594e-81         -1.30144e-92
-xpoc._114_/y                           -2.22625e-77         -4.27909e-89
-xpoc._113_/y                           -4.81457e-77          -7.6507e-89
-xpoc._141_/q                           -6.92029e-80         -6.87932e-92
-xpoc._146_/q                           -6.92029e-80         -6.87932e-92
-xpoc._145_/q                           -6.92029e-80         -6.87932e-92
-xpoc._119_/a                            2.08676e-81          4.14881e-93
-xpoc._128_/b                           -1.49488e-80         -1.48603e-92
-xpoc._146_/d                           -1.67184e-79         -1.66194e-91
-xpoc.buffers\[5\]._0_/a                 2.08676e-81          4.14881e-93
-xpoc._140_/q                           -6.92029e-80         -6.87932e-92
-xpoc._139_/q                           -6.92029e-80         -6.87932e-92
-xpoc._112_/y                           -2.15661e-81         -3.54246e-93
-xpoc.buffers\[4\]._0_/a                 2.08676e-81          4.14881e-93
-xpoc._110_/y                           -1.02261e-80         -2.03312e-92
-xpoc._139_/d                           -1.66344e-79         -1.65359e-91
-xpoc.buffers\[3\]._0_/a                 2.08676e-81          4.14881e-93
-xpoc.buffers\[2\]._0_/a                 2.08676e-81          4.14881e-93
-xpoc.buffers\[1\]._0_/a                -6.14434e-81         -1.22159e-92
-ring_osc_counter_out[7]                -9.62682e-78         -3.82793e-89
-xpoc._099_/b                           -2.18172e-80         -3.57205e-92
-xpoc._138_/d                            3.43688e-81          6.47835e-93
-xpoc._098_/a                            4.65096e-81          4.62343e-93
-xpoc._137_/d                           -1.06089e-79         -1.20691e-91
-xpoc._083_/y                           -1.50188e-79         -2.78647e-91
-xpoc.clkbuf_0_clk/x                     7.75904e-74          8.72681e-85
+vpwr                                       0.251256             0.251256
+vgnd                                              0                    0
+xpoc.buffers\[7\]._0_/a                    0.112633             0.112633
+xpoc.buffers\[6\]._0_/a                    0.112633             0.112633
+xpoc._131_/d                               0.249994             0.249994
+ring_osc_counter_out[0]                  0.00102974           0.00102974
+xpoc._077_/y                               0.249163             0.249163
+xpoc._102_/y                              0.0126121            0.0126121
+xpoc._119_/b                                0.24928              0.24928
+xpoc._114_/y                               0.249469             0.249469
+xpoc._113_/y                            0.000478476          0.000478476
+xpoc._141_/q                               0.249241             0.249241
+xpoc._146_/q                               0.249241             0.249241
+xpoc._145_/q                               0.249241             0.249241
+xpoc._119_/a                                0.24928              0.24928
+xpoc._128_/b                               0.249252             0.249252
+xpoc._146_/d                               0.248842             0.248842
+xpoc.buffers\[5\]._0_/a                    0.112633             0.112633
+xpoc._140_/q                               0.249241             0.249241
+xpoc._139_/q                                0.24924              0.24924
+xpoc._112_/y                             0.00394376           0.00394376
+xpoc.buffers\[4\]._0_/a                    0.112633             0.112633
+xpoc._110_/y                            0.000961778          0.000961778
+xpoc._139_/d                            0.000959598          0.000959598
+xpoc.buffers\[3\]._0_/a                    0.112633             0.112633
+xpoc.buffers\[2\]._0_/a                    0.112633             0.112633
+xpoc.buffers\[1\]._0_/a                    0.112633             0.112633
+ring_osc_counter_out[7]                  0.00104116           0.00104116
+xpoc._099_/b                               0.250283             0.250283
+xpoc._138_/d                             0.00397278           0.00397278
+xpoc._098_/a                             0.00106095           0.00106095
+xpoc._137_/d                            0.000914378          0.000914378
+xpoc._083_/y                               0.112633             0.112633
+xpoc.clkbuf_0_clk/x                      0.00288542           0.00288542
 clk                                               0                    0
-xpoc._097_/b                           -1.50207e-80         -1.49318e-92
-ring_osc_counter_out[6]                -9.62682e-78         -3.82793e-89
-xpoc._096_/b                           -1.52659e-80         -1.51756e-92
-xpoc.buffers\[20\]._0_/a                2.08676e-81          4.14881e-93
-xpoc.buffers\[19\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._109_/a                            2.69464e-77           4.9274e-89
-chain                                  -1.24128e-75         -8.29494e-87
-xpoc._109_/b                           -4.45831e-81         -8.86384e-93
-xpoc._136_/d                           -3.42347e-77         -5.44029e-89
-xpoc._094_/b                           -1.05968e-76         -1.86946e-88
-xpoc.buffers\[18\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._146_/clk                         -4.85438e-83         -6.82482e-95
-xpoc._077_/a                            -4.8534e-83         -6.82344e-95
-xpoc._125_/x                           -8.83434e-80         -8.78205e-92
-xpoc._145_/d                           -1.64193e-79         -1.63221e-91
-xpoc._127_/y                           -1.02261e-80         -2.03312e-92
-xpoc._128_/x                            4.73137e-81          4.70337e-93
-xpoc._092_/c                             4.7372e-81          4.70916e-93
-ring_osc_counter_out[4]                 -9.5408e-78         -3.79373e-89
-ring_osc_counter_out[5]                -9.62682e-78         -3.82793e-89
-xpoc.input1/x                          -1.49434e-80          -1.4855e-92
-b[0]                                              0                    0
-xpoc._076_/y                            2.08676e-81          4.14881e-93
-xpoc.buffers\[17\]._0_/a                2.08676e-81          4.14881e-93
+xpoc._097_/b                             0.00134184           0.00134184
+ring_osc_counter_out[6]                  0.00104116           0.00104116
+xpoc._096_/b                            0.000935414          0.000935414
+xpoc.buffers\[20\]._0_/a                   0.140316             0.140609 *
+xpoc.buffers\[19\]._0_/a                   0.105509             0.105436
+xpoc._109_/a                                  0.139                0.139
+chain                                     0.0766904            0.0766904
+xpoc._109_/b                               0.249172             0.249172
+xpoc._136_/d                              0.0010746            0.0010746
+xpoc._094_/b                               0.245108             0.245108
+xpoc.buffers\[18\]._0_/a                   0.114519             0.114539
+xpoc._146_/clk                           0.00289873           0.00289873
+xpoc._077_/a                             0.00288969           0.00288969
+xpoc._125_/x                            0.000963255          0.000963255
+xpoc._145_/d                               0.249237             0.249237
+xpoc._127_/y                            0.000961755          0.000961755
+xpoc._128_/x                               0.248462             0.248462
+xpoc._092_/c                            0.000928544          0.000928544
+ring_osc_counter_out[4]                  0.00102907           0.00102907
+ring_osc_counter_out[5]                  0.00104116           0.00104116
+xpoc.input1/x                              0.249173             0.249173
+b[0]                                       0.251256             0.251256
+xpoc._076_/y                               0.249163             0.249163
+xpoc.buffers\[17\]._0_/a                   0.112139             0.112133
 bypass                                            0                    0
-xpoc.input2/x                          -1.05849e-79         -1.20417e-91
-xpoc._144_/d                           -1.64193e-79         -1.63221e-91
-xpoc._144_/q                           -6.92029e-80         -6.87932e-92
-xpoc._075_/a                           -4.45831e-81         -8.86384e-93
-xpoc.buffers\[16\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._135_/d                           -4.17612e-78         -7.41787e-90
-extra_inverter                                    0                    0
-xpoc._083_/a                           -1.05849e-79         -1.20417e-91
-xpoc._143_/d                            -2.7094e-76         -6.13648e-88
-xpoc._143_/q                           -6.92029e-80         -6.87932e-92
-xpoc._074_/y                            2.08676e-81          4.14881e-93
-xpoc._074_/a                           -4.45838e-81         -8.86398e-93
-xpoc._121_/x                           -1.49461e-80         -1.48576e-92
-xpoc._109_/y                           -5.93686e-80         -9.74062e-92
-xpoc.buffers\[15\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._134_/d                           -3.43882e-77         -5.46469e-89
-xpoc._090_/b                           -3.50144e-77           -5.564e-89
+xpoc.input2/x                           0.000912843          0.000912843
+xpoc._144_/d                               0.249055             0.249055
+xpoc._144_/q                               0.249241             0.249241
+xpoc._075_/a                            0.000953564          0.000953564
+xpoc.buffers\[16\]._0_/a                   0.112763             0.112765
+xpoc._135_/d                             0.00114381           0.00114381
+extra_inverter                             0.251256             0.251256
+xpoc._083_/a                               0.249208             0.249208
+xpoc._143_/d                               0.221338             0.221338
+xpoc._143_/q                               0.249241             0.249241
+xpoc._074_/y                                0.24928              0.24928
+xpoc._074_/a                            0.000954829          0.000954829
+xpoc._121_/x                                0.24928              0.24928
+xpoc._109_/y                              0.0766904            0.0766904
+xpoc.buffers\[15\]._0_/a                   0.112599             0.112599
+xpoc._134_/d                              0.0011437            0.0011437
+xpoc._090_/b                               0.242905             0.242905
 reset                                             0                    0
-xpoc._142_/d                           -1.06074e-79         -1.20674e-91
-xpoc._142_/q                           -6.92029e-80         -6.87932e-92
-xpoc._142_/clk                         -4.85438e-83         -6.82482e-95
-xpoc._073_/y                            2.08676e-81          4.14881e-93
-xpoc._108_/y                           -5.93686e-80         -9.74062e-92
-run                                               0                    0
-xpoc._141_/d                            1.39823e-76          2.84433e-88
-xpoc._072_/y                            2.08676e-81          4.14881e-93
-xpoc.buffers\[14\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._124_/a                           -1.50258e-80         -1.49369e-92
-xpoc._124_/b                            1.37675e-78          5.47442e-90
-xpoc._107_/y                           -5.93686e-80         -9.74062e-92
-xpoc._140_/d                           -1.06954e-76         -1.88692e-88
-xpoc._071_/y                            2.08676e-81          4.14881e-93
-xpoc._122_/y                            3.56147e-77           6.7394e-89
-time_count_overflow                     6.18182e-76          3.93709e-87
-xpoc._106_/y                           -1.77817e-81         -2.92248e-93
-xpoc._106_/a                            -1.4867e-80          -1.4779e-92
-xpoc._106_/b                           -1.49434e-80          -1.4855e-92
-xpoc.buffers\[13\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._070_/y                            2.08676e-81          4.14881e-93
-xpoc._105_/y                           -1.77817e-81         -2.92248e-93
-xpoc.buffers\[12\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._104_/y                           -1.77817e-81         -2.92248e-93
-xpoc.buffers\[11\]._0_/a                2.08676e-81          4.14881e-93
-xpoc._120_/a                           -1.51835e-80         -1.50936e-92
-xpoc._103_/y                           -1.77817e-81         -2.92248e-93
-xpoc.buffers\[9\]._0_/y                 2.08676e-81          4.14881e-93
-ring_osc_counter_out[3]                -9.54059e-78         -3.79365e-89
-xpoc._089_/b                           -1.51826e-80         -1.50927e-92
-ring_osc_counter_out[2]                -9.54059e-78         -3.79365e-89
-ring_osc_counter_out[1]                 -9.5408e-78         -3.79373e-89
-xpoc._133_/d                           -3.42358e-77         -5.44046e-89
-xpoc._087_/b                           -1.08442e-76         -1.91327e-88
-xpoc._132_/d                           -3.92151e-77         -6.91849e-89
-xpoc._119_/c                            1.80723e-81          3.04801e-93
-xpoc._083_/b                           -1.48655e-80         -1.47775e-92
-xpoc.buffers\[9\]._0_/a                 2.08676e-81          4.14881e-93
-xpoc._082_/a                           -1.44197e-76         -2.54362e-88
-xpoc._082_/b                           -1.64228e-79         -1.63256e-91
-xpoc._116_/y                            2.80262e-77          5.31979e-89
-xpoc.buffers\[8\]._0_/a                 2.08676e-81          4.14881e-93
+xpoc._142_/d                                 0.2492               0.2492
+xpoc._142_/q                               0.249241             0.249241
+xpoc._142_/clk                           0.00289873           0.00289873
+xpoc._073_/y                                0.24928              0.24928
+xpoc._108_/y                              0.0766904            0.0766904
+run                                        0.251256             0.251256
+xpoc._141_/d                               0.247423             0.247423
+xpoc._072_/y                                0.24928              0.24928
+xpoc.buffers\[14\]._0_/a                   0.112642             0.112642
+xpoc._124_/a                                0.24928              0.24928
+xpoc._124_/b                               0.249317             0.249317
+xpoc._107_/y                              0.0766904            0.0766904
+xpoc._140_/d                               0.242295             0.242295
+xpoc._071_/y                                0.24928              0.24928
+xpoc._122_/y                             0.00294755           0.00294755
+time_count_overflow                     0.000477686          0.000477686
+xpoc._106_/y                              0.0126121            0.0126121
+xpoc._106_/a                               0.192718             0.192718
+xpoc._106_/b                               0.249163             0.249163
+xpoc.buffers\[13\]._0_/a                   0.112631             0.112631
+xpoc._070_/y                                0.24928              0.24928
+xpoc._105_/y                              0.0126121            0.0126121
+xpoc.buffers\[12\]._0_/a                   0.112634             0.112634
+xpoc._104_/y                              0.0126121            0.0126121
+xpoc.buffers\[11\]._0_/a                   0.112633             0.112633
+xpoc._120_/a                               0.246023             0.246023
+xpoc._103_/y                              0.0126121            0.0126121
+xpoc.buffers\[9\]._0_/y                    0.112633             0.112633
+ring_osc_counter_out[3]                  0.00102907           0.00102907
+xpoc._089_/b                            0.000935435          0.000935435
+ring_osc_counter_out[2]                  0.00102907           0.00102907
+ring_osc_counter_out[1]                  0.00102907           0.00102907
+xpoc._133_/d                             0.00107465           0.00107465
+xpoc._087_/b                               0.245106             0.245106
+xpoc._132_/d                             0.00114425           0.00114425
+xpoc._119_/c                               0.249121             0.249121
+xpoc._083_/b                               0.119766             0.119766
+xpoc.buffers\[9\]._0_/a                    0.112633             0.112633
+xpoc._082_/a                               0.134014             0.134014
+xpoc._082_/b                             0.00126474           0.00126474
+xpoc._116_/y                             0.00294867           0.00294867
+xpoc.buffers\[8\]._0_/a                    0.112633             0.112633
+b[1]                                              0                    0
+b[2]                                              0                    0
+b[3]                                              0                    0
+b[4]                                              0                    0
+b[5]                                              0                    0
+b[6]                                              0                    0
+b[7]                                              0                    0
 vreset#branch                                     0                    0
 vclk#branch                                       0                    0
+vb7#branch                                        0                    0
+vb6#branch                                        0                    0
+vb5#branch                                        0                    0
+vb4#branch                                        0                    0
+vb3#branch                                        0                    0
+vb2#branch                                        0                    0
+vb1#branch                                        0                    0
+vb0#branch                                        0                    0
 vrun#branch                                       0                    0
 vextra_inverter#branch                            0                    0
 vbypass#branch                                    0                    0
-vdd#branch                             -3.74814e-85                    0
-vgnd#branch                            -7.61071e-86                    0
+vdd#branch                             -1.29863e-10         -1.29863e-10
+vgnd#branch                            -3.70656e-13         -3.63862e-13
 
 
 
@@ -303,12 +342,5 @@ No. of Data Rows : 0
 doAnalyses: Too many iterations without convergence
 
 run simulation(s) aborted
-Warning - approaching max data size: current size = 9644.402 MB, limit = 10067.062 MB
-Error(parse.c--checkvalid): : zero length vector.
-Warning - approaching max data size: current size = 9644.402 MB, limit = 10067.062 MB
-ngspice-34 done
-
-real    51m51.546s
-user    51m49.440s
-sys     0m2.012s
-matt-desktop:2007 [main]:
+Error: no such vector reset
+ngspice 189 ->
