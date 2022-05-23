@@ -1,3 +1,8 @@
+# Mon 23 May 12:46:45 CEST 2022
+
+* adding uic (thanks Thomas) to .tran helps simulation run [see this pic](spice_pics/sim1.png)
+* still takes about an hour. Thomas can get it to run an <1 minute so trying to get the same setup here
+
 # Thu 19 May 11:01:18 CEST 2022
 
 * fixed the issue with the mismatched reset names.
@@ -8,6 +13,7 @@
 * added [a fake adder](../src/fake_adder.v)
 * analog simulation takes too long > 1 hour.
 * trying with only 10 inverters, updated the tests and changed to a down counter
+* fails
 
 # Wed 18 May 16:08:55 CEST 2022
 
