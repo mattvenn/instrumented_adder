@@ -39,7 +39,7 @@ Vclk clk VGND pulse(0 1.8 1n 10p 10p 2n 4n)
 Vreset reset VGND pulse(0 1.8 0n 10p 10p 2n 20n)
 
 * setup the transient analysis
-.tran 10p 10n 0
+.tran 10p 10n 0 uic
 
 .control
 run
