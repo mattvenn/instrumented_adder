@@ -35,15 +35,15 @@ module instrumented_adder(
     assign time_count_overflow = counter == counter_end -1;
     assign ring_osc_counter_out = ring_osc_counter;
 
-    // counter, does nothing atm
+    // counter for the incoming clock
     always @(posedge clk or posedge reset) begin
         if(reset)
             counter <= 0;
-        else if (counter <= counter_end)
+        else if (counter < counter_end - 1'b1)
             counter <= counter + 1'b1;
     end
 
-    // ring osc counter
+    // counter for the ring oscillator
     always @(posedge chain_out or posedge reset) begin
         if(reset)
             ring_osc_counter <= 0;

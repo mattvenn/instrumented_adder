@@ -51,11 +51,13 @@ Vclk clk VGND pulse(0 1.8 5n 10p 10p 5n 10n)
 
 * create reset
 * start high, for 100ns, rest of the time off
-Vreset reset VGND pulse(0 1.8 1n 10p 10p 10n 200n)
+*Vreset reset VGND pulse(0 1.8 1n 10p 10p 10n 200n)
+Vreset reset VGND 0
 
 * setup the transient analysis
-.tran 100p 100n 0 uic
-*.meas tran loop_period  trig v(3) val='0.5*vp' rise=2 targ v(3) val='0.5*vp' rise=3
+.tran 10p 20n 0 uic
+.meas tran loop_period trig v(chain) val='0.9' rise=2 targ v(chain) val='0.9' rise=10
+*.meas tran overflow        trig v(run)   val='0.5*Vdd' rise=1 targ v(time_count_overflow)  val='0.5*Vdd' rise=1
 
 .control
 run

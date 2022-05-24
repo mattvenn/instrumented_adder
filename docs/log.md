@@ -3,6 +3,11 @@
 * Adding the [.spiceinit](../spice/.spiceinit) file drops simulation time from 50 minutes down to 2:30. See this [ngspice note](http://ngspice.sourceforge.net/applic.html)
 * useful ngspice stuff: display to show all vectors. Then use "" to be able to plot vectors like ring_osc_counter[0] (needs quotes to work)
 * overflow never going high, put the counter on external pins and were floating? maybe not reset properly? tried adding or posedge reset and that failed to floorplan(!), moved back to up counter and used external inputs as compare
+* think I might have been copying the wrong spice file
+* learnt the measure tool to count ring osc cycles
+* with bypass 8 cycles takes 1.43e-8 s and without 1.34e-8 s
+
+![spice_pics/sim2.png](sim2)
 
 # Mon 23 May 12:46:45 CEST 2022
 

@@ -22,7 +22,7 @@ async def test_all(dut):
     dut.reset = 0
     dut.run  = 1
     await RisingEdge(dut.time_count_overflow)
-    await ClockCycles(dut.clk, 1)
+    await ClockCycles(dut.clk, 5)
     count = int(dut.ring_osc_counter_out.value)
     print("adder    : %d" % count)
     #assert count == 70
@@ -37,7 +37,7 @@ async def test_all(dut):
     dut.run   = 1
     dut.reset  = 0
     await RisingEdge(dut.time_count_overflow)
-    await ClockCycles(dut.clk, 1)
+    await ClockCycles(dut.clk, 5)
     count = int(dut.ring_osc_counter_out.value)
     print("no adder : %d" % count)
 #    assert count == 238
