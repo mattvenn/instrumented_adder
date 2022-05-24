@@ -7,7 +7,7 @@
 * learnt the measure tool to count ring osc cycles
 * with bypass 8 cycles takes 1.43e-8 s and without 1.34e-8 s
 
-![spice_pics/sim2.png](sim2)
+![counting ring osc cycles](spice_pics/sim2.png)
 
 # Mon 23 May 12:46:45 CEST 2022
 
