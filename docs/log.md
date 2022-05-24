@@ -1,3 +1,7 @@
+# Tue 24 May 12:29:46 CEST 2022
+
+* Adding the [.spiceinit](../spice/.spiceinit) file drops simulation time from 50 minutes down to 2:30. See this [ngspice note](http://ngspice.sourceforge.net/applic.html)
+
 # Mon 23 May 12:46:45 CEST 2022
 
 * adding uic (thanks Thomas) to .tran helps simulation run [see this pic](spice_pics/sim1.png)
