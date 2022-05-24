@@ -9,8 +9,10 @@ module instrumented_adder(
     input wire bypass,
     input wire extra_inverter,
     input wire [7:0] b,
+    input wire [7:0] counter_end,
     output wire chain,
     output wire time_count_overflow,
+    output wire [7:0] counter_out,
     output wire [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter_out
 
 );
@@ -22,7 +24,6 @@ module instrumented_adder(
     end
     `endif
 
-    localparam COUNT_DEFAULT = 100; // make this an input
     localparam NUM_INVERTERS = 21; // keep to an odd number
     localparam TIME_COUNTER_BITS = 8;
     localparam RING_OSC_COUNTER_BITS = 8;
@@ -30,15 +31,16 @@ module instrumented_adder(
     reg [TIME_COUNTER_BITS-1:0] counter;
     reg [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter;
     assign chain = chain_out;
-    assign time_count_overflow = counter == 0;
+    assign counter_out = counter;
+    assign time_count_overflow = counter == counter_end -1;
     assign ring_osc_counter_out = ring_osc_counter;
 
     // counter, does nothing atm
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if(reset)
-            counter <= COUNT_DEFAULT;
-        else if (counter > 0)
-            counter <= counter - 1'b1;
+            counter <= 0;
+        else if (counter <= counter_end)
+            counter <= counter + 1'b1;
     end
 
     // ring osc counter

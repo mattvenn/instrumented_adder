@@ -9,6 +9,10 @@ Standard cell Simulation
 * instantiate the spice model
 * Xpoc  chain clk outputs[0] outputs[1] outputs[2] outputs[3] reset VPWR VGND instrumented_adder
 Xpoc b[0] b[1] b[2] b[3] b[4] b[5] b[6] b[7] bypass chain clk
++ counter_end[0] counter_end[1] counter_end[2] counter_end[3]
++ counter_end[4] counter_end[5] counter_end[6] counter_end[7]
++ counter_out[0] counter_out[1] counter_out[2] counter_out[3]
++ counter_out[4] counter_out[5] counter_out[6] counter_out[7]
 + extra_inverter reset ring_osc_counter_out[0] ring_osc_counter_out[1] ring_osc_counter_out[2]
 + ring_osc_counter_out[3] ring_osc_counter_out[4] ring_osc_counter_out[5] ring_osc_counter_out[6]
 + ring_osc_counter_out[7] run time_count_overflow VPWR VGND instrumented_adder
@@ -30,16 +34,28 @@ Vb5 b[5] VGND 0
 Vb6 b[6] VGND 0
 Vb7 b[7] VGND 0
 
-* create a clock, 4ns period
+* count end input: set to 8
+Vc0 counter_end[0] VGND 0
+Vc1 counter_end[1] VGND 0
+Vc2 counter_end[2] VGND 0
+Vc3 counter_end[3] VGND 1.8
+Vc4 counter_end[4] VGND 0
+Vc5 counter_end[5] VGND 0
+Vc6 counter_end[6] VGND 0
+Vc7 counter_end[7] VGND 0
+
+
+* create a clock, 10ns period (100MHz)
 * initial v, pulse v, delay, rise, fall, pulse w, period
-Vclk clk VGND pulse(0 1.8 1n 10p 10p 2n 4n)
+Vclk clk VGND pulse(0 1.8 5n 10p 10p 5n 10n)
 
 * create reset
-* start high, for 2ns, rest of the time off
-Vreset reset VGND pulse(0 1.8 0n 10p 10p 2n 20n)
+* start high, for 100ns, rest of the time off
+Vreset reset VGND pulse(0 1.8 1n 10p 10p 10n 200n)
 
 * setup the transient analysis
-.tran 10p 10n 0 uic
+.tran 100p 100n 0 uic
+*.meas tran loop_period  trig v(3) val='0.5*vp' rise=2 targ v(3) val='0.5*vp' rise=3
 
 .control
 run
