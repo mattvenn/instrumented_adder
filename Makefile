@@ -3,12 +3,18 @@ export COCOTB_REDUCED_LOG_FMT=1
 export PYTHONPATH := test:$(PYTHONPATH)
 export LIBPYTHON_LOC=$(shell cocotb-config --libpython)
 
+OPENLANE_TAG ?= 2021.11.23_01.42.34
+OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
+
 COMPILE_ARGS=-I $(PDK_ROOT)/sky130A/
 
 #include $(shell cocotb-config --makefiles)/Makefile.sim
 
 all: test_adder
 
+spice/instrumented_adder.spice: harden
+	cp runs/adder/results/finishing/instrumented_adder.spice spice/instrumented_adder.spice
+    
 analog_sim:
 	cd spice
 	ngspice spice/simulation.spice
@@ -38,4 +44,15 @@ lint:
 clean::
 	rm -rf *vcd sim_build test/__pycache__
 
-.PHONY: clean
+# needs PDK_ROOT and OPENLANE_ROOT set from your environment
+harden:
+	docker run --rm \
+	-v $(OPENLANE_ROOT):/openlane \
+	-v $(PDK_ROOT):$(PDK_ROOT) \
+	-v $(CURDIR):/work \
+	-e PDK_ROOT=$(PDK_ROOT) \
+	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
+	$(OPENLANE_IMAGE_NAME) \
+	/bin/bash -c "./flow.tcl -overwrite -design /work/src -run_path /work/runs -tag adder"
+
+.PHONY: clean harden
