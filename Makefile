@@ -33,15 +33,15 @@ install_adder:
 	pip3 install --upgrade git+https://github.com/tdene/synth_opt_adders.git
 
 src/sklansky.v:
-	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, start_point = "sklansky"); f.calculate_fanout(); f.calculate_tracks(); f.optimize_nodes(); f.add_best_blocks(); f.hdl("sklansky.v", module_name="sklansky")'
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "sklansky"); f.hdl("sklansky.v", module_name="sklansky", optimization = 1)'
 	mv sklansky.v src
 
 src/kogge_stone.v:
-	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, start_point = "kogge-stone"); f.calculate_fanout(); f.calculate_tracks(); f.optimize_nodes(); f.add_best_blocks(); f.hdl("kogge_stone.v", module_name="kogge_stone")'
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "kogge-stone"); f.hdl("kogge_stone.v", module_name="kogge_stone", optimization = 1)'
 	mv kogge_stone.v src
 
 src/ripple_carry.v:
-	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, start_point = "ripple"); f.calculate_fanout(); f.calculate_tracks(); f.optimize_nodes(); f.add_best_blocks(); f.hdl("ripple_carry.v", module_name="ripple_carry")'
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "ripple"); f.hdl("ripple_carry.v", module_name="ripple_carry", optimization = 1)'
 	mv ripple_carry.v src
 
 show_synth_%: src/%.v
