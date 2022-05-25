@@ -3,12 +3,14 @@ export COCOTB_REDUCED_LOG_FMT=1
 export PYTHONPATH := test:$(PYTHONPATH)
 export LIBPYTHON_LOC=$(shell cocotb-config --libpython)
 
+# PDK defaults
+INSTALL_DIR=/home/matt/work/asic-workshop/shuttle5
 OPENLANE_TAG ?= 2021.11.23_01.42.34
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
+PDK_ROOT ?= $(INSTALL_DIR)/pdk
+OPENLANE_ROOT ?= $(INSTALL_DIR)/openlane
 
 COMPILE_ARGS=-I $(PDK_ROOT)/sky130A/
-
-#include $(shell cocotb-config --makefiles)/Makefile.sim
 
 all: test_adder
 

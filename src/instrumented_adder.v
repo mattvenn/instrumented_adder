@@ -60,8 +60,7 @@ module instrumented_adder(
     wire chain_out_bypass;
 
     // connect either output of the inverter chain or output of the adder back to input
-    // need to reverse what bypass does or change its name but reversing stops oscillation...
-    assign chain_out_bypass =  bypass ? sum[0] : chain_out; 
+    assign chain_out_bypass =  bypass ? chain_out : sum[0]; 
     assign a                =  chain_out ; // bypass ? chain_out : 1'bz;
 
     assign chain_in_pre_xor = reset ? 0: chain_out_bypass;
