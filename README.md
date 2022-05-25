@@ -12,7 +12,7 @@
 * Have a way of measuring the performance close to the adder (don't attempt to do it off the chip)
 * Tapeout on MPW6
 
-![instrumented adder](docs/eric.png)
+![instrumented adder](docs/BasicMeasureDelay2.png)
 
 ![adder gds](docs/gds.png)
 
