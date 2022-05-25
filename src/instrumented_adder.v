@@ -77,8 +77,10 @@ module instrumented_adder(
     wire [7:0] a;
     wire [7:0] sum;
 
-    fake_adder fake_adder (.a(a), .b(b), .sum(sum));
-//    adder      sklansky   (.a(a), .b(b), .sum(sum));
+//      behavioral behavioral   (.a(a), .b(b), .sum(sum));
+ //     sklansky        sklansky     (.a_in(a), .b_in(b), .sum(sum));
+//      ripple_carry     ripple_carry     (.a_in(a), .b_in(b), .sum(sum));
+    kogge_stone      kogge_stone  (.a_in(a), .b_in(b), .sum(sum));
 
 endmodule
 
@@ -93,7 +95,7 @@ module inv_with_delay(input A, output Y);
 endmodule
 
 // take a long time to add some numbers
-module fake_adder(cout, sum, a, b, cin);
+module behavioral(cout, sum, a, b, cin);
 
 	input [7:0] a, b;
 	input cin;
