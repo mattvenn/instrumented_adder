@@ -9,7 +9,7 @@ set ::env(RUN_KLAYOUT_XOR) 0
 set ::env(RUN_KLAYOUT_DRC) 0
 
 # add your source files here
-set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/src/instrumented_adder.v"
+set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/instrumented_adder.v"
 
 set ::env(SYNTH_READ_BLACKBOX_LIB) 1
 
