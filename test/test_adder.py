@@ -12,6 +12,7 @@ async def test_all(dut):
     # reset
     dut.reset = 1
     dut.b = 1 << 7
+    dut.a_input = 0
     dut.counter_end = 10
     dut.run  = 0
     dut.bypass = 0
@@ -41,4 +42,18 @@ async def test_all(dut):
     await ClockCycles(dut.clk, 5)
     print("no adder : %d" % count)
 #    assert count == 33
+
+    dut.reset  = 1
+    dut.bypass = 1
+    dut.run  = 0
+    dut.extra_inverter = 1
+    await ClockCycles(dut.clk, 2)
+    dut.reset  = 0
+    await ClockCycles(dut.clk, 2)
+
+    for i in range(127):
+        dut.a_input = i
+        await ClockCycles(dut.clk, 1)
+        print(127 + int(dut.sum_out), int(dut.b) + int(dut.a_input))
+
 

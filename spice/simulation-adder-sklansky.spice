@@ -7,11 +7,12 @@ Adder sklansky
 .include "instrumented_adder.spice.sklansky"
 
 * instantiate the spice model
-Xpoc b[0] b[1] b[2] b[3] b[4] b[5] b[6] b[7] bypass chain clk
-+ counter_end[0] counter_end[1] counter_end[2] counter_end[3] counter_end[4] counter_end[5]
-+ counter_end[6] counter_end[7] counter_out[0] counter_out[1] counter_out[2] counter_out[3]
-+ counter_out[4] counter_out[5] counter_out[6] counter_out[7] extra_inverter reset
-+ ring_osc_counter_out[0] ring_osc_counter_out[1] ring_osc_counter_out[2] ring_osc_counter_out[3]
+Xpoc a_input[0] a_input[1] a_input[2] a_input[3] a_input[4]
++ a_input[5] a_input[6] a_input[7] b[0] b[1] b[2] b[3] b[4] b[5] b[6] b[7] bypass
++ chain clk counter_end[0] counter_end[1] counter_end[2] counter_end[3] counter_end[4]
++ counter_end[5] counter_end[6] counter_end[7] counter_out[0] counter_out[1] counter_out[2]
++ counter_out[3] counter_out[4] counter_out[5] counter_out[6] counter_out[7] extra_inverter
++ reset ring_osc_counter_out[0] ring_osc_counter_out[1] ring_osc_counter_out[2] ring_osc_counter_out[3]
 + ring_osc_counter_out[4] ring_osc_counter_out[5] ring_osc_counter_out[6] ring_osc_counter_out[7]
 + run sum_out[0] sum_out[1] sum_out[2] sum_out[3] sum_out[4] sum_out[5] sum_out[6]
 + sum_out[7] time_count_overflow VPWR VGND instrumented_adder
@@ -21,6 +22,16 @@ Vgnd VGND 0 0
 Vdd VPWR VGND 1.8
 Vbypass bypass VGND 0
 Vextra_inverter extra_inverter VGND 0
+
+* a input
+Va0 a[0] VGND 0
+Va1 a[1] VGND 0
+Va2 a[2] VGND 0
+Va3 a[3] VGND 0
+Va4 a[4] VGND 0
+Va5 a[5] VGND 0
+Va6 a[6] VGND 0
+Va7 a[7] VGND 0
 
 * b input
 Vb0 b[0] VGND 1.8
