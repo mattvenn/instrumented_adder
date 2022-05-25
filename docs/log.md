@@ -35,6 +35,8 @@ All measurements in seconds and are time for 7 ring oscillation periods (check .
 |sklansky adder    | 2.095268e-08       7  |  0            |  21              | 0        
 |kogge-stone adder | 2.094274e-08       7  |  0            |  21              | 0        
 
+| name             | time for n loops      | bit connected | number inverters | extra inv
+| ---------------- | --------------------- | ------------- | ---------------- | ---------
 |yosys bypass      | 1.245878e-08       7  |  7            |  21              | 1
 |yosys adder       | 1.275221e-08       7  |  7            |  21              | 0        
 |sklansky adder    | 1.286283e-08       7  |  7            |  21              | 0        
@@ -43,6 +45,8 @@ All measurements in seconds and are time for 7 ring oscillation periods (check .
 
 These took too long, so measured 6 loops, then divide by 6, multiply by 7 to compare above 
 
+| name             | time for n loops      | bit connected | number inverters | extra inv
+| ---------------- | --------------------- | ------------- | ---------------- | ---------
 |yosys adder       | 1.911594e-08       6  |  0            |  21              | 0
 |sklansky adder    | 1.867272e-08       6  |  0            |  21              | 0        
 |kogge-stone adder | 1.866273e-08       6  |  0            |  21              | 0
