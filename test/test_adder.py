@@ -11,7 +11,7 @@ async def test_all(dut):
     
     # reset
     dut.reset = 1
-    dut.b = 1
+    dut.b = 1 << 7
     dut.counter_end = 10
     dut.run  = 0
     dut.bypass = 0

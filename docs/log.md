@@ -1,3 +1,55 @@
+# Wed 25 May 12:46:15 CEST 2022
+
+* updated to ngspice3.7
+* added harden rule to Makefile 
+* fixed bypass reversal
+* given up on Pyspice
+* have 2 spice files for with and without bypass adder
+* results seem wrong (see below)
+* using bit 7 of the adder, reharden, fails to oscillate with adder. bypass as before. increase number of inverters to 101 (from 21)
+* pretty cumbersome to changes adders at the moment. have to change:
+    * config.tcl for source,
+    * the makefile for test rule, 
+    * the instrumented_adder.v, for the include
+    * re-harden
+* And waveform of the ring is no good. bad reset? Trying different spice setup
+* Doing a separate reset and run seems to improve the ring osc waveform
+* but then kogge-stone stopped oscillating, so had to include extra inverter
+* Teo updated lib to prepend module names, so all can be included. Now updating spice needs:
+    * change verilog
+    * reharden
+
+
+## Results
+
+All measurements in seconds and are time for 7 ring oscillation periods (check .meas setup in spice file)
+
+| name             | time for n loops      | bit connected | number inverters | extra inv
+| ---------------- | --------------------- | ------------- | ---------------- | ---------
+|yosys bypass      | 1.833742e-08       7  |  0            |  21              | 1
+|ripple bypass     | 1.828263e-08       7  |  0            |  21              | 1
+|sklansky bypass   | 1.828272e-08       7  |  0            |  21              | 1
+|kogge-stone bypass| 1.833742e-08       7  |  0            |  21              | 1
+|yosys adder       | 2.148156e-08       7  |  0            |  21              | 0        
+|ripple adder      | 2.094202e-08       7  |  0            |  21              | 0
+|sklansky adder    | 2.095268e-08       7  |  0            |  21              | 0        
+|kogge-stone adder | 2.094274e-08       7  |  0            |  21              | 0        
+
+|yosys bypass      | 1.245878e-08       7  |  7            |  21              | 1
+|yosys adder       | 1.275221e-08       7  |  7            |  21              | 0        
+|sklansky adder    | 1.286283e-08       7  |  7            |  21              | 0        
+|ripple adder      | 1.285714e-08       7  |  7            |  21              | 0
+|kogge-stone adder | 1.285516e-08       7  |  7            |  21              | 0        
+
+These took too long, so measured 6 loops, then divide by 6, multiply by 7 to compare above 
+
+|yosys adder       | 1.911594e-08       6  |  0            |  21              | 0
+|sklansky adder    | 1.867272e-08       6  |  0            |  21              | 0        
+|kogge-stone adder | 1.866273e-08       6  |  0            |  21              | 0
+|ripple adder      | 1.865568e-08       6  |  0            |  21              | 0
+|kogge-stone adder | 2.1773  8-08   (6) 7  |  0            |  21              | 0        
+
+
 # Tue 24 May 12:29:46 CEST 2022
 
 * Adding the [.spiceinit](../spice/.spiceinit) file drops simulation time from 50 minutes down to 2:30. See this [ngspice note](http://ngspice.sourceforge.net/applic.html)
