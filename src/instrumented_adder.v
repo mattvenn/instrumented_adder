@@ -120,11 +120,11 @@ module instrumented_adder(
     tristate bypass2 (.A(bypass2_in), .Z(r), .TE_B(bypass_b));
 
     // control chain
+    wire control_chain_in, control_chain_out;
     tristate control1 (.A(ring_top), .Z(control_chain_in), .TE_B(control_b));
     tristate control2 (.A(control_chain_out), .Z(r), .TE_B(control_b));
-    wire control_chain_in, control_chain_out;
     wire [CONTROL_INVERTERS-1:0] control_inverters_in, control_inverters_out;
-    assign inverters_in = {control_inverters_out[CONTROL_INVERTERS-2:0], control_chain_in};
+    assign control_inverters_in = {control_inverters_out[CONTROL_INVERTERS-2:0], control_chain_in};
     assign control_chain_out = control_inverters_out[CONTROL_INVERTERS-1];
 
     // instantiate the control chain inverters
@@ -137,6 +137,7 @@ module instrumented_adder(
     wire [7:0] adder_a;
     wire [7:0] adder_b = b_input;
 
+/*
     // those coming from the ring, controlled by a_input_ring_bit_b
     tristate tristate_ring_inputs [7:0] (
         .A(ring_top),
@@ -152,7 +153,9 @@ module instrumented_adder(
     );
 
     // sum outputs
+    */
     wire [7:0] adder_sum;
+    /*
     tristate tristate_sum_outputs [7:0] (
         .A(adder_sum),
         .Z(r), 
@@ -165,6 +168,7 @@ module instrumented_adder(
      //sklansky        sklansky     (.a_in(a), .b_in(b), .sum(sum));
 //      ripple_carry     ripple_carry     (.a_in(a), .b_in(b), .sum(sum));
     kogge_stone      kogge_stone  (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
+    */
 
 endmodule
 
