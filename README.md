@@ -11,6 +11,10 @@
 * Put one of each type of adder, along with the standard yosys adder
 * Have a way of measuring the performance close to the adder (don't attempt to do it off the chip)
 * Tapeout on MPW6
+* Some hidden requirements
+    * adder can't glitch while adding the 2 inputs because this could either violate timing or mess up the ring osc
+    * we want to choose which paths through the adder, to be able to compare the simulation against the actual results
+    * how good is our cad environment? did the prediction match the measurement
 
 ![instrumented adder](docs/BasicMeasureDelay2.png)
 

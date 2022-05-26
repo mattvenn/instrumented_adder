@@ -66,15 +66,15 @@ Vreset reset VGND pulse(0 1.8 1n 10p 10p 4n 200n)
 Vrun run VGND     pulse(0 1.8 6n 10p 10p 200n 300n)
 
 * setup the transient analysis
-.tran 10p 25n 0 uic
-.meas tran loop_period trig v(chain) val='0.9' rise=1 targ v(chain) val='0.9' rise=8
+.tran 10p 12n 0 uic
+.meas tran loop_period trig v(chain) val='0.9' rise=2 targ v(chain) val='0.9' rise=3
 *.meas tran overflow        trig v(run)   val='0.5*Vdd' rise=1 targ v(time_count_overflow)  val='0.5*Vdd' rise=1
 
 .control
 run
 set color0 = white
 set color1 = black
-plot reset, clk, chain, time_count_overflow, run
+plot reset, chain, run
 .endc
 
 .end

@@ -1,3 +1,29 @@
+# Thu 26 May 11:04:47 CEST 2022
+
+* updated with Teo's latest & greatest
+* change bypass behaviour so full adder can be tested
+* tested all adder types with all input possibilities
+* rehardened all
+* changed sim to only get 2 or 3 cycles (12ns length)
+
+| name             | time for 1 loop      | bit connected | number inverters | extra inv
+| ---------------- | -------------------- | ------------- | ---------------- | ---------
+|yosys bypass      | 1.781721e-09         |  7            |  21              | 1
+|yosys adder       | 2.420212e-09         |  7            |  21              | 0
+|ripple adder      | 2.439424e-09         |  7            |  21              | 0
+|sklansky adder    | 2.499714e-09         |  7            |  21              | 0
+|kogge-stone adder | 2.247947e-09         |  7            |  21              | 0
+
+Looks better than before, though doesn't agree with Teo's results. Sklansky should be the fastest and here it's the slowest.
+
+Teo's results:
+
+* Ripple-carry 637 MHz
+* Behavioral 730 MHz
+* Brent-kung 826 MHz
+* Kogge-stone 840 MHz
+* Sklansky 926 MHz
+
 # Wed 25 May 12:46:15 CEST 2022
 
 * updated to ngspice3.7
@@ -19,6 +45,18 @@
     * change verilog
     * reharden
 
+## STA notes from Eric
+
+* reads the liberty file, figure out the paths, add them and make sure match the timing contraint
+* should compare with the spice sim, as STA tool uses spice for measurements
+* one limitation is related to logical effort, depends on fanout in the design
+* STA program takes a command file, and can give this -> a[0] to s[2], and then this should be in the report
+* have a make rule for the STA tool to dump just the paths I'm interested in.
+* need to do the simulation with the parasitics to verify it as a last step
+* how to choose number of inverters and length of counters
+    * put counter in separate block, set a timing constraint
+    * make sure the ring osc is longer than the counter on all corners
+* longer the integration time the higher accuracy, but this also means the fluctations could start to matter
 
 ## Results
 

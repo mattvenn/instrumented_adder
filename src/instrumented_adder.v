@@ -62,9 +62,9 @@ module instrumented_adder(
     assign chain_out = run ~& buffers_out[NUM_INVERTERS-1];
     wire chain_out_bypass;
 
-    // connect either output of the inverter chain or output of the adder back to input
+    // connect either output of the inverter chain or output of the adder back to 7th bit of adder's a port
     assign chain_out_bypass =  bypass ? chain_out : sum[7]; 
-    assign a                =  { chain_out , a_input[6:0] };
+    assign a                =  bypass ? a_input : chain_out << 7;
 
     assign chain_in_pre_xor = reset ? 0: chain_out_bypass;
     assign chain_in         = extra_inverter ^ chain_in_pre_xor;
@@ -80,9 +80,9 @@ module instrumented_adder(
     wire [7:0] a;
     wire [7:0] sum;
 
-      //behavioral behavioral   (.a(a), .b(b), .sum(sum));
-  //   sklansky        sklansky     (.a_in(a), .b_in(b), .sum(sum));
-      //ripple_carry     ripple_carry     (.a_in(a), .b_in(b), .sum(sum));
+     //behavioral behavioral   (.a(a), .b(b), .sum(sum));
+     //sklansky        sklansky     (.a_in(a), .b_in(b), .sum(sum));
+//      ripple_carry     ripple_carry     (.a_in(a), .b_in(b), .sum(sum));
     kogge_stone      kogge_stone  (.a_in(a), .b_in(b), .sum(sum));
 
 endmodule

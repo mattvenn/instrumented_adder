@@ -45,25 +45,27 @@ Vc6 counter_end[6] VGND 0
 Vc7 counter_end[7] VGND 0
 
 
-* create a clock, 10ns period (100MHz)
+* create a clock, 4ns period 
 * initial v, pulse v, delay, rise, fall, pulse w, period
-Vclk clk VGND pulse(0 1.8 5n 10p 10p 5n 10n)
+Vclk clk VGND pulse(0 1.8 2n 10p 10p 2n 4n)
 
 * create reset
 * start high, for 100ns, rest of the time off
-*Vreset reset VGND pulse(0 1.8 1n 10p 10p 10n 200n)
-Vreset reset VGND 0
+Vreset reset VGND pulse(0 1.8 1n 10p 10p 4n 200n)
+
+* create run signal
+Vrun run VGND     pulse(0 1.8 6n 10p 10p 200n 300n)
 
 * setup the transient analysis
-.tran 10p 20n 0 uic
-.meas tran loop_period trig v(chain) val='0.9' rise=2 targ v(chain) val='0.9' rise=10
+.tran 10p 12n 0 uic
+.meas tran loop_period trig v(chain) val='0.9' rise=2 targ v(chain) val='0.9' rise=3
 *.meas tran overflow        trig v(run)   val='0.5*Vdd' rise=1 targ v(time_count_overflow)  val='0.5*Vdd' rise=1
 
 .control
 run
 set color0 = white
 set color1 = black
-plot reset, clk, chain, time_count_overflow
+plot reset, chain, run
 .endc
 
 .end
