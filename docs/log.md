@@ -1,3 +1,17 @@
+# Thu 26 May 12:21:58 CEST 2022
+
+working on branch eric-update to add the extra features:
+
+* Add flip-flop F0.  This reduces the load on net R and makes it easier for C1 to make timing.  Since long integration times are needed the div 2 shouldn't cause a significant loss in resolution on the measurement. 
+* Add a control measurement.  Everything is relative to the bypass path but adding a second control path, with just a small number of inverters, can help to establish that the apparatus is actually measuring what we think it is, and since the delay is small it can help to establish the noise floor of the measurement.  Also, since we will have two measurements (bypass and control) we can get a decent measurement of the delay of one inverter and that measurement should allow us to determine the number of inverters in the control path, which is of course known by design, further establishing the accurracy of the system.
+* I also labeled some stuff to make it easier to talk about in chat
+* I tried to make it more clear that C0 measures the time that C1 counts
+
+## Questions
+
+* for spice sims, it's good to have the ring osc as a separate output. can spice 'reach inside' a module?
+* the done inverter - not needed?
+
 # Thu 26 May 11:04:47 CEST 2022
 
 * updated with Teo's latest & greatest

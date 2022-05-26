@@ -4,59 +4,66 @@ from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, Timer
 
 
 @cocotb.test()
-async def test_all(dut):
+async def test_bypass(dut):
 
     clock = Clock(dut.clk, 100, units="ns")
     cocotb.fork(clock.start())
     
-    # reset
+    # hold in reset
     dut.reset = 1
-    dut.b = 1 << 7
-    dut.a_input = 0
-    dut.counter_end = 10
-    dut.run  = 0
-    dut.bypass = 0
+    # stop the ring
+    dut.stop_b = 0
+    # enable extra inverter
     dut.extra_inverter = 0
+    # set b input to be 0
+    dut.b_input = 0
+
+    # enable bypass loop
+    dut.bypass_b = 0
+
+    # disable control loop
+    dut.control_b = 1
+
+    # disable adder sum connection and inputs
+    dut.s_output_bit_b     = 0b11111111
+    dut.a_input_ring_bit_b = 0b11111111
+    dut.a_input_ext_bit_b  = 0b11111111
+
     await ClockCycles(dut.clk, 3)
 
-    # run the ring oscillator for a bit
+    # load the integration counter
+    dut.integration_time = 100
+    dut.counter_load = 1
     dut.reset = 0
-    dut.run  = 1
-    await RisingEdge(dut.time_count_overflow)
+    
+    await ClockCycles(dut.clk, 1)
+
+    dut.counter_load = 0
+    # start the loop
+    dut.stop_b = 1
+    dut.counter_enable = 1
+
+    await RisingEdge(dut.done)
     count = int(dut.ring_osc_counter_out.value)
     await ClockCycles(dut.clk, 5)
-    print("adder    : %d" % count)
-#    assert count == 10
+    print("cycles    : %d" % count)
 
-    # this part trying to run in ../spice/simulation.spice
-    # then run, reset and connect in the adder
-    dut.run   = 0
-    dut.reset  = 1
-    dut.bypass = 1
-    dut.extra_inverter = 1
-    await ClockCycles(dut.clk, 2)
-    dut.run   = 1
-    dut.reset  = 0
-    await RisingEdge(dut.time_count_overflow)
-    count = int(dut.ring_osc_counter_out.value)
-    await ClockCycles(dut.clk, 5)
-    print("no adder : %d" % count)
-#    assert count == 33
 
-    # now check the adder works
+@cocotb.test(skip=True)
+async def test_adder(dut):
     dut.reset  = 1
-    dut.bypass = 1
-    dut.run  = 0
-    dut.extra_inverter = 0
-    await ClockCycles(dut.clk, 2)
-    dut.reset  = 0
+    dut.stop_b = 0
+    # control inputs are all inverted
+    dut.a_input_ext_bit_b = 0b00000000
+    dut.a_input_ring_bit_b = 0b11111111
+    dut.s_output_bit_b = 0b00000000
     await ClockCycles(dut.clk, 2)
 
     for a in range(255):
         for b in range(255):
             dut.a_input = a
-            dut.b = b
+            dut.b_input = b
             await ClockCycles(dut.clk, 1)
-            assert (int(dut.sum_out) % 256) == ((int(dut.b) + int(dut.a_input)) % 256)
+            assert (int(dut.sum_out) % 256) == ((a+b) % 256)
 
 
