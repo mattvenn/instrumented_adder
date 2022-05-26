@@ -161,10 +161,10 @@ module instrumented_adder(
     
     // instantiate adder
 
-     //behavioral behavioral   (.a(a), .b(b), .sum(sum));
-     //sklansky        sklansky     (.a_in(a), .b_in(b), .sum(sum));
-//      ripple_carry     ripple_carry     (.a_in(a), .b_in(b), .sum(sum));
-    kogge_stone      kogge_stone  (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
+    behavioral      behavioral   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
+//    sklansky        sklansky     (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
+//    ripple_carry    ripple_carry (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
+//    kogge_stone     kogge_stone  (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
 
 endmodule
 
@@ -188,16 +188,16 @@ module tristate(input A, output Z, input TE_B);
 endmodule     
 
 // take a long time to add some numbers
-module behavioral(cout, sum, a, b, cin);
+module behavioral(cout, sum, a_in, b_in, cin);
 
-	input [7:0] a, b;
+	input [7:0] a_in, b_in;
 	input cin;
 	output [7:0] sum;
 	output cout;
 
     `ifdef COCOTB_SIM
-    assign #50 sum = a + b;
+    assign #50 sum = a_in + b_in;
     `else
-    assign sum = a + b;
+    assign sum = a_in + b_in;
     `endif
 endmodule
