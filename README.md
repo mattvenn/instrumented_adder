@@ -22,12 +22,19 @@
 
 ![trace](docs/trace.png)
 
+![ripple](docs/ripple.png)
+
 Trace shows 2 runs, with and without the adder in the ring oscillator path.
 
 # Simulation
 
 * Digital sim, run `make test_adder`
 * Analog sim, run `make analog_sim`
+
+# Harden with OpenLane (and create spice files)
+
+* Uncomment the adder you want in src/instrumented_adder.v
+* Run `make spice/instrumented_adder.spice` to harden with OpenLane and copy spice file
 
 # TODO! (prs welcome!)
 
@@ -36,10 +43,7 @@ Trace shows 2 runs, with and without the adder in the ring oscillator path.
 * Check the instrumentation
     * how to keep the inverter loop - done
     * check timing - looks good
-    * what about tribufs
     * results still not quite making sense (see the [log](docs/log.md))
-    * update the design to match Eric's picture
-
 
 # Zero to ASIC Course
 
