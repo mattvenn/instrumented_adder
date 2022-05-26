@@ -137,7 +137,6 @@ module instrumented_adder(
     wire [7:0] adder_a;
     wire [7:0] adder_b = b_input;
 
-/*
     // those coming from the ring, controlled by a_input_ring_bit_b
     tristate tristate_ring_inputs [7:0] (
         .A(ring_top),
@@ -153,9 +152,7 @@ module instrumented_adder(
     );
 
     // sum outputs
-    */
     wire [7:0] adder_sum;
-    /*
     tristate tristate_sum_outputs [7:0] (
         .A(adder_sum),
         .Z(r), 
@@ -168,7 +165,6 @@ module instrumented_adder(
      //sklansky        sklansky     (.a_in(a), .b_in(b), .sum(sum));
 //      ripple_carry     ripple_carry     (.a_in(a), .b_in(b), .sum(sum));
     kogge_stone      kogge_stone  (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
-    */
 
 endmodule
 

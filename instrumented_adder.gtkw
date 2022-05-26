@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu May 26 11:55:50 2022
+[*] Thu May 26 12:12:09 2022
 [*]
 [dumpfile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder.vcd"
-[dumpfile_mtime] "Thu May 26 11:55:06 2022"
-[dumpfile_size] 659210
+[dumpfile_mtime] "Thu May 26 12:11:55 2022"
+[dumpfile_size] 1958737
 [savefile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder.gtkw"
 [timestart] 0
 [size] 2225 1278
 [pos] -1 -1
-*-11.400002 10400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-13.500002 23996 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] instrumented_adder.
 [sst_width] 343
 [signals_width] 612
@@ -25,16 +25,53 @@ instrumented_adder.ring_osc_counter[7:0]
 -
 @28
 instrumented_adder.bypass_b
+instrumented_adder.control_b
 @22
 instrumented_adder.a_input_ext_bit_b[7:0]
 instrumented_adder.a_input_ring_bit_b[7:0]
-@28
-instrumented_adder.control_b
-@22
 instrumented_adder.a_input[7:0]
 instrumented_adder.b_input[7:0]
+@200
+-
+@c00023
+instrumented_adder.adder_a[7:0]
+@28
+(0)instrumented_adder.adder_a[7:0]
+(1)instrumented_adder.adder_a[7:0]
+(2)instrumented_adder.adder_a[7:0]
+(3)instrumented_adder.adder_a[7:0]
+(4)instrumented_adder.adder_a[7:0]
+(5)instrumented_adder.adder_a[7:0]
+(6)instrumented_adder.adder_a[7:0]
+(7)instrumented_adder.adder_a[7:0]
+@1401201
+-group_end
+@c00022
 instrumented_adder.adder_b[7:0]
+@28
+(0)instrumented_adder.adder_b[7:0]
+(1)instrumented_adder.adder_b[7:0]
+(2)instrumented_adder.adder_b[7:0]
+(3)instrumented_adder.adder_b[7:0]
+(4)instrumented_adder.adder_b[7:0]
+(5)instrumented_adder.adder_b[7:0]
+(6)instrumented_adder.adder_b[7:0]
+(7)instrumented_adder.adder_b[7:0]
+@1401200
+-group_end
+@c00022
 instrumented_adder.sum_out[7:0]
+@28
+(0)instrumented_adder.sum_out[7:0]
+(1)instrumented_adder.sum_out[7:0]
+(2)instrumented_adder.sum_out[7:0]
+(3)instrumented_adder.sum_out[7:0]
+(4)instrumented_adder.sum_out[7:0]
+(5)instrumented_adder.sum_out[7:0]
+(6)instrumented_adder.sum_out[7:0]
+(7)instrumented_adder.sum_out[7:0]
+@1401200
+-group_end
 @200
 -
 @28
@@ -50,8 +87,5 @@ instrumented_adder.integration_counter[7:0]
 instrumented_adder.ring_osc_counter[7:0]
 @200
 -
-@28
-instrumented_adder.r
-instrumented_adder.done
 [pattern_trace] 1
 [pattern_trace] 0
