@@ -7,6 +7,17 @@ working on branch eric-update to add the extra features:
 * I also labeled some stuff to make it easier to talk about in chat
 * I tried to make it more clear that C0 measures the time that C1 counts
 
+| name             | time for 1 loop      | bit connected | number inverters 
+| ---------------- | -------------------- | ------------- | ---------------- 
+|yosys bypass      | 2.021624e-09         |  7            |  21              
+|yosys adder       | 2.550314e-09         |  7            |  21              
+|ripple adder      | 2.566192e-09         |  7            |  21              
+|sklansky adder    | 2.560252e-09         |  7            |  21              
+|kogge-stone adder | 2.565573e-09         |  7            |  21              
+
+* bypass simulation looks a bit dodgy
+* numbers don't look great
+
 ## Questions
 
 * for spice sims, it's good to have the ring osc as a separate output. can spice 'reach inside' a module?
