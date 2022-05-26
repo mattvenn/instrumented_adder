@@ -2,7 +2,6 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, Timer
 
-
 @cocotb.test()
 async def test_bypass(dut):
 
@@ -104,7 +103,7 @@ async def test_adder_in_loop(dut):
     dut.reset = 1
     # stop the ring
     dut.stop_b = 0
-    # disable extra inverter
+    # enable extra inverter now adder is in the loop and b input is set to 0
     dut.extra_inverter = 1
 
     # set b input to be 0
@@ -116,11 +115,11 @@ async def test_adder_in_loop(dut):
     # disable bypass loop
     dut.bypass_b = 1
 
-    # enable 1st bit of adder, keep external a input disabled
-    dut.s_output_bit_b     = 0b11111110
-    dut.a_input_ring_bit_b = 0b11111110
-    # get rid of X inputs to adder by setting the rest of the bits to be external and set to 0
-    dut.a_input_ext_bit_b  = 0b00000001
+    test_bit = 0
+    # enable correct bit of adder, keep external a input disabled
+    dut.s_output_bit_b     = 0xff ^ 1 << test_bit
+    dut.a_input_ring_bit_b = 0xff ^ 1 << test_bit
+    dut.a_input_ext_bit_b  = 1 << test_bit 
     dut.a_input = 0
 
     await ClockCycles(dut.clk, 3)
@@ -142,19 +141,19 @@ async def test_adder_in_loop(dut):
     await ClockCycles(dut.clk, 5)
     print("cycles    : %d" % count)
 
-
-@cocotb.test(skip=True)
+@cocotb.test()
 async def test_adder(dut):
+    clock = Clock(dut.clk, 100, units="ns")
+    cocotb.fork(clock.start())
     dut.reset  = 1
     dut.stop_b = 0
     # control inputs are all inverted
-    dut.a_input_ext_bit_b = 0b00000000
+    dut.a_input_ext_bit_b  = 0b00000000
     dut.a_input_ring_bit_b = 0b11111111
-    dut.s_output_bit_b = 0b00000000
+    dut.s_output_bit_b     = 0b00000000
     await ClockCycles(dut.clk, 2)
-
-    for a in range(255):
-        for b in range(255):
+    for a in range(0, 255, 10):
+        for b in range(0, 255, 10):
             dut.a_input = a
             dut.b_input = b
             await ClockCycles(dut.clk, 1)
