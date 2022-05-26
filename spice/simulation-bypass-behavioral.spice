@@ -90,8 +90,7 @@ Vstop_b stop_b VGND     pulse(0 1.8 2n 10p 10p 200n 300n)
 
 * setup the transient analysis
 .tran 10p 8n 0 uic
-.meas tran loop_period trig v(chain) val='0.9' rise=2 targ v(chain) val='0.9' rise=3
-*.meas tran overflow        trig v(run)   val='0.5*Vdd' rise=1 targ v(time_count_overflow)  val='0.5*Vdd' rise=1
+.meas tran loop_period trig v(ring_osc_out) val='1.4' rise=2 targ v(ring_osc_out) val='1.4' rise=3
 
 .control
 run
