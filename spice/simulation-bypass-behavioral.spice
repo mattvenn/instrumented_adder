@@ -8,14 +8,20 @@ bypass behav
 
 * instantiate the spice model
 Xpoc a_input[0] a_input[1] a_input[2] a_input[3] a_input[4]
-+ a_input[5] a_input[6] a_input[7] b[0] b[1] b[2] b[3] b[4] b[5] b[6] b[7] bypass
-+ chain clk counter_end[0] counter_end[1] counter_end[2] counter_end[3] counter_end[4]
-+ counter_end[5] counter_end[6] counter_end[7] counter_out[0] counter_out[1] counter_out[2]
-+ counter_out[3] counter_out[4] counter_out[5] counter_out[6] counter_out[7] extra_inverter
++ a_input[5] a_input[6] a_input[7] a_input_ext_bit_b[0] a_input_ext_bit_b[1] a_input_ext_bit_b[2]
++ a_input_ext_bit_b[3] a_input_ext_bit_b[4] a_input_ext_bit_b[5] a_input_ext_bit_b[6]
++ a_input_ext_bit_b[7] a_input_ring_bit_b[0] a_input_ring_bit_b[1] a_input_ring_bit_b[2]
++ a_input_ring_bit_b[3] a_input_ring_bit_b[4] a_input_ring_bit_b[5] a_input_ring_bit_b[6]
++ a_input_ring_bit_b[7] b_input[0] b_input[1] b_input[2] b_input[3] b_input[4] b_input[5]
++ b_input[6] b_input[7] bypass_b clk control_b counter_enable counter_load done extra_inverter
++ integration_time[0] integration_time[1] integration_time[2] integration_time[3]
++ integration_time[4] integration_time[5] integration_time[6] integration_time[7]
 + reset ring_osc_counter_out[0] ring_osc_counter_out[1] ring_osc_counter_out[2] ring_osc_counter_out[3]
 + ring_osc_counter_out[4] ring_osc_counter_out[5] ring_osc_counter_out[6] ring_osc_counter_out[7]
-+ run sum_out[0] sum_out[1] sum_out[2] sum_out[3] sum_out[4] sum_out[5] sum_out[6]
-+ sum_out[7] time_count_overflow VPWR VGND instrumented_adder
++ ring_osc_out s_output_bit_b[0] s_output_bit_b[1] s_output_bit_b[2] s_output_bit_b[3]
++ s_output_bit_b[4] s_output_bit_b[5] s_output_bit_b[6] s_output_bit_b[7] stop_b sum_out[0]
++ sum_out[1] sum_out[2] sum_out[3] sum_out[4] sum_out[5] sum_out[6] sum_out[7] 
++ VPWR VGND instrumented_adder
 
 * set gnd and power
 Vgnd VGND 0 0
