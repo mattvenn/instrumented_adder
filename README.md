@@ -16,20 +16,38 @@
     * we want to choose which paths through the adder, to be able to compare the simulation against the actual results
     * how good is our cad environment? did the prediction match the measurement
 
+## Block diagram
+
 ![instrumented adder](docs/BasicMeasureDelay2.png)
+
+The labels and inputs/outputs in this diagram [match the source](src/instrumented_adder.v).
+
+## GDS 
 
 ![adder gds](docs/gds.png)
 
+## Digital simulation
+
 ![trace](docs/trace.png)
+
+Trace shows the results of running the [cocotb test](test/test_adder.py).
+
+* test_bypass_minimal
+* test_adder_minimal
+* test_bypass
+* test_control
+* test_adder_in_loop
+* test_adder
+
+To run the digital sim, type `make test_adder`
+
+## Analog simulation
 
 ![ripple](docs/ripple.png)
 
-Trace shows 2 runs, with and without the adder in the ring oscillator path.
+Shows just the stop_b and ring_osc_out traces. These traces are to get an idea on the frequency of the ring oscillator loop with and without the adder.
 
-# Simulation
-
-* Digital sim, run `make test_adder`
-* Analog sim, run `make analog_sim`
+To run the analog sim, run `make analog_sim`
 
 # Harden with OpenLane (and create spice files)
 
