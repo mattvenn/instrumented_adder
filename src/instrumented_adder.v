@@ -183,7 +183,7 @@ module tristate(input A, output Z, input TE_B);
     `ifdef COCOTB_SIM
     assign Z = !TE_B ? A : 1'bz;
     `else
-    sky130_fd_sc_hd__ebufn_1 _0_ ( .A(A), .Z(Z), .TE_B(TE_B));
+    sky130_fd_sc_hd__ebufn_4 _0_ ( .A(A), .Z(Z), .TE_B(TE_B));
     `endif
 endmodule     
 
