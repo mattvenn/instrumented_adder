@@ -32,6 +32,8 @@ test_adder:
 install_adder:
 	pip3 install --upgrade git+https://github.com/tdene/synth_opt_adders.git
 
+all_adders: src/sklansky.v src/kogge_stone.v src/ripple_carry.v
+
 src/sklansky.v:
 	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "sklansky"); f.hdl("sklansky.v", module_name="sklansky", optimization = 1)'
 	mv sklansky.v src
