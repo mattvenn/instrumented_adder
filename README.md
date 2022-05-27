@@ -54,6 +54,11 @@ To run the analog sim, run `make analog_sim`
 * Uncomment the adder you want in src/instrumented_adder.v
 * Run `make spice/instrumented_adder.spice` to harden with OpenLane and copy spice file
 
+## Prerequisites
+
+* Install the adder library with `make install_adder`
+* Build the source for the adders with `make all_adders`
+
 # TODO! (prs welcome!)
 
 [Log of work in progress](docs/log.md)
