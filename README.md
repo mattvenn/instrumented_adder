@@ -20,7 +20,7 @@
 
 ![instrumented adder](docs/instrumented_adder.svg)
 
-The labels and inputs/outputs in this diagram [match the source](src/instrumented_adder.v).
+The netnames, inputs and outputs in this diagram (should) [match the source](src/instrumented_adder.v).
 
 ## GDS 
 
