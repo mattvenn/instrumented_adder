@@ -72,14 +72,14 @@ Vrb6 a_input_ring_bit_b[6] VGND 1.8
 Vrb7 a_input_ring_bit_b[7] VGND 1.8
 
 * a input external bit select
-Veb0 a_input_ext_bit_b[0] VGND 1.8
-Veb1 a_input_ext_bit_b[1] VGND 1.8
-Veb2 a_input_ext_bit_b[2] VGND 1.8
-Veb3 a_input_ext_bit_b[3] VGND 1.8
-Veb4 a_input_ext_bit_b[4] VGND 1.8
-Veb5 a_input_ext_bit_b[5] VGND 1.8
-Veb6 a_input_ext_bit_b[6] VGND 1.8
-Veb7 a_input_ext_bit_b[7] VGND 1.8
+Veb0 a_input_ext_bit_b[0] VGND 0
+Veb1 a_input_ext_bit_b[1] VGND 0
+Veb2 a_input_ext_bit_b[2] VGND 0
+Veb3 a_input_ext_bit_b[3] VGND 0
+Veb4 a_input_ext_bit_b[4] VGND 0
+Veb5 a_input_ext_bit_b[5] VGND 0
+Veb6 a_input_ext_bit_b[6] VGND 0
+Veb7 a_input_ext_bit_b[7] VGND 0
 
 * create a clock, 4ns period
 * initial v, pulse v, delay, rise, fall, pulse w, period
@@ -91,6 +91,7 @@ Vstop_b stop_b VGND     pulse(0 1.8 2n 10p 10p 200n 300n)
 * setup the transient analysis
 .tran 10p 8n 0 uic
 .meas tran loop_period trig v(ring_osc_out) val='1.4' rise=2 targ v(ring_osc_out) val='1.4' rise=3
+.meas tran rise_time   trig v(ring_osc_out) val='0.2' rise=1 targ v(ring_osc_out) val='1.6' rise=2
 
 .control
 run

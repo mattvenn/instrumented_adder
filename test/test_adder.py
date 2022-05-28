@@ -14,10 +14,29 @@ async def test_bypass_minimal(dut):
     dut.a_input = 0
     dut.b_input = 0
     dut.s_output_bit_b     = 0b11111111
-    dut.a_input_ring_bit_b = 0b11111111
+    dut.a_input_ring_bit_b = 0b00000000
     dut.a_input_ext_bit_b  = 0b11111111
     dut.control_b = 1
     dut.bypass_b = 0
+    await ClockCycles(dut.clk, 2)
+    dut.stop_b = 1
+    await ClockCycles(dut.clk, 10)
+
+@cocotb.test()
+async def test_control_minimal(dut):
+
+    clock = Clock(dut.clk, 100, units="ns")
+    cocotb.fork(clock.start())
+    dut.reset = 1
+    dut.stop_b = 0
+    dut.extra_inverter = 1
+    dut.a_input = 0
+    dut.b_input = 0
+    dut.s_output_bit_b     = 0b11111111
+    dut.a_input_ring_bit_b = 0b00000000
+    dut.a_input_ext_bit_b  = 0b11111111
+    dut.control_b = 0
+    dut.bypass_b = 1
     await ClockCycles(dut.clk, 2)
     dut.stop_b = 1
     await ClockCycles(dut.clk, 10)

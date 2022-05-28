@@ -1,3 +1,25 @@
+# Sat 28 May 09:34:10 CEST 2022
+
+* Eric & Thomas figured out the bypass simulation issue (rise time was a lot slower in the ring osc loop)
+* The a input were left floating. Yet to understand how this would affect the loop given the sum output was also disconnected
+* Updated the spice files, with rise time measurement. 
+* Added a new control spice simulation for the control loop.
+
+## bypass
+
+loop_period         =  2.122721e-09 targ=  5.835074e-09 trig=  3.712353e-09
+rise_time           =  3.584483e-10 targ=  3.781068e-09 trig=  3.422620e-09
+
+## control
+
+loop_period         =  2.311541e-09 targ=  6.207395e-09 trig=  3.895854e-09
+rise_time           =  3.521670e-10 targ=  3.965702e-09 trig=  3.613535e-09
+
+## adder
+
+loop_period         =  2.578595e-09 targ=  6.756978e-09 trig=  4.178383e-09
+rise_time           =  3.702593e-10 targ=  4.261381e-09 trig=  3.891121e-09
+
 # Thu 26 May 12:21:58 CEST 2022
 
 working on branch eric-update to add the extra features:
