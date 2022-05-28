@@ -41,13 +41,29 @@ Trace shows the results of running the [cocotb test](test/test_adder.py).
 
 To run the digital sim, type `make test_adder`
 
-## Analog simulation
+## Analog simulations
 
-![ripple](docs/ripple.png)
+Shows the stop_b and ring_osc_out traces. These traces are to get an idea on the frequency of the ring oscillator loop with and without the adder.
 
-Shows just the stop_b and ring_osc_out traces. These traces are to get an idea on the frequency of the ring oscillator loop with and without the adder.
+The following show just for the behavioral adder. To check the other adders, look in the spice directory.
 
-To run the analog sim, run `make analog_sim`
+### Bypass loop - fastest
+
+![control](docs/spice_pics/bypass.png)
+
+run `make analog_bypass`
+
+### Control loop - adds 4 more inverters to the ring osc
+
+![control](docs/spice_pics/control.png)
+
+run `make analog_control`
+
+### Adder loop - slowest
+
+![control](docs/spice_pics/adder.png)
+
+run `make analog_adder`
 
 # Harden with OpenLane (and create spice files)
 

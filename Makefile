@@ -17,9 +17,17 @@ all: test_adder
 spice/instrumented_adder.spice: harden
 	cp runs/adder/results/finishing/instrumented_adder.spice spice/instrumented_adder.spice
     
-analog_sim:
+analog_bypass:
 	cd spice
-	ngspice spice/simulation.spice
+	ngspice spice/simulation-bypass-behavioral.spice
+
+analog_control:
+	cd spice
+	ngspice spice/simulation-control-behavioral.spice
+
+analog_adder:
+	cd spice
+	ngspice spice/simulation-adder-behavioral.spice
 
 # if you run rules with NOASSERT=1 it will set PYTHONOPTIMIZE, which turns off assertions in the tests
 test_adder:
