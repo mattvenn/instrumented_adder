@@ -18,7 +18,7 @@
 
 ## Block diagram
 
-![instrumented adder](docs/BasicMeasureDelay2.png)
+![instrumented adder](docs/instrumented_adder.png)
 
 The labels and inputs/outputs in this diagram [match the source](src/instrumented_adder.v).
 
