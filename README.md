@@ -89,9 +89,9 @@ run `make analog_adder`
 * Install the adder library with `make install_adder`
 * Build the source for the adders with `make all_adders`
 
-# TODO! (prs welcome!)
+# TODO (PRs welcome!)
 
-[Log of work in progress](docs/log.md)
+[Log of work in progress](docs/log.md).
 
 * how to keep the inverter loop - done
 * check timing - looks good
@@ -103,7 +103,6 @@ run `make analog_adder`
 * update counter registers to 32b
 * put inside group project wrapper
 * caravel test
-
 
 # Zero to ASIC Course
 
