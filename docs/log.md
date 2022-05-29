@@ -1,3 +1,12 @@
+# Why floating inputs could affect loop rise time
+
+From Thomas: FETs are also varactors with varying capacitance over voltage.
+So I'm reasonably sure what you're seeing is the capacitance change as the output changes.
+That's why you see two distinct regions with very different behaviours. The capacitive loading is changing as the voltage changes.
+You see the change at roughly 1.1 V which is 0.7 V from VDD and also the threshold voltage of a high Vt FET.
+
+Eric: I think I get your idea now.  I think you’re saying because the input is undriven, the input is following the output.  And because the input (a.k.a. MOS Gate Voltage) is changing the capacitive load is changing too.
+
 # Sat 28 May 09:34:10 CEST 2022
 
 * Eric & Thomas figured out the bypass simulation issue (rise time was a lot slower in the ring osc loop)
