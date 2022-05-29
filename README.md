@@ -79,10 +79,17 @@ run `make analog_adder`
 
 [Log of work in progress](docs/log.md)
 
-* Check the instrumentation
-    * how to keep the inverter loop - done
-    * check timing - looks good
-    * results still not quite making sense (see the [log](docs/log.md))
+* how to keep the inverter loop - done
+* check timing - looks good
+* results still not quite making sense (see the [log](docs/log.md))
+* remove ring_osc_out output to avoid loading the ring
+* get STA report for ring_osc_counter
+* define number of inverters in the loop
+* check process corners
+* update counter registers to 32b
+* put inside group project wrapper
+* caravel test
+
 
 # Zero to ASIC Course
 
