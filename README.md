@@ -1,4 +1,22 @@
-# Optimising hardware adders
+# Measuring the speed of optimised hardware adders
+
+Teo's work (see below) gives us 4 options for hardware adder to use for ASIC and FPGA design.
+
+![hardware adders](docs/hardwareadders.png)
+
+The results in the table above are calculated by the OpenLane ASIC flow. We want to put these designs
+on the next free Google shuttle to validate the timings.
+
+## Aim of this project
+
+* Characterise each type of adder, along with the standard Yosys adder 
+* Build a way of measuring the performance close to the adder. We don't want to do it off the chip, as this will run into the same difficulties faced by [Andrew Zonenberg when he tried to characterise OpenRAM](https://www.youtube.com/watch?v=lMmzrAdkaB0).
+* Some additional requirements:
+    * Adder can't glitch while adding the 2 inputs because this could either violate timing or mess up the ring oscillator
+    * We want to choose which paths through the adder, to be able to compare the simulation against the actual results
+    * Measure how good our CAD environment is - did the prediction match the measurement?
+
+## More about hardware adders
 
 * Livestream https://www.youtube.com/watch?v=P7wjB2DKAIA
 * The presentation slides - https://bit.ly/3MYTlCf
@@ -6,25 +24,19 @@
 * Teo's main repository - https://github.com/tdene/synth_opt_adders
 * Colab notebook - https://colab.research.google.com/drive/1bqAWs2To8suxx5acmCYp10iWlKI-Qsn4
 
-# Aim
-
-* Put one of each type of adder, along with the standard yosys adder
-* Have a way of measuring the performance close to the adder (don't attempt to do it off the chip)
-* Tapeout on MPW6
-* Some hidden requirements
-    * adder can't glitch while adding the 2 inputs because this could either violate timing or mess up the ring osc
-    * we want to choose which paths through the adder, to be able to compare the simulation against the actual results
-    * how good is our cad environment? did the prediction match the measurement
-
 ## Block diagram
+
+The basic idea is to have a ring oscillator with 3 modes:
+
+* Bypass - just the ring oscillating
+* Control - add 4 additional inverters to help characterise the ring
+* Adder - put one bit of the adder into the ring
+
+In this way we can first measure the ring period, then see how it changes for each bit of the adders.
 
 ![instrumented adder](docs/instrumented_adder.svg)
 
-The netnames, inputs and outputs in this diagram (should) [match the source](src/instrumented_adder.v).
-
-## GDS 
-
-![adder gds](docs/gds.png)
+The netnames, inputs and outputs in this diagram (should) [match the Verilog source](src/instrumented_adder.v).
 
 ## Digital simulation
 
@@ -65,12 +77,14 @@ run `make analog_control`
 
 run `make analog_adder`
 
-# Harden with OpenLane (and create spice files)
+## Hardening with OpenLane (and create spice files)
 
 * Uncomment the adder you want in src/instrumented_adder.v
 * Run `make spice/instrumented_adder.spice` to harden with OpenLane and copy spice file
 
-## Prerequisites
+![adder gds](docs/gds.png)
+
+# Prerequisites
 
 * Install the adder library with `make install_adder`
 * Build the source for the adders with `make all_adders`
