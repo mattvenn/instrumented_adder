@@ -32,8 +32,12 @@ set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 set ::env(SYNTH_DEFINES) "MPRJ_IO_PADS=38"
 
 # clock period is ns
-set ::env(CLOCK_PERIOD) "10"
+# want 10MHz, go for 20M to be safe, so period is 50ns
+set ::env(CLOCK_PERIOD) "50"
 set ::env(CLOCK_PORT) "clk"
+# also use the ring_bot net as it clocks the ring osc counter
+set ::env(CLOCK_NET) "clk"
+set ::env(BASE_SDC_FILE) "$::env(DESIGN_DIR)/adder.sdc"
 
 # macro needs to work inside Caravel, so can't be core and can't use metal 5
 set ::env(DESIGN_IS_CORE) 0

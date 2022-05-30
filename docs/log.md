@@ -1,3 +1,9 @@
+# Mon 30 May 19:38:55 CEST 2022
+
+* trying to get ring_bot net recogised as a clock with an external sdc file, not working yet
+* discussion here: https://skywater-pdk.slack.com/archives/C016H8WJMBR/p1653845922796619
+
+
 # Why floating inputs could affect loop rise time
 
 From Thomas: FETs are also varactors with varying capacitance over voltage.

@@ -10,8 +10,12 @@ Thanks to Teo, Eric, Thomas and the Zero to ASIC course community
 `default_nettype none
 `timescale 1ns/1ns
 
-module instrumented_adder(
-
+module instrumented_adder #(
+    parameter NUM_INVERTERS = 21, // keep to an odd number, although can be compensated by extra_inverter input
+    parameter CONTROL_INVERTERS = 4,
+    parameter TIME_COUNTER_BITS = 8,
+    parameter RING_OSC_COUNTER_BITS = 8
+    ) (
     input wire clk,                         // clocks the time counter
     input wire reset,                       // resets the counters
 
@@ -48,52 +52,23 @@ module instrumented_adder(
     end
     `endif
 
-    localparam NUM_INVERTERS = 21; // keep to an odd number, although can be compensated by extra_inverter input
-    localparam CONTROL_INVERTERS = 4;
-    localparam TIME_COUNTER_BITS = 8;
-    localparam RING_OSC_COUNTER_BITS = 8;
 
-    reg [TIME_COUNTER_BITS-1:0] integration_counter;
-    reg [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter;
+    counters counters(
+        .clk(clk),
+        .ring_osc(ring_bot),
+        .reset(reset),
+        .counter_enable(counter_enable),
+        .counter_load(counter_load),
+        .integration_time(integration_time),
+        .done(done),
+        .ring_osc_counter_out(ring_osc_counter_out)
+    );
 
     // assign outputs
     // see diagram for labels
-    wire r;
-    assign ring_osc_out = r;
+    assign ring_osc_out = ring_bot;
+    wire ring_bot;
     assign sum_out = adder_sum;
-    assign ring_osc_counter_out = ring_osc_counter;
-
-    // counter for the incoming clock
-    always @(posedge clk or posedge reset) begin
-        if(reset)
-            integration_counter <= 0;
-        else if (counter_load)
-            integration_counter <= integration_time;
-        else if (counter_enable & integration_counter != 0)
-            integration_counter <= integration_counter - 1'b1;
-    end
-
-    wire zero = integration_counter == 0;
-    assign done = zero;
-
-    // f0 flop to reduce load on the ring and make it easier to meet timing
-    reg f0;
-    wire r2 = !f0;
-    always @(posedge r or posedge reset) begin
-        if(reset)
-            f0 <= 0;
-        else
-            f0 <= r2;
-    end
-
-    // counter for the ring oscillator
-    always @(posedge r2 or posedge reset) begin
-        if(reset)
-            ring_osc_counter <= 0;
-        // count while there is still time left in the integration timer
-        else if(!zero)
-            ring_osc_counter <= ring_osc_counter + 1'b1;
-    end
 
     // setup loop of inverters
     // http://svn.clairexen.net/handicraft/2015/ringosc/ringosc.v
@@ -112,17 +87,17 @@ module instrumented_adder(
     wire ring_top = ~(stop_b & chain_out);
 
     // bottom of ring
-    assign chain_in = extra_inverter ^ r;
+    assign chain_in = extra_inverter ^ ring_bot;
 
     // bypass 
     wire bypass2_in;
     tristate bypass1 (.A(ring_top), .Z(bypass2_in), .TE_B(bypass_b));
-    tristate bypass2 (.A(bypass2_in), .Z(r), .TE_B(bypass_b));
+    tristate bypass2 (.A(bypass2_in), .Z(ring_bot), .TE_B(bypass_b));
 
     // control chain
     wire control_chain_in, control_chain_out;
     tristate control1 (.A(ring_top), .Z(control_chain_in), .TE_B(control_b));
-    tristate control2 (.A(control_chain_out), .Z(r), .TE_B(control_b));
+    tristate control2 (.A(control_chain_out), .Z(ring_bot), .TE_B(control_b));
     wire [CONTROL_INVERTERS-1:0] control_inverters_in, control_inverters_out;
     assign control_inverters_in = {control_inverters_out[CONTROL_INVERTERS-2:0], control_chain_in};
     assign control_chain_out = control_inverters_out[CONTROL_INVERTERS-1];
@@ -155,7 +130,7 @@ module instrumented_adder(
     wire [7:0] adder_sum;
     tristate tristate_sum_outputs [7:0] (
         .A(adder_sum),
-        .Z(r), 
+        .Z(ring_bot), 
         .TE_B(s_output_bit_b)
     );
     
@@ -200,4 +175,59 @@ module behavioral(cout, sum, a_in, b_in, cin);
     `else
     assign sum = a_in + b_in;
     `endif
+endmodule
+
+module counters #(
+    parameter TIME_COUNTER_BITS = 8,
+    parameter RING_OSC_COUNTER_BITS = 8
+    )(
+    input wire clk,
+    input wire ring_osc,
+    input wire reset,
+    input wire counter_enable,
+    input wire counter_load,
+    input wire [TIME_COUNTER_BITS-1:0] integration_time,
+
+    output wire done,
+    output wire [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter_out    // number of ring cycles / 2 counted
+    );
+
+    reg [TIME_COUNTER_BITS-1:0] integration_counter;
+    reg [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter;
+
+    assign ring_osc_counter_out = ring_osc_counter;
+
+    // counter for the incoming clock
+    always @(posedge clk or posedge reset) begin
+        if(reset)
+            integration_counter <= 0;
+        else if (counter_load)
+            integration_counter <= integration_time;
+        else if (counter_enable & integration_counter != 0)
+            integration_counter <= integration_counter - 1'b1;
+    end
+
+    // signals for enable of the ring osc counter and done output
+    wire zero = integration_counter == 0;
+    assign done = zero;
+
+    // f0 flop to reduce load on the ring and make it easier to meet timing
+    reg f0;
+    wire r2 = !f0;
+    always @(posedge ring_osc or posedge reset) begin
+        if(reset)
+            f0 <= 0;
+        else
+            f0 <= r2;
+    end
+
+    // counter for the ring oscillator
+    always @(posedge r2 or posedge reset) begin
+        if(reset)
+            ring_osc_counter <= 0;
+        // count while there is still time left in the integration timer
+        else if(!zero)
+            ring_osc_counter <= ring_osc_counter + 1'b1;
+    end
+
 endmodule
