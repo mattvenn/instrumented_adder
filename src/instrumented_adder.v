@@ -179,11 +179,11 @@ module instrumented_adder(
     
     // instantiate adder
 
-    behavioral      behavioral   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
+//    behavioral      behavioral   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
 //    sklansky        sklansky     (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
 //    ripple_carry    ripple_carry (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
 //    kogge_stone     kogge_stone  (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
-//    brent_kung      brent_kung   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
+    brent_kung      brent_kung   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
 
 endmodule
 
