@@ -5,3 +5,4 @@ __pycache__/
 src/kogge_stone.v
 src/ripple_carry.v
 src/sklansky.v
+src/brent_kung.v
