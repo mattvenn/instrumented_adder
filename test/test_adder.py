@@ -203,7 +203,8 @@ async def test_adder_in_loop(dut):
     count = int(dut.ring_osc_counter_out.value)
     await ClockCycles(dut.clk, 5)
     print("cycles    : %d" % count)
-    assert count == 30
+    # hack to handle if its the behavioral adder or one of the 1 cycle adders
+    assert(count == 30 or count == 80)
 
 @cocotb.test()
 async def test_adder(dut):
