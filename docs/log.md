@@ -17,6 +17,15 @@ About 380MHz
 
 About 325MHz
 
+## control
+
+    loop_period         =  3.811175e-09 targ=  4.144872e-09 trig=  3.336973e-10
+    rise_time           =  3.522105e-10 targ=  4.214700e-09 trig=  3.862489e-09
+
+About 262MHz ??
+
+* think the spice script is measuring wrong now there is the bump at the beginning
+
 # Wed  1 Jun 19:10:18 CEST 2022
 
 * working on putting inside the group project wrapper and thinking about wiring it up
