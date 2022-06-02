@@ -8,6 +8,7 @@ async def test_bypass_minimal(dut):
 
     clock = Clock(dut.clk, 100, units="ns")
     cocotb.fork(clock.start())
+    await ClockCycles(dut.clk, 10)
     dut.reset = 1
     dut.stop_b = 0
     dut.extra_inverter = 1
@@ -106,6 +107,7 @@ async def test_bypass(dut):
     count = int(dut.ring_osc_counter_out.value)
     await ClockCycles(dut.clk, 5)
     print("cycles    : %d" % count)
+    assert count == 80
 
 
 @cocotb.test()
@@ -152,6 +154,7 @@ async def test_control(dut):
     count = int(dut.ring_osc_counter_out.value)
     await ClockCycles(dut.clk, 5)
     print("cycles    : %d" % count)
+    assert count == 71
 
 @cocotb.test()
 async def test_adder_in_loop(dut):
@@ -200,6 +203,7 @@ async def test_adder_in_loop(dut):
     count = int(dut.ring_osc_counter_out.value)
     await ClockCycles(dut.clk, 5)
     print("cycles    : %d" % count)
+    assert count == 30
 
 @cocotb.test()
 async def test_adder(dut):

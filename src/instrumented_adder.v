@@ -27,7 +27,7 @@ module instrumented_adder(
     // counter control
     input wire counter_enable,
     input wire counter_load,
-    input wire [7:0] integration_time,
+    input wire [TIME_COUNTER_BITS-1:0] integration_time,
     
     // adder inputs
     input wire [7:0] a_input,
@@ -48,10 +48,10 @@ module instrumented_adder(
     end
     `endif
 
-    localparam NUM_INVERTERS = 21; // keep to an odd number, although can be compensated by extra_inverter input
+    localparam NUM_INVERTERS = 31; // keep to an odd number, although can be compensated by extra_inverter input
     localparam CONTROL_INVERTERS = 4;
-    localparam TIME_COUNTER_BITS = 8;
-    localparam RING_OSC_COUNTER_BITS = 8;
+    localparam TIME_COUNTER_BITS = 32;
+    localparam RING_OSC_COUNTER_BITS = 32;
 
     reg [TIME_COUNTER_BITS-1:0] integration_counter;
     reg [RING_OSC_COUNTER_BITS-1:0] ring_osc_counter;

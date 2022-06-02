@@ -1,3 +1,22 @@
+# Thu  2 Jun 12:32:34 CEST 2022
+
+* spoke with Eric, I was mistaken about needing to slow the loop down. Going to go with 31 inverters.
+* opinion on skywater slack is that the default sdc file used for opensta config sets a time on the outputs
+
+# Wed  1 Jun 19:10:18 CEST 2022
+
+* working on putting inside the group project wrapper and thinking about wiring it up
+* Proppy suggests putting some pins for outputs, like done
+* openlane fails to harden (setup violation) with 32bit outs and 200 inverter loop
+
+    Startpoint: a_input_ext_bit_b[0] (input port clocked by clk)
+    Endpoint: sum_out[4] (output port clocked by clk)
+    Path Group: clk
+    Path Type: max
+
+* but sum_out isn't clocked
+* why need to slow loop down so much? 
+
 # Why floating inputs could affect loop rise time
 
 From Thomas: FETs are also varactors with varying capacitance over voltage.
