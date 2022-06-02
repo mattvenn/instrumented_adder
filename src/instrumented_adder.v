@@ -173,6 +173,8 @@ module inv_with_delay(input A, output Y);
     wire Y;
     `ifdef COCOTB_SIM
     assign #1 Y = ~A;
+    `elsif FORMAL
+    assign #1 Y = ~A;
     `else
     sky130_fd_sc_hd__inv_2 _0_ ( .A(A), .Y(Y));
     `endif
@@ -181,6 +183,8 @@ endmodule
 module tristate(input A, output Z, input TE_B);
     wire Z;
     `ifdef COCOTB_SIM
+    assign Z = !TE_B ? A : 1'bz;
+    `elsif FORMAL
     assign Z = !TE_B ? A : 1'bz;
     `else
     sky130_fd_sc_hd__ebufn_4 _0_ ( .A(A), .Z(Z), .TE_B(TE_B));
