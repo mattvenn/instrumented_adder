@@ -40,7 +40,7 @@ test_adder:
 install_adder:
 	pip3 install --upgrade git+https://github.com/tdene/synth_opt_adders.git
 
-all_adders: src/sklansky.v src/kogge_stone.v src/ripple_carry.v
+all_adders: src/sklansky.v src/kogge_stone.v src/ripple_carry.v src/brent_kung.v
 
 src/sklansky.v:
 	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "sklansky"); f.hdl("sklansky.v", module_name="sklansky", optimization = 1)'
@@ -49,6 +49,11 @@ src/sklansky.v:
 src/kogge_stone.v:
 	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "kogge-stone"); f.hdl("kogge_stone.v", module_name="kogge_stone", optimization = 1)'
 	mv kogge_stone.v src
+
+src/brent_kung.v:
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "brent-kung"); f.hdl("brent_kung.v", module_name="brent_kung", optimization = 1)'
+	mv brent_kung.v src
+
 
 src/ripple_carry.v:
 	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "ripple"); f.hdl("ripple_carry.v", module_name="ripple_carry", optimization = 1)'
