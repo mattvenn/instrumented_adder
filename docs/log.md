@@ -3,6 +3,20 @@
 * spoke with Eric, I was mistaken about needing to slow the loop down. Going to go with 31 inverters.
 * opinion on skywater slack is that the default sdc file used for opensta config sets a time on the outputs
 
+## bypass
+
+    loop_period         =  2.642542e-09 targ=  6.603628e-09 trig=  3.961086e-09
+    rise_time           =  3.585322e-10 targ=  4.029793e-09 trig=  3.671261e-09
+
+About 380MHz
+
+## adder
+
+    loop_period         =  3.075356e-09 targ=  7.481689e-09 trig=  4.406333e-09
+    rise_time           =  4.058680e-09 targ=  4.489440e-09 trig=  4.307598e-10
+
+About 325MHz
+
 # Wed  1 Jun 19:10:18 CEST 2022
 
 * working on putting inside the group project wrapper and thinking about wiring it up
