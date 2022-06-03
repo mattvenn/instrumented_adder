@@ -48,16 +48,6 @@ module instrumented_adder(
     end
     `endif
 
-    `ifdef FORMAL
-        always @(*) begin
-            // not exactly what I want but this ensures formal test passes
-            assume(bypass_b + control_b > 1);
-            assume(s_output_bit_b == 8'b11111111);
-            assume(a_input_ring_bit_b == 8'b11111111);
-        end
-    `endif
-
-
     localparam NUM_INVERTERS = 31; // keep to an odd number, although can be compensated by extra_inverter input
     localparam CONTROL_INVERTERS = 4;
     localparam TIME_COUNTER_BITS = 32;
@@ -132,15 +122,33 @@ module instrumented_adder(
     // bottom of ring
     assign chain_in = extra_inverter ^ r;
 
-    // bypass 
+    // filter the active selection for r to avoid drive conflicts
+    wire r_select_bypass_b;
+    wire r_select_control_b;
+    wire [7:0] r_select_s_output_bit_b;
+
+    filter_inverted_onehot0 #(.WIDTH(8 + 2)) filter_r_select (
+        .select_in_b({
+            bypass_b,
+            control_b,
+            s_output_bit_b
+        }),
+        .select_out_b({
+            r_select_bypass_b,
+            r_select_control_b,
+            r_select_s_output_bit_b
+        })
+    );
+
+    // bypass
     wire bypass2_in;
-    tristate bypass1 (.A(ring_top), .Z(bypass2_in), .TE_B(bypass_b));
-    tristate bypass2 (.A(bypass2_in), .Z(r), .TE_B(bypass_b));
+    tristate bypass1 (.A(ring_top), .Z(bypass2_in), .TE_B(bypass_b)); // no other driver
+    tristate bypass2 (.A(bypass2_in), .Z(r), .TE_B(r_select_bypass_b));
 
     // control chain
     wire control_chain_in, control_chain_out;
-    tristate control1 (.A(ring_top), .Z(control_chain_in), .TE_B(control_b));
-    tristate control2 (.A(control_chain_out), .Z(r), .TE_B(control_b));
+    tristate control1 (.A(ring_top), .Z(control_chain_in), .TE_B(control_b)); // no other driver
+    tristate control2 (.A(control_chain_out), .Z(r), .TE_B(r_select_control_b));
     wire [CONTROL_INVERTERS-1:0] control_inverters_in, control_inverters_out;
     assign control_inverters_in = {control_inverters_out[CONTROL_INVERTERS-2:0], control_chain_in};
     assign control_chain_out = control_inverters_out[CONTROL_INVERTERS-1];
@@ -155,28 +163,32 @@ module instrumented_adder(
     wire [7:0] adder_a;
     wire [7:0] adder_b = b_input;
 
+    // filter the active selections for adder_a to avoid drive conflicts
+    wire [7:0] adder_a_select_a_input_ring_bit_b = a_input_ring_bit_b;
+    wire [7:0] adder_a_select_a_input_ext_bit_b = a_input_ext_bit_b | ~a_input_ring_bit_b;
+
     // those coming from the ring, controlled by a_input_ring_bit_b
     tristate tristate_ring_inputs [7:0] (
         .A(ring_top),
-        .Z(adder_a), 
-        .TE_B(a_input_ring_bit_b)
+        .Z(adder_a),
+        .TE_B(adder_a_select_a_input_ring_bit_b)
     );
 
     // those coming from the external input, controlled by a_input_ext_bit_b
     tristate tristate_ext_inputs [7:0] (
         .A(a_input),
-        .Z(adder_a), 
-        .TE_B(a_input_ext_bit_b)
+        .Z(adder_a),
+        .TE_B(adder_a_select_a_input_ext_bit_b)
     );
 
     // sum outputs
     wire [7:0] adder_sum;
     tristate tristate_sum_outputs [7:0] (
         .A(adder_sum),
-        .Z(r), 
-        .TE_B(s_output_bit_b)
+        .Z(r),
+        .TE_B(r_select_s_output_bit_b)
     );
-    
+
     // instantiate adder
 
     //behavioral      behavioral   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
@@ -203,10 +215,32 @@ module tristate(input wire A, output wire Z, input wire TE_B);
     assign Z = !TE_B ? A : 1'bz;
     `elsif FORMAL
     assign Z = !TE_B ? A : 1'bz;
+    // make sure we can turn every tristate buffer on and off
+    always @* cover (TE_B);
+    always @* cover (!TE_B);
     `else
     sky130_fd_sc_hd__ebufn_4 _0_ ( .A(A), .Z(Z), .TE_B(TE_B));
     `endif
-endmodule     
+endmodule
+
+module filter_inverted_onehot0(
+    input wire [WIDTH-1:0] select_in_b,
+    output wire [WIDTH-1:0] select_out_b
+);
+    parameter WIDTH = 1;
+
+    wire [WIDTH-1:0] a = ~select_in_b;
+
+    // Subtracting 1 will flip the lowest set bit and all lower bits (or all
+    // bits if none are set) but not any higher set bits. If we invert the
+    // output of the subtraction, relative to the input, this flips all set
+    // bits apart from the lowest set bit. Finally masking that with the
+    // original input makes sure any unset input bit stays unset.
+    wire [WIDTH-1:0] y = a & ~(a - 1'b1);
+
+    assign select_out_b = ~y;
+
+endmodule
 
 // take a long time to add some numbers
 module behavioral(
