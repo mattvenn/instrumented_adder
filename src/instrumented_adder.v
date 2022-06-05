@@ -105,6 +105,9 @@ module instrumented_adder(
     `ifdef FORMAL
         reg chain_out;
         always @(posedge clk) chain_out <= inverters_out[NUM_INVERTERS-1];
+    `elsif FORMAL_COMPAT
+        reg chain_out;
+        always @(posedge clk) chain_out <= inverters_out[NUM_INVERTERS-1];
     `else
         wire chain_out;
         assign chain_out = inverters_out[NUM_INVERTERS-1];
@@ -205,6 +208,8 @@ module inv_with_delay(input wire A, output wire Y);
     assign #1 Y = ~A;
     `elsif FORMAL
     assign #1 Y = ~A;
+    `elsif FORMAL_COMPAT
+    assign #1 Y = ~A;
     `else
     sky130_fd_sc_hd__inv_2 _0_ ( .A(A), .Y(Y));
     `endif
@@ -218,6 +223,8 @@ module tristate(input wire A, output wire Z, input wire TE_B);
     // make sure we can turn every tristate buffer on and off
     always @* cover (TE_B);
     always @* cover (!TE_B);
+    `elsif FORMAL_COMPAT
+    assign Z = !TE_B ? A : 1'bz;
     `else
     sky130_fd_sc_hd__ebufn_4 _0_ ( .A(A), .Z(Z), .TE_B(TE_B));
     `endif
