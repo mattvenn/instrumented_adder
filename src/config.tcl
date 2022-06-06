@@ -2,7 +2,7 @@
 set script_dir [file dirname [file normalize [info script]]]
 
 # name of your project, should also match the name of the top module
-set ::env(DESIGN_NAME) instrumented_adder
+set ::env(DESIGN_NAME) instrumented_adder_ripple
 
 # save some time
 set ::env(RUN_KLAYOUT_XOR) 0
@@ -10,9 +10,7 @@ set ::env(RUN_KLAYOUT_DRC) 0
 
 # add your source files here
 set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/instrumented_adder.v \
-    $::env(DESIGN_DIR)/sklansky.v \
-    $::env(DESIGN_DIR)/ripple_carry.v \
-    $::env(DESIGN_DIR)/kogge_stone.v"
+    $::env(DESIGN_DIR)/ripple_carry.v" 
 
 set ::env(SYNTH_READ_BLACKBOX_LIB) 1
 
