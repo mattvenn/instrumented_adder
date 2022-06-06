@@ -10,7 +10,7 @@ Thanks to Teo, Eric, Thomas and the Zero to ASIC course community
 `default_nettype none
 `timescale 1ns/1ns
 
-module instrumented_adder(
+module instrumented_adder_brent(
 
     input wire clk,                         // clocks the time counter
     input wire reset,                       // resets the counters
@@ -43,7 +43,7 @@ module instrumented_adder(
     `ifdef COCOTB_SIM
     initial begin
         $dumpfile ("instrumented_adder.vcd");
-        $dumpvars (0, instrumented_adder);
+        $dumpvars (0, instrumented_adder_brent);
         #1;
     end
     `endif
@@ -105,13 +105,16 @@ module instrumented_adder(
     `ifdef FORMAL
         reg chain_out;
         always @(posedge clk) chain_out <= inverters_out[NUM_INVERTERS-1];
+    `elsif FORMAL_COMPAT
+        reg chain_out;
+        always @(posedge clk) chain_out <= inverters_out[NUM_INVERTERS-1];
     `else
         wire chain_out;
         assign chain_out = inverters_out[NUM_INVERTERS-1];
     `endif
 
     // instantiate the inverters
-    inv_with_delay inverters [NUM_INVERTERS-1:0] (
+    inv_with_delay_brent inverters [NUM_INVERTERS-1:0] (
         .A(inverters_in),
         .Y(inverters_out)
     );
@@ -127,7 +130,7 @@ module instrumented_adder(
     wire r_select_control_b;
     wire [7:0] r_select_s_output_bit_b;
 
-    filter_inverted_onehot0 #(.WIDTH(8 + 2)) filter_r_select (
+    filter_inverted_onehot0_brent #(.WIDTH(8 + 2)) filter_r_select (
         .select_in_b({
             bypass_b,
             control_b,
@@ -142,19 +145,19 @@ module instrumented_adder(
 
     // bypass
     wire bypass2_in;
-    tristate bypass1 (.A(ring_top), .Z(bypass2_in), .TE_B(bypass_b)); // no other driver
-    tristate bypass2 (.A(bypass2_in), .Z(r), .TE_B(r_select_bypass_b));
+    tristate_brent bypass1 (.A(ring_top), .Z(bypass2_in), .TE_B(bypass_b)); // no other driver
+    tristate_brent bypass2 (.A(bypass2_in), .Z(r), .TE_B(r_select_bypass_b));
 
     // control chain
     wire control_chain_in, control_chain_out;
-    tristate control1 (.A(ring_top), .Z(control_chain_in), .TE_B(control_b)); // no other driver
-    tristate control2 (.A(control_chain_out), .Z(r), .TE_B(r_select_control_b));
+    tristate_brent control1 (.A(ring_top), .Z(control_chain_in), .TE_B(control_b)); // no other driver
+    tristate_brent control2 (.A(control_chain_out), .Z(r), .TE_B(r_select_control_b));
     wire [CONTROL_INVERTERS-1:0] control_inverters_in, control_inverters_out;
     assign control_inverters_in = {control_inverters_out[CONTROL_INVERTERS-2:0], control_chain_in};
     assign control_chain_out = control_inverters_out[CONTROL_INVERTERS-1];
 
     // instantiate the control chain inverters
-    inv_with_delay control_inverters [CONTROL_INVERTERS-1:0] (
+    inv_with_delay_brent control_inverters [CONTROL_INVERTERS-1:0] (
         .A(control_inverters_in),
         .Y(control_inverters_out)
     );
@@ -168,14 +171,14 @@ module instrumented_adder(
     wire [7:0] adder_a_select_a_input_ext_bit_b = a_input_ext_bit_b | ~a_input_ring_bit_b;
 
     // those coming from the ring, controlled by a_input_ring_bit_b
-    tristate tristate_ring_inputs [7:0] (
+    tristate_brent tristate_ring_inputs [7:0] (
         .A(ring_top),
         .Z(adder_a),
         .TE_B(adder_a_select_a_input_ring_bit_b)
     );
 
     // those coming from the external input, controlled by a_input_ext_bit_b
-    tristate tristate_ext_inputs [7:0] (
+    tristate_brent tristate_ext_inputs [7:0] (
         .A(a_input),
         .Z(adder_a),
         .TE_B(adder_a_select_a_input_ext_bit_b)
@@ -183,7 +186,7 @@ module instrumented_adder(
 
     // sum outputs
     wire [7:0] adder_sum;
-    tristate tristate_sum_outputs [7:0] (
+    tristate_brent tristate_sum_outputs [7:0] (
         .A(adder_sum),
         .Z(r),
         .TE_B(r_select_s_output_bit_b)
@@ -191,39 +194,39 @@ module instrumented_adder(
 
     // instantiate adder
 
-//    behavioral      behavioral   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
-//    sklansky        sklansky     (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
-//    ripple_carry    ripple_carry (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
-//    kogge_stone     kogge_stone  (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
     brent_kung      brent_kung   (.a_in(adder_a), .b_in(adder_b), .sum(adder_sum));
 
 endmodule
 
 // do this so can use iverilog to check digital
-module inv_with_delay(input wire A, output wire Y);
+module inv_with_delay_brent(input wire A, output wire Y);
     `ifdef COCOTB_SIM
     assign #1 Y = ~A;
     `elsif FORMAL
+    assign #1 Y = ~A;
+    `elsif FORMAL_COMPAT
     assign #1 Y = ~A;
     `else
     sky130_fd_sc_hd__inv_2 _0_ ( .A(A), .Y(Y));
     `endif
 endmodule
 
-module tristate(input wire A, output wire Z, input wire TE_B);
+module tristate_brent(input wire A, output wire Z, input wire TE_B);
     `ifdef COCOTB_SIM
     assign Z = !TE_B ? A : 1'bz;
     `elsif FORMAL
     assign Z = !TE_B ? A : 1'bz;
-    // make sure we can turn every tristate buffer on and off
+    // make sure we can turn every tristate_brent buffer on and off
     always @* cover (TE_B);
     always @* cover (!TE_B);
+    `elsif FORMAL_COMPAT
+    assign Z = !TE_B ? A : 1'bz;
     `else
     sky130_fd_sc_hd__ebufn_4 _0_ ( .A(A), .Z(Z), .TE_B(TE_B));
     `endif
 endmodule
 
-module filter_inverted_onehot0(
+module filter_inverted_onehot0_brent(
     input wire [WIDTH-1:0] select_in_b,
     output wire [WIDTH-1:0] select_out_b
 );
@@ -240,20 +243,4 @@ module filter_inverted_onehot0(
 
     assign select_out_b = ~y;
 
-endmodule
-
-// take a long time to add some numbers
-module behavioral(
-    input wire cout,
-    output wire [7:0] sum, 
-    input wire [7:0] a_in,
-    input wire [7:0] b_in,
-    input wire cin
-    );
-
-    `ifdef COCOTB_SIM
-    assign #50 sum = a_in + b_in;
-    `else
-    assign sum = a_in + b_in;
-    `endif
 endmodule
