@@ -33,7 +33,7 @@ analog_adder:
 test_adder:
 	rm -rf sim_build/
 	mkdir sim_build/
-	iverilog -DCOCOTB_SIM -o sim_build/sim.vvp -s instrumented_adder -g2012 src/instrumented_adder.v src/sklansky.v src/kogge_stone.v src/ripple_carry.v src/brent_kung.v
+	iverilog -DCOCOTB_SIM -o sim_build/sim.vvp -s instrumented_adder_sklansky -g2012 src/instrumented_adder.v src/sklansky.v src/kogge_stone.v src/ripple_carry.v src/brent_kung.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_adder vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 	! grep failure results.xml
 
