@@ -2,3 +2,7 @@
 runs/
 properties/
 __pycache__/
+instrumented_adder.vcd
+instrumented_adder.vcd
+results.xml
+sim_build
