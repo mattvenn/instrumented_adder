@@ -33,7 +33,7 @@ analog_adder:
 test_adder:
 	rm -rf sim_build/
 	mkdir sim_build/
-	iverilog -DCOCOTB_SIM -o sim_build/sim.vvp -s instrumented_adder_sklansky -g2012 src/instrumented_adder.v src/sklansky.v src/kogge_stone.v src/ripple_carry.v src/brent_kung.v
+	iverilog -DCOCOTB_SIM -o sim_build/sim.vvp -s instrumented_adder_sklansky -g2012 src/instrumented_adder.v src/sklansky.v 
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_adder vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 	! grep failure results.xml
 
@@ -43,20 +43,20 @@ install_adder:
 all_adders: src/sklansky.v src/kogge_stone.v src/ripple_carry.v src/brent_kung.v
 
 src/sklansky.v:
-	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "sklansky"); f.hdl("sklansky.v", module_name="sklansky", optimization = 1)'
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(32, alias = "sklansky"); f.hdl("sklansky.v", module_name="sklansky", optimization = 1)'
 	mv sklansky.v src
 
 src/kogge_stone.v:
-	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "kogge-stone"); f.hdl("kogge_stone.v", module_name="kogge_stone", optimization = 1)'
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(32, alias = "kogge-stone"); f.hdl("kogge_stone.v", module_name="kogge_stone", optimization = 1)'
 	mv kogge_stone.v src
 
 src/brent_kung.v:
-	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "brent-kung"); f.hdl("brent_kung.v", module_name="brent_kung", optimization = 1)'
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(32, alias = "brent-kung"); f.hdl("brent_kung.v", module_name="brent_kung", optimization = 1)'
 	mv brent_kung.v src
 
 
 src/ripple_carry.v:
-	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(8, alias = "ripple"); f.hdl("ripple_carry.v", module_name="ripple_carry", optimization = 1)'
+	python3 -c 'from pptrees.AdderForest import AdderForest as forest; f = forest(32, alias = "ripple"); f.hdl("ripple_carry.v", module_name="ripple_carry", optimization = 1)'
 	mv ripple_carry.v src
 
 show_synth_%: src/%.v
