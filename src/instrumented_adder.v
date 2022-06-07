@@ -19,6 +19,7 @@ module instrumented_adder (
     input wire extra_inverter,              // adds an extra inverter into the ring
     input wire bypass_b,                    // bypass the adder (inverted)
     input wire control_b,                   // enables an additional control loop (inverted)
+    input wire force_count,                 // force counter even without the integration counter
     input wire [WIDTH-1:0] a_input_ext_bit_b,     // which bit of the adder's a input to connect to external a_input (inverted)
     input wire [WIDTH-1:0] a_input_ring_bit_b,    // which bit of the adder's a input to connect to the ring (inverted)
     input wire [WIDTH-1:0] s_output_bit_b,        // which bit of sum to connect back to the ring (inverted)
@@ -91,7 +92,7 @@ module instrumented_adder (
         if(reset)
             ring_osc_counter <= 0;
         // count while there is still time left in the integration timer
-        else if(!zero)
+        else if(force_count | (!zero & counter_enable))
             ring_osc_counter <= ring_osc_counter + 1'b1;
     end
 

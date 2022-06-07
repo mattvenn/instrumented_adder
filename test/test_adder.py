@@ -73,6 +73,7 @@ async def test_bypass(dut):
     
     # hold in reset
     dut.reset = 1
+    dut.force_count = 0
     # stop the ring
     dut.stop_b = 0
     # enable extra inverter
@@ -120,6 +121,7 @@ async def test_control(dut):
     
     # hold in reset
     dut.reset = 1
+    dut.force_count = 0
     # stop the ring
     dut.stop_b = 0
     # enable extra inverter
@@ -168,6 +170,7 @@ async def test_adder_in_loop(dut):
     
         # hold in reset
         dut.reset = 1
+        dut.force_count = 0
         # stop the ring
         dut.stop_b = 0
         # enable extra inverter now adder is in the loop and b input is set to 0
@@ -214,6 +217,7 @@ async def test_adder_in_loop(dut):
 async def test_adder(dut):
     clock = Clock(dut.clk, 100, units="ns")
     cocotb.fork(clock.start())
+    dut.force_count = 0
     dut.reset  = 1
     dut.stop_b = 0
     # control inputs are all inverted
@@ -234,3 +238,19 @@ async def test_adder(dut):
             progress.update(test_progress, advance=1)
 
 
+@cocotb.test()
+async def force_ring(dut):
+    clock = Clock(dut.clk, 100, units="ns")
+    cocotb.fork(clock.start())
+    dut.reset = 0
+    dut.force_count = 1
+    dut.stop_b = 1
+    dut.extra_inverter = 1
+    dut.a_input = 0
+    dut.b_input = 0
+    dut.s_output_bit_b     = 0xFFFFFFFF
+    dut.a_input_ring_bit_b = 0x00000000
+    dut.a_input_ext_bit_b  = 0xFFFFFFFF
+    dut.control_b = 1
+    dut.bypass_b = 0
+    await ClockCycles(dut.clk, 20)
