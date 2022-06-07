@@ -1,92 +1,48 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu May 26 12:25:55 2022
+[*] Tue Jun  7 09:49:23 2022
 [*]
-[dumpfile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder.vcd"
-[dumpfile_mtime] "Thu May 26 12:25:39 2022"
-[dumpfile_size] 2114231
-[savefile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder.gtkw"
-[timestart] 0
-[size] 2225 1278
+[dumpfile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder/instrumented_adder.vcd"
+[dumpfile_mtime] "Tue Jun  7 09:49:13 2022"
+[dumpfile_size] 31481929
+[savefile] "/home/matt/work/asic-workshop/shuttle5/openlane/designs/wrapped_instrumented_adder/instrumented_adder/instrumented_adder.gtkw"
+[timestart] 1370986
+[size] 1848 1016
 [pos] -1 -1
-*-14.400002 25480 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-10.900002 1376144 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] instrumented_adder.
-[sst_width] 343
-[signals_width] 612
+[sst_width] 415
+[signals_width] 749
 [sst_expanded] 1
 [sst_vpaned_height] 214
 @28
 instrumented_adder.reset
 instrumented_adder.clk
 instrumented_adder.extra_inverter
-@8024
-instrumented_adder.ring_osc_counter[7:0]
 @20000
 -
 @28
+instrumented_adder.stop_b
 instrumented_adder.bypass_b
 instrumented_adder.control_b
+@200
+-
+@28
+instrumented_adder.r_select_bypass_b
+instrumented_adder.r_select_control_b
 @22
-instrumented_adder.a_input_ext_bit_b[7:0]
-instrumented_adder.a_input_ring_bit_b[7:0]
-instrumented_adder.a_input[7:0]
-@23
-instrumented_adder.b_input[7:0]
+instrumented_adder.r_select_s_output_bit_b[31:0]
 @200
 -
-@c00022
-instrumented_adder.adder_a[7:0]
-@28
-(0)instrumented_adder.adder_a[7:0]
-(1)instrumented_adder.adder_a[7:0]
-(2)instrumented_adder.adder_a[7:0]
-(3)instrumented_adder.adder_a[7:0]
-(4)instrumented_adder.adder_a[7:0]
-(5)instrumented_adder.adder_a[7:0]
-(6)instrumented_adder.adder_a[7:0]
-(7)instrumented_adder.adder_a[7:0]
-@1401200
--group_end
-@c00022
-instrumented_adder.adder_b[7:0]
-@28
-(0)instrumented_adder.adder_b[7:0]
-(1)instrumented_adder.adder_b[7:0]
-(2)instrumented_adder.adder_b[7:0]
-(3)instrumented_adder.adder_b[7:0]
-(4)instrumented_adder.adder_b[7:0]
-(5)instrumented_adder.adder_b[7:0]
-(6)instrumented_adder.adder_b[7:0]
-(7)instrumented_adder.adder_b[7:0]
-@1401200
--group_end
-@c00022
-instrumented_adder.sum_out[7:0]
-@28
-(0)instrumented_adder.sum_out[7:0]
-(1)instrumented_adder.sum_out[7:0]
-(2)instrumented_adder.sum_out[7:0]
-(3)instrumented_adder.sum_out[7:0]
-(4)instrumented_adder.sum_out[7:0]
-(5)instrumented_adder.sum_out[7:0]
-(6)instrumented_adder.sum_out[7:0]
-(7)instrumented_adder.sum_out[7:0]
-@1401200
--group_end
-@200
--
-@28
-instrumented_adder.stop_b
-instrumented_adder.counter_load
-@24
-instrumented_adder.integration_time[7:0]
-@28
-instrumented_adder.counter_enable
-@24
-instrumented_adder.integration_counter[7:0]
 @22
-instrumented_adder.ring_osc_counter[7:0]
-@200
--
+instrumented_adder.ring_osc_counter_out[31:0]
+instrumented_adder.ring_osc_counter[31:0]
+@28
+instrumented_adder.force_count
+instrumented_adder.ring_top
+@29
+instrumented_adder.r
+@28
+instrumented_adder.r2
 [pattern_trace] 1
 [pattern_trace] 0
