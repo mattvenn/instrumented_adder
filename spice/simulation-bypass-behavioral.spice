@@ -7,14 +7,33 @@ bypass behav
 .include "instrumented_adder.spice.behavioral"
 
 * instantiate the spice model
-Xpoc a_input[0] a_input[1] a_input[2] a_input[3] a_input[4]
-+ a_input[5] a_input[6] a_input[7] a_input_ext_bit_b[0] a_input_ext_bit_b[1] a_input_ext_bit_b[2]
+Xpoc a_input[0] a_input[10] a_input[11] a_input[12] a_input[13]
++ a_input[14] a_input[15] a_input[16] a_input[17] a_input[18] a_input[19] a_input[1]
++ a_input[20] a_input[21] a_input[22] a_input[23] a_input[24] a_input[25] a_input[26]
++ a_input[27] a_input[28] a_input[29] a_input[2] a_input[30] a_input[31] a_input[3]
++ a_input[4] a_input[5] a_input[6] a_input[7] a_input[8] a_input[9] a_input_ext_bit_b[0]
++ a_input_ext_bit_b[10] a_input_ext_bit_b[11] a_input_ext_bit_b[12] a_input_ext_bit_b[13]
++ a_input_ext_bit_b[14] a_input_ext_bit_b[15] a_input_ext_bit_b[16] a_input_ext_bit_b[17]
++ a_input_ext_bit_b[18] a_input_ext_bit_b[19] a_input_ext_bit_b[1] a_input_ext_bit_b[20]
++ a_input_ext_bit_b[21] a_input_ext_bit_b[22] a_input_ext_bit_b[23] a_input_ext_bit_b[24]
++ a_input_ext_bit_b[25] a_input_ext_bit_b[26] a_input_ext_bit_b[27] a_input_ext_bit_b[28]
++ a_input_ext_bit_b[29] a_input_ext_bit_b[2] a_input_ext_bit_b[30] a_input_ext_bit_b[31]
 + a_input_ext_bit_b[3] a_input_ext_bit_b[4] a_input_ext_bit_b[5] a_input_ext_bit_b[6]
-+ a_input_ext_bit_b[7] a_input_ring_bit_b[0] a_input_ring_bit_b[1] a_input_ring_bit_b[2]
++ a_input_ext_bit_b[7] a_input_ext_bit_b[8] a_input_ext_bit_b[9] a_input_ring_bit_b[0]
++ a_input_ring_bit_b[10] a_input_ring_bit_b[11] a_input_ring_bit_b[12] a_input_ring_bit_b[13]
++ a_input_ring_bit_b[14] a_input_ring_bit_b[15] a_input_ring_bit_b[16] a_input_ring_bit_b[17]
++ a_input_ring_bit_b[18] a_input_ring_bit_b[19] a_input_ring_bit_b[1] a_input_ring_bit_b[20]
++ a_input_ring_bit_b[21] a_input_ring_bit_b[22] a_input_ring_bit_b[23] a_input_ring_bit_b[24]
++ a_input_ring_bit_b[25] a_input_ring_bit_b[26] a_input_ring_bit_b[27] a_input_ring_bit_b[28]
++ a_input_ring_bit_b[29] a_input_ring_bit_b[2] a_input_ring_bit_b[30] a_input_ring_bit_b[31]
 + a_input_ring_bit_b[3] a_input_ring_bit_b[4] a_input_ring_bit_b[5] a_input_ring_bit_b[6]
-+ a_input_ring_bit_b[7] b_input[0] b_input[1] b_input[2] b_input[3] b_input[4] b_input[5]
-+ b_input[6] b_input[7] bypass_b clk control_b counter_enable counter_load done extra_inverter
-+ integration_time[0] integration_time[10] integration_time[11] integration_time[12]
++ a_input_ring_bit_b[7] a_input_ring_bit_b[8] a_input_ring_bit_b[9] b_input[0] b_input[10]
++ b_input[11] b_input[12] b_input[13] b_input[14] b_input[15] b_input[16] b_input[17]
++ b_input[18] b_input[19] b_input[1] b_input[20] b_input[21] b_input[22] b_input[23]
++ b_input[24] b_input[25] b_input[26] b_input[27] b_input[28] b_input[29] b_input[2]
++ b_input[30] b_input[31] b_input[3] b_input[4] b_input[5] b_input[6] b_input[7] b_input[8]
++ b_input[9] bypass_b clk control_b counter_enable counter_load done extra_inverter
++ force_count integration_time[0] integration_time[10] integration_time[11] integration_time[12]
 + integration_time[13] integration_time[14] integration_time[15] integration_time[16]
 + integration_time[17] integration_time[18] integration_time[19] integration_time[1]
 + integration_time[20] integration_time[21] integration_time[22] integration_time[23]
@@ -30,10 +49,18 @@ Xpoc a_input[0] a_input[1] a_input[2] a_input[3] a_input[4]
 + ring_osc_counter_out[27] ring_osc_counter_out[28] ring_osc_counter_out[29] ring_osc_counter_out[2]
 + ring_osc_counter_out[30] ring_osc_counter_out[31] ring_osc_counter_out[3] ring_osc_counter_out[4]
 + ring_osc_counter_out[5] ring_osc_counter_out[6] ring_osc_counter_out[7] ring_osc_counter_out[8]
-+ ring_osc_counter_out[9] ring_osc_out s_output_bit_b[0] s_output_bit_b[1] s_output_bit_b[2]
-+ s_output_bit_b[3] s_output_bit_b[4] s_output_bit_b[5] s_output_bit_b[6] s_output_bit_b[7]
-+ stop_b sum_out[0] sum_out[1] sum_out[2] sum_out[3] sum_out[4] sum_out[5] sum_out[6]
-+ sum_out[7] VPWR VGND instrumented_adder
++ ring_osc_counter_out[9] ring_osc_out s_output_bit_b[0] s_output_bit_b[10] s_output_bit_b[11]
++ s_output_bit_b[12] s_output_bit_b[13] s_output_bit_b[14] s_output_bit_b[15] s_output_bit_b[16]
++ s_output_bit_b[17] s_output_bit_b[18] s_output_bit_b[19] s_output_bit_b[1] s_output_bit_b[20]
++ s_output_bit_b[21] s_output_bit_b[22] s_output_bit_b[23] s_output_bit_b[24] s_output_bit_b[25]
++ s_output_bit_b[26] s_output_bit_b[27] s_output_bit_b[28] s_output_bit_b[29] s_output_bit_b[2]
++ s_output_bit_b[30] s_output_bit_b[31] s_output_bit_b[3] s_output_bit_b[4] s_output_bit_b[5]
++ s_output_bit_b[6] s_output_bit_b[7] s_output_bit_b[8] s_output_bit_b[9] stop_b sum_out[0]
++ sum_out[10] sum_out[11] sum_out[12] sum_out[13] sum_out[14] sum_out[15] sum_out[16]
++ sum_out[17] sum_out[18] sum_out[19] sum_out[1] sum_out[20] sum_out[21] sum_out[22]
++ sum_out[23] sum_out[24] sum_out[25] sum_out[26] sum_out[27] sum_out[28] sum_out[29]
++ sum_out[2] sum_out[30] sum_out[31] sum_out[3] sum_out[4] sum_out[5] sum_out[6] sum_out[7]
++ sum_out[8] sum_out[9] VPWR VGND instrumented_adder
 
 * set gnd and power
 Vgnd VGND 0 0
@@ -42,6 +69,7 @@ Vreset reset VGND 1.8
 Vbypass_b bypass_b VGND 0
 Vcontrol_b control_b VGND 1.8
 Vextra_inverter extra_inverter VGND 1.8
+Vforce_count force_count VGND 0
 
 * a input
 Va0 a_input[0] VGND 0
@@ -52,6 +80,30 @@ Va4 a_input[4] VGND 0
 Va5 a_input[5] VGND 0
 Va6 a_input[6] VGND 0
 Va7 a_input[7] VGND 0
+Va8 a_input[8] VGND 0
+Va9 a_input[9] VGND 0
+Va10 a_input[10] VGND 0
+Va11 a_input[11] VGND 0
+Va12 a_input[12] VGND 0
+Va13 a_input[13] VGND 0
+Va14 a_input[14] VGND 0
+Va15 a_input[15] VGND 0
+Va16 a_input[16] VGND 0
+Va17 a_input[17] VGND 0
+Va18 a_input[18] VGND 0
+Va19 a_input[19] VGND 0
+Va20 a_input[20] VGND 0
+Va21 a_input[21] VGND 0
+Va22 a_input[22] VGND 0
+Va23 a_input[23] VGND 0
+Va24 a_input[24] VGND 0
+Va25 a_input[25] VGND 0
+Va26 a_input[26] VGND 0
+Va27 a_input[27] VGND 0
+Va28 a_input[28] VGND 0
+Va29 a_input[29] VGND 0
+Va30 a_input[30] VGND 0
+Va31 a_input[31] VGND 0
 
 * b input
 Vb0 b_input[0] VGND 0
@@ -62,6 +114,30 @@ Vb4 b_input[4] VGND 0
 Vb5 b_input[5] VGND 0
 Vb6 b_input[6] VGND 0
 Vb7 b_input[7] VGND 0
+Vb8 b_input[8] VGND 0
+Vb9 b_input[9] VGND 0
+Vb10 b_input[10] VGND 0
+Vb11 b_input[11] VGND 0
+Vb12 b_input[12] VGND 0
+Vb13 b_input[13] VGND 0
+Vb14 b_input[14] VGND 0
+Vb15 b_input[15] VGND 0
+Vb16 b_input[16] VGND 0
+Vb17 b_input[17] VGND 0
+Vb18 b_input[18] VGND 0
+Vb19 b_input[19] VGND 0
+Vb20 b_input[20] VGND 0
+Vb21 b_input[21] VGND 0
+Vb22 b_input[22] VGND 0
+Vb23 b_input[23] VGND 0
+Vb24 b_input[24] VGND 0
+Vb25 b_input[25] VGND 0
+Vb26 b_input[26] VGND 0
+Vb27 b_input[27] VGND 0
+Vb28 b_input[28] VGND 0
+Vb29 b_input[29] VGND 0
+Vb30 b_input[30] VGND 0
+Vb31 b_input[31] VGND 0
 
 * sum output bit enable
 Vob0 s_output_bit_b[0] VGND 1.8
@@ -72,6 +148,30 @@ Vob4 s_output_bit_b[4] VGND 1.8
 Vob5 s_output_bit_b[5] VGND 1.8
 Vob6 s_output_bit_b[6] VGND 1.8
 Vob7 s_output_bit_b[7] VGND 1.8
+Vob8 s_output_bit_b[8] VGND 1.8
+Vob9 s_output_bit_b[9] VGND 1.8
+Vob10 s_output_bit_b[10] VGND 1.8
+Vob11 s_output_bit_b[11] VGND 1.8
+Vob12 s_output_bit_b[12] VGND 1.8
+Vob13 s_output_bit_b[13] VGND 1.8
+Vob14 s_output_bit_b[14] VGND 1.8
+Vob15 s_output_bit_b[15] VGND 1.8
+Vob16 s_output_bit_b[16] VGND 1.8
+Vob17 s_output_bit_b[17] VGND 1.8
+Vob18 s_output_bit_b[18] VGND 1.8
+Vob19 s_output_bit_b[19] VGND 1.8
+Vob20 s_output_bit_b[20] VGND 1.8
+Vob21 s_output_bit_b[21] VGND 1.8
+Vob22 s_output_bit_b[22] VGND 1.8
+Vob23 s_output_bit_b[23] VGND 1.8
+Vob24 s_output_bit_b[24] VGND 1.8
+Vob25 s_output_bit_b[25] VGND 1.8
+Vob26 s_output_bit_b[26] VGND 1.8
+Vob27 s_output_bit_b[27] VGND 1.8
+Vob28 s_output_bit_b[28] VGND 1.8
+Vob29 s_output_bit_b[29] VGND 1.8
+Vob30 s_output_bit_b[30] VGND 1.8
+Vob31 s_output_bit_b[31] VGND 1.8
 
 * a input ring bit select
 Vrb0 a_input_ring_bit_b[0] VGND 1.8
@@ -82,6 +182,30 @@ Vrb4 a_input_ring_bit_b[4] VGND 1.8
 Vrb5 a_input_ring_bit_b[5] VGND 1.8
 Vrb6 a_input_ring_bit_b[6] VGND 1.8
 Vrb7 a_input_ring_bit_b[7] VGND 1.8
+Vrb8 a_input_ring_bit_b[8] VGND 1.8
+Vrb9 a_input_ring_bit_b[9] VGND 1.8
+Vrb10 a_input_ring_bit_b[10] VGND 1.8
+Vrb11 a_input_ring_bit_b[11] VGND 1.8
+Vrb12 a_input_ring_bit_b[12] VGND 1.8
+Vrb13 a_input_ring_bit_b[13] VGND 1.8
+Vrb14 a_input_ring_bit_b[14] VGND 1.8
+Vrb15 a_input_ring_bit_b[15] VGND 1.8
+Vrb16 a_input_ring_bit_b[16] VGND 1.8
+Vrb17 a_input_ring_bit_b[17] VGND 1.8
+Vrb18 a_input_ring_bit_b[18] VGND 1.8
+Vrb19 a_input_ring_bit_b[19] VGND 1.8
+Vrb20 a_input_ring_bit_b[20] VGND 1.8
+Vrb21 a_input_ring_bit_b[21] VGND 1.8
+Vrb22 a_input_ring_bit_b[22] VGND 1.8
+Vrb23 a_input_ring_bit_b[23] VGND 1.8
+Vrb24 a_input_ring_bit_b[24] VGND 1.8
+Vrb25 a_input_ring_bit_b[25] VGND 1.8
+Vrb26 a_input_ring_bit_b[26] VGND 1.8
+Vrb27 a_input_ring_bit_b[27] VGND 1.8
+Vrb28 a_input_ring_bit_b[28] VGND 1.8
+Vrb29 a_input_ring_bit_b[29] VGND 1.8
+Vrb30 a_input_ring_bit_b[30] VGND 1.8
+Vrb31 a_input_ring_bit_b[31] VGND 1.8
 
 * a input external bit select
 Veb0 a_input_ext_bit_b[0] VGND 0
@@ -92,6 +216,30 @@ Veb4 a_input_ext_bit_b[4] VGND 0
 Veb5 a_input_ext_bit_b[5] VGND 0
 Veb6 a_input_ext_bit_b[6] VGND 0
 Veb7 a_input_ext_bit_b[7] VGND 0
+Veb8 a_input_ext_bit_b[8] VGND 0
+Veb9 a_input_ext_bit_b[9] VGND 0
+Veb10 a_input_ext_bit_b[10] VGND 0
+Veb11 a_input_ext_bit_b[11] VGND 0
+Veb12 a_input_ext_bit_b[12] VGND 0
+Veb13 a_input_ext_bit_b[13] VGND 0
+Veb14 a_input_ext_bit_b[14] VGND 0
+Veb15 a_input_ext_bit_b[15] VGND 0
+Veb16 a_input_ext_bit_b[16] VGND 0
+Veb17 a_input_ext_bit_b[17] VGND 0
+Veb18 a_input_ext_bit_b[18] VGND 0
+Veb19 a_input_ext_bit_b[19] VGND 0
+Veb20 a_input_ext_bit_b[20] VGND 0
+Veb21 a_input_ext_bit_b[21] VGND 0
+Veb22 a_input_ext_bit_b[22] VGND 0
+Veb23 a_input_ext_bit_b[23] VGND 0
+Veb24 a_input_ext_bit_b[24] VGND 0
+Veb25 a_input_ext_bit_b[25] VGND 0
+Veb26 a_input_ext_bit_b[26] VGND 0
+Veb27 a_input_ext_bit_b[27] VGND 0
+Veb28 a_input_ext_bit_b[28] VGND 0
+Veb29 a_input_ext_bit_b[29] VGND 0
+Veb30 a_input_ext_bit_b[30] VGND 0
+Veb31 a_input_ext_bit_b[31] VGND 0
 
 * create a clock, 4ns period
 * initial v, pulse v, delay, rise, fall, pulse w, period

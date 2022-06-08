@@ -29,7 +29,7 @@ set ::env(FP_SIZING) absolute
 set ::env(SYNTH_DEFINES) "MPRJ_IO_PADS=38"
 
 # clock period is ns
-set ::env(CLOCK_PERIOD) "10"
+set ::env(CLOCK_PERIOD) "20"
 set ::env(CLOCK_PORT) "clk"
 
 # macro needs to work inside Caravel, so can't be core and can't use metal 5
